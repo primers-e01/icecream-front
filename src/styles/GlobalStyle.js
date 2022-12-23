@@ -4,10 +4,6 @@ import reset from 'styled-reset';
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
-  body {
-    margin-top: 100px;
-  }
-
   * {
   box-sizing: border-box;
   }
