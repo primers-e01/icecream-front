@@ -8,6 +8,7 @@ import Mypage from './pages/Mypage/Mypage';
 import Shop from './pages/Shop/Shop';
 import Signup from './pages/Signup/Signup';
 import Style from './pages/Style/Style';
+import KakaoLogin from './pages/KakaoLogin/KakaoLogin';
 
 const Router = () => {
   return (
@@ -20,6 +21,7 @@ const Router = () => {
         <Route path="/detail" element={<Detail />} />
         <Route path="/style" element={<Style />} />
         <Route path="/mypage" element={<Mypage />} />
+        <Route path="/kakaoLogin" element={<KakaoLogin />} />
       </Routes>
       <Footer />
     </BrowserRouter>
