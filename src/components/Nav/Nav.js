@@ -2,11 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { flexBox } from '../../styles/mixin';
 
 const NAV_TOP = [
   { id: 1, list: '고객센터', link: '/notice' },
   { id: 2, list: '마이페이지', link: '/mypage' },
-  { id: 3, list: '로그인', link: '/signin' },
+  { id: 3, list: '로그인 / 회원가입', link: '/signup' },
 ];
 
 const NAV_MAIN = [
@@ -53,6 +54,12 @@ const Nav = () => {
 export default Nav;
 
 const NavWrapper = styled.nav`
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: ${({ theme }) => theme.nav};
   box-shadow: 0 1px 0 0 rgb(0 0 0 / 10%);
 `;
 
@@ -62,32 +69,26 @@ const NavTopBox = styled.div`
 `;
 
 const NavTopList = styled.ul`
-  display: flex;
-  justify-content: flex-end;
+  ${flexBox('flex-end')}
 `;
 
 const NavTopItem = styled.li`
-  display: flex;
-  align-items: center;
-  color: ${props => props.theme.mainBrandGray08};
+  color: ${({ theme }) => theme.mainBrandGray08};
   font-size: 12px;
   margin-left: 24px;
   letter-spacing: 1px;
 `;
 
 const NavMainBox = styled.div`
-  display: flex;
-  align-items: center;
+  ${flexBox('space-between', 'center', '')}
   padding: 0 40px;
   height: 68px;
-  justify-content: space-between;
 `;
 
 const NavLogoBox = styled.div``;
 
 const NavMainList = styled.ul`
-  display: flex;
-  align-items: center;
+  ${flexBox()}
 `;
 
 const NavMainItem = styled.li`

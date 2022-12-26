@@ -6,7 +6,6 @@ import Detail from './pages/Detail/Detail';
 import Main from './pages/Main/Main';
 import Mypage from './pages/Mypage/Mypage';
 import Shop from './pages/Shop/Shop';
-import Signin from './pages/Signin/Signin';
 import Signup from './pages/Signup/Signup';
 import Style from './pages/Style/Style';
 
@@ -16,7 +15,6 @@ const Router = () => {
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/detail" element={<Detail />} />
