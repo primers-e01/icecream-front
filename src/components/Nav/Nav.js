@@ -60,7 +60,7 @@ const NavWrapper = styled.nav`
   left: 0;
   background-color: #fff;
   z-index: ${({ theme }) => theme.nav};
-  box-shadow: 0 1px 0 0 rgb(0 0 0 / 10%);
+  box-shadow: 4px 0 10px 0 rgb(0 0 0 / 10%);
 `;
 
 const NavTopBox = styled.div`

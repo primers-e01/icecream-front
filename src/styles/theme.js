@@ -15,6 +15,7 @@ const styles = {
 
 const levels = {
   nav: 100,
+  alertModal: 110,
 };
 
 const theme = { ...colors, ...levels, ...styles };
