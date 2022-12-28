@@ -9,6 +9,10 @@ const GlobalStyle = createGlobalStyle`
   color : ${props => props.theme.mainBrandBlack};
   }
 
+  body {
+    font-family: -apple-system, "system-ui", Roboto, AppleSDGothicNeo-Regular, NanumBarunGothic, NanumGothic, 나눔고딕, "Segoe UI", Helveica, Arial, "Malgun Gothic", Dotum, sans-serif;  
+  }
+
   a {
     color: inherit;
     text-decoration: none;
