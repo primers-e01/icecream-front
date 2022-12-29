@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { flexBox } from '../../styles/mixin';
+import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 
 const StyleCard = props => {
   const {
@@ -11,6 +14,11 @@ const StyleCard = props => {
     likes,
     feed_text,
   } = props;
+
+  const [isToggle, setIsToggle] = useState(false);
+  const isLiked = () => {
+    setIsToggle(!isToggle);
+  };
 
   return (
     <>
@@ -33,33 +41,38 @@ const StyleCard = props => {
       </SocialProduct>
       <ProductList>
         <ProductItem>
-          <ProductImage src={products?.[0]?.thumbnail_image_url} />
+          <ProductImage src={products[0].thumbnail_image_url} />
         </ProductItem>
         <ProductItem>
-          <ProductName>{products?.[0]?.en_name}</ProductName>
+          <ProductName>{products[0].en_name}</ProductName>
         </ProductItem>
         <ProductItem>
-          <ProductPrice>{products?.[0]?.price.toLocaleString()}원</ProductPrice>
+          <ProductPrice>{products[0].price.toLocaleString()}원</ProductPrice>
         </ProductItem>
       </ProductList>
       <SocialContent>
         <SocialLikeBox>
-          <SocialLikeButton>
+          <SocialLikedButton>
             <FontAwesomeIcon
-              icon="fa-regular fa-face-smile"
+              onClick={isLiked}
+              icon={isToggle ? solidHeart : regularHeart}
+              className={isToggle ? 'like' : 'unlike'}
               size="2x"
-              color="gray"
             />
-          </SocialLikeButton>
+          </SocialLikedButton>
           <SocialLikeButtonText>
-            공감<TextStrong>{likes}</TextStrong>개
+            공감
+            <TextStrong>
+              {isToggle === true ? Number(likes) + 1 : likes}
+            </TextStrong>
+            개
           </SocialLikeButtonText>
         </SocialLikeBox>
         <ShareButton>
           <FontAwesomeIcon
+            className="share"
             icon="fa-regular fa-share-from-square"
             size="2x"
-            color="gray"
           />
         </ShareButton>
       </SocialContent>
@@ -71,16 +84,13 @@ const StyleCard = props => {
 export default StyleCard;
 
 const UserInfoState = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${flexBox('space-between')}
   width: 100%;
   height: auto;
 `;
 
 const UserInfo = styled.div`
-  display: flex;
-  align-items: center;
+  ${flexBox('', 'center', '')}
   width: 200px;
 `;
 
@@ -91,6 +101,7 @@ const UserProfileImage = styled.img`
 
 const UserId = styled.span`
   margin-left: 10px;
+  padding-bottom: 10px;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
@@ -166,23 +177,26 @@ const ProductPrice = styled.p`
 `;
 
 const SocialContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  ${flexBox('space-between', 'center', '')}
   width: 100%;
 `;
 
 const SocialLikeBox = styled.div`
-  display: flex;
-  align-items: center;
+  ${flexBox('', 'center', '')}
   width: auto;
 `;
 
-const SocialLikeButton = styled.button`
+const SocialLikedButton = styled.button`
   padding: 0;
   border: none;
   background-color: white;
   cursor: pointer;
+  & .like * {
+    color: red;
+  }
+  & .unlike * {
+    color: lightgray;
+  }
 `;
 
 const SocialLikeButtonText = styled.span`
@@ -194,6 +208,9 @@ const ShareButton = styled.button`
   border: none;
   background-color: white;
   cursor: pointer;
+  & .share * {
+    color: #5a5959;
+  }
 `;
 
 const SocialText = styled.p`

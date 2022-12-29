@@ -9,7 +9,7 @@ const StyleDetail = () => {
   const params = useParams();
 
   useEffect(() => {
-    fetch('/data/Styledata.json')
+    fetch('/data/StyleData.json')
       .then(response => response.json())
       .then(result => {
         setPostPage(result);

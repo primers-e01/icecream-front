@@ -8,6 +8,7 @@ import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 const Card = props => {
   const { id, post_image_url, profile_image_url, nickName, likes, feed_text } =
     props;
+
   const [isToggle, setIsToggle] = useState(false);
   const isLiked = () => {
     setIsToggle(!isToggle);
@@ -34,7 +35,7 @@ const Card = props => {
               size="lg"
             />
           </Liked>
-          <LikeCount>{likes}</LikeCount>
+          <LikeCount>{isToggle === true ? Number(likes) + 1 : likes}</LikeCount>
         </Like>
       </User>
       <FeedText>{feed_text}</FeedText>
