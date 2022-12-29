@@ -1,12 +1,12 @@
 import React from 'react';
 import { ResponsiveLine } from '@nivo/line';
-import chartData from './chartData';
+// import chartData from './chartData';
 import styled from 'styled-components';
 
-const ChartLine = () => (
+const ChartLine = ({ chartData }) => (
   <div style={{ width: '100%', height: '200px', margin: '0 auto' }}>
     <ResponsiveLine
-      data={chartData}
+      data={chartData || []}
       margin={{ top: 20, right: 60, bottom: 20, left: 20 }}
       xScale={{
         type: 'time',

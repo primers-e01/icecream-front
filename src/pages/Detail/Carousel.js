@@ -12,6 +12,7 @@ import 'swiper/css/scrollbar';
 
 const Carousel = () => {
   const swiperRef = useRef(null);
+
   return (
     <StyledSwiper
       effect="fade"

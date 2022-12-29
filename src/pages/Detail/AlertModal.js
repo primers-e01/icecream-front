@@ -10,7 +10,7 @@ const IMAGE_LIST = [
   { id: 4, img: 'http://placeimg.com/640/640/nature' },
 ];
 
-const AlertModal = ({ setIsClicked }) => {
+const AlertModal = ({ setIsClicked, productData }) => {
   const onCloseClick = () => setIsClicked(false);
 
   return (
@@ -32,11 +32,9 @@ const AlertModal = ({ setIsClicked }) => {
             width="80px"
           />
           <ItemInfo>
-            <ItemCode>DZ5485-612</ItemCode>
-            <ItemEnglishName>
-              Jordan 1 Retro High OG Chicago 2022
-            </ItemEnglishName>
-            <ItemKoreanName>조던 1 레트로 하이 OG 시카고 2022</ItemKoreanName>
+            <ItemCode>{productData?.modelNumber}</ItemCode>
+            <ItemEnglishName>{productData?.enName}</ItemEnglishName>
+            <ItemKoreanName>{productData?.krName}</ItemKoreanName>
           </ItemInfo>
         </ItemArea>
         <ItemDesc>

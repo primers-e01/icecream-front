@@ -11,14 +11,14 @@ const DROPDOWN_LIST = [
       {
         id: 1,
         content:
-          'KREAM은 최대한 빠르게 모든 상품을 배송하기 위해 노력하고 있습니다. 배송 시간은 판매자가 검수를 위하여 상품을 검수센터로 보내는 속도에 따라 차이가 있습니다.',
+          'ICECREAM은 최대한 빠르게 모든 상품을 배송하기 위해 노력하고 있습니다. 배송 시간은 판매자가 검수를 위하여 상품을 검수센터로 보내는 속도에 따라 차이가 있습니다.',
         textType: 'title',
       },
       { id: 2, content: '[빠른배송 구매]', textType: 'bracketText' },
       {
         id: 3,
         content:
-          '- 판매자가 보관 신청한 상품 중 검수에 합격한 상품을 KREAM의 전용 창고에 보관합니다. 보관 상품에 한하여 바로 구매와 95점 구매가 가능합니다.',
+          '- 판매자가 보관 신청한 상품 중 검수에 합격한 상품을 ICECREAM의 전용 창고에 보관합니다. 보관 상품에 한하여 바로 구매와 95점 구매가 가능합니다.',
         textType: 'dashList',
       },
       {
@@ -31,7 +31,7 @@ const DROPDOWN_LIST = [
       {
         id: 6,
         content:
-          '- 거래가 체결된 시점부터 48시간(일요일•공휴일 제외) 내에 판매자가 상품을 발송해야 하며, 통상적으로 발송 후 1-2일 내에 KREAM 검수센터에 도착합니다.',
+          '- 거래가 체결된 시점부터 48시간(일요일•공휴일 제외) 내에 판매자가 상품을 발송해야 하며, 통상적으로 발송 후 1-2일 내에 ICECREAM 검수센터에 도착합니다.',
         textType: 'dashList',
       },
       {
@@ -85,7 +85,7 @@ const DROPDOWN_LIST = [
       },
       {
         id: 5,
-        content: '* 검수 합격: KREAM 검수택(Tag)이 부착되어 배송을 준비함',
+        content: '* 검수 합격: ICECREAM 검수택(Tag)이 부착되어 배송을 준비함',
         textType: 'dotList',
       },
       {
@@ -110,19 +110,19 @@ const DROPDOWN_LIST = [
       {
         id: 1,
         content:
-          'KREAM은 익명 거래를 기반으로 판매자가 판매하는 상품을 구매자가 실시간으로 구매하여 거래를 체결합니다.',
+          'ICECREAM은 익명 거래를 기반으로 판매자가 판매하는 상품을 구매자가 실시간으로 구매하여 거래를 체결합니다.',
         textType: 'title',
       },
       {
         id: 2,
         content:
-          '- 단순 변심이나 실수에 의한 취소/교환/반품이 불가능합니다. 상품을 원하지 않으시는 경우 언제든지 KREAM에서 재판매를 하실 수 있습니다.',
+          '- 단순 변심이나 실수에 의한 취소/교환/반품이 불가능합니다. 상품을 원하지 않으시는 경우 언제든지 ICECREAM에서 재판매를 하실 수 있습니다.',
         textType: 'dashList',
       },
       {
         id: 3,
         content:
-          '- 상품 수령 후, 이상이 있는 경우 KREAM 고객센터로 문의해주시기 바랍니다.',
+          '- 상품 수령 후, 이상이 있는 경우 ICECREAM 고객센터로 문의해주시기 바랍니다.',
         textType: 'dashList',
       },
     ],
@@ -144,11 +144,11 @@ const Dropdown = () => {
           return (
             <DropdownItem key={id}>
               <TitleBox
-                condition={isOpen === id && 'opend'}
+                condition={isOpen === id && 'opened'}
                 id={id}
                 onClick={onClick}
               >
-                <DropdownText condition={isOpen === id && 'opend'} id={id}>
+                <DropdownText condition={isOpen === id && 'opened'} id={id}>
                   {list}
                 </DropdownText>
                 <FontAwesomeIcon
@@ -219,6 +219,7 @@ const DropdownText = styled.span`
 
 const ContentBox = styled.div`
   padding-bottom: 20px;
+  border-bottom: ${({ theme }) => theme.globalBoardStyle};
 `;
 
 const ContentList = styled.ul`

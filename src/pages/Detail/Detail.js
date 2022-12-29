@@ -1,16 +1,16 @@
-import { React, useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Carousel from './Carousel';
 import AlertModal from './AlertModal';
 import FloatingPrice from './FloatingPrice';
-import useOutSideClick from '../../hooks/useOutSideClick';
-import BuyButton from './components/BuyButton';
-import SellButton from './components/SellButton';
-import { flexBox } from '../../styles/mixin';
-
 import ChartSection from './ChartSection';
 import Dropdown from './Dropdown';
+import BuyButton from './components/BuyButton';
+import SellButton from './components/SellButton';
+import useOutSideClick from '../../hooks/useOutSideClick';
+import { API } from '../../config/config';
+import { flexBox } from '../../styles/mixin';
 
 const GUIDE_LIST = [
   {
@@ -39,28 +39,43 @@ const GUIDE_LIST = [
 const Detail = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [isFloat, setIsFloat] = useState(false);
+  const [pageData, setPageData] = useState({});
+  const productData = pageData.data?.productData[0];
+  const tableData = pageData?.data?.tradeLimit[0];
+
   const ref = useRef();
+  const dealBtnRef = useRef(null);
 
   const onAlertClick = () => setIsClicked(true);
 
-  const onScroll = () => {
-    if (window.scrollY > 400) {
-      setIsFloat(true);
-    } else {
-      setIsFloat(false);
-    }
-  };
-
-  window.addEventListener('scroll', onScroll);
-
   useOutSideClick(ref, () => setIsClicked(false));
+
+  useEffect(() => {
+    fetch(`${API.products}/3`)
+      .then(response => response.json())
+      .then(setPageData);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([{ isIntersecting }]) =>
+      setIsFloat(!isIntersecting)
+    );
+
+    if (dealBtnRef.current) observer.observe(dealBtnRef.current);
+
+    return () => observer.disconnect();
+  }, [dealBtnRef, productData]);
+
+  if (!productData) return;
 
   return (
     <DetailWrapper>
       <div ref={ref}>
-        {isClicked && <AlertModal setIsClicked={setIsClicked} />}
+        {isClicked && (
+          <AlertModal productData={productData} setIsClicked={setIsClicked} />
+        )}
       </div>
-      {isFloat ? <FloatingPrice /> : ''}
+      {isFloat && <FloatingPrice />}
 
       <ImageColumn>
         <ItemImgBox>
@@ -83,9 +98,9 @@ const Detail = () => {
 
       <DescriptionColumn>
         <TitleSection>
-          <BrandTitle>조던1</BrandTitle>
-          <ItemEnglishName>Jordan 1 Retro High OG Chicago 2022</ItemEnglishName>
-          <ItemKoreanName>조던 1 레트로 하이 OG 시카고 2022</ItemKoreanName>
+          <BrandTitle>{productData?.brandName}</BrandTitle>
+          <ItemEnglishName>{productData?.enName}</ItemEnglishName>
+          <ItemKoreanName>{productData?.krName}</ItemKoreanName>
           <ItemFigureBox>
             <ItemSizeBox>
               <SizePriceText>사이즈</SizePriceText>
@@ -100,13 +115,15 @@ const Detail = () => {
             <ItemPriceBox>
               <SizePriceText>최근 거래가</SizePriceText>
               <RecentPriceBox>
-                <RecentPrice>430,000원</RecentPrice>
+                <RecentPrice>
+                  {Math.floor(productData?.recentTradePrice).toLocaleString()}원
+                </RecentPrice>
                 <RecentPricePercent>16,000원 (-3.6%)</RecentPricePercent>
               </RecentPriceBox>
             </ItemPriceBox>
           </ItemFigureBox>
 
-          <DealBtnBox>
+          <DealBtnBox ref={dealBtnRef}>
             <BuyButton size={18} />
             <SellButton size={18} />
           </DealBtnBox>
@@ -117,22 +134,24 @@ const Detail = () => {
           <InfoBox>
             <DetailInfoBox>
               <ModelTitle>모델번호</ModelTitle>
-              <ModelInfo>DZ5485-612</ModelInfo>
+              <ModelInfo>{productData?.modelNumber}</ModelInfo>
             </DetailInfoBox>
 
             <DetailInfoBox>
               <ModelTitle>출시일</ModelTitle>
-              <ModelInfo>22/12/01</ModelInfo>
+              <ModelInfo>{productData?.releaseDate}</ModelInfo>
             </DetailInfoBox>
 
             <DetailInfoBox>
               <ModelTitle>컬러</ModelTitle>
-              <ModelInfo>VARSITY RED/BLACK/SAIL/MUSLIN</ModelInfo>
+              <ModelInfo>{productData?.color}</ModelInfo>
             </DetailInfoBox>
 
             <DetailInfoBox>
               <ModelTitle>발매가</ModelTitle>
-              <ModelInfo>200,000원</ModelInfo>
+              <ModelInfo>
+                {Math.floor(productData?.originalPrice).toLocaleString()}원
+              </ModelInfo>
             </DetailInfoBox>
           </InfoBox>
         </InfoSection>
@@ -149,7 +168,10 @@ const Detail = () => {
           </DeliveryBox>
         </DeliverySection>
 
-        <ChartSection />
+        <ChartSection
+          chartData={pageData.data?.chartData}
+          tableData={tableData}
+        />
 
         <Dropdown />
 
