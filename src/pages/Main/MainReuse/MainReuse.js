@@ -16,7 +16,7 @@ const MainReuse = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      const isTop = window.scrollY < 500;
+      const isTop = window.scrollY < 800;
       setIsScroll(!isTop);
     });
   }, []);
@@ -32,7 +32,7 @@ const MainReuse = () => {
                 <MainBannerSubTitle>{subTitle}</MainBannerSubTitle>
                 <img src={img} alt={title} />
                 <button>
-                  <Link to="/shop">지금 거래하기 &#12297;</Link>
+                  <Link to="/products">지금 거래하기 &#12297;</Link>
                 </button>
               </MainBanner>
               <MainProductAlignBox>
@@ -125,13 +125,14 @@ const MainCategorySubTitle = styled.h4`
 const AtTheTop = styled.div`
   width: 45px;
   height: 45px;
-  position: absolute;
+  position: fixed;
   right: 80px;
-  bottom: 0px;
+  bottom: 50px;
   font-size: 20px;
   text-align: center;
   line-height: 40px;
-  border: 1px solid ${({ theme }) => theme.mainBrandBlack};
+  box-shadow: ${({ theme }) => theme.globalBoxShadow};
+  border: ${({ theme }) => theme.globalBorderStyle};
   border-radius: 50%;
 
   &:hover {

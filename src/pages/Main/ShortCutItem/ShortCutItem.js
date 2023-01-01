@@ -1,24 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const MainShortCutItem = ({ img, title }) => {
+const ShortCutItem = ({ img, title }) => {
   return (
-    <MainShortCutItemWrapper>
-      <MainShortCutItemBox>
+    <ShortCutItemWrapper>
+      <ShortCutItemBox>
         <img src={img} alt={title} />
-      </MainShortCutItemBox>
-      <MainShortCutItemTitle>{title}</MainShortCutItemTitle>
-    </MainShortCutItemWrapper>
+      </ShortCutItemBox>
+      <ShortCutItemTitle>{title}</ShortCutItemTitle>
+    </ShortCutItemWrapper>
   );
 };
 
-export default MainShortCutItem;
+export default ShortCutItem;
 
-const MainShortCutItemWrapper = styled.div`
+const ShortCutItemWrapper = styled.div`
   text-align: center;
 `;
 
-const MainShortCutItemBox = styled.div`
+const ShortCutItemBox = styled.div`
   margin-top: 15px;
   width: 200px;
   height: 100px;
@@ -33,7 +33,7 @@ const MainShortCutItemBox = styled.div`
   }
 `;
 
-const MainShortCutItemTitle = styled.p`
+const ShortCutItemTitle = styled.p`
   margin-top: 8px;
   color: #333;
 `;

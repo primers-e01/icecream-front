@@ -32,7 +32,7 @@ const MainCarousel = () => {
             <CarouselTitle>{title}</CarouselTitle>
             <CarouselSubTitle>{subTitle}</CarouselSubTitle>
             <button>
-              <Link to="/shop">자세히 알아보기 &#12297;</Link>
+              <Link to="/products">자세히 알아보기 &#12297;</Link>
             </button>
             <img src={url} alt={title} />
           </CarouselSlideItem>

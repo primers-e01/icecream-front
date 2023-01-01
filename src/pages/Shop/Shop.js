@@ -1,47 +1,40 @@
 import React, { useState } from 'react';
+import AsideCategory from './AsideCategory/AsideCategory';
 import ShopProduct from './ShopProduct/ShopProduct';
 import styled from 'styled-components';
+import { getQueryString } from '../../utils/queryString';
+import { useNavigate } from 'react-router-dom';
+const INIT_QUERY = {
+  categoryId: '',
+  shoesize: '',
+  clothsize: '',
+};
 
 const Shop = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const onClickCategory = () => {
-    setIsOpen(!isOpen);
+  const [queries, setQueries] = useState(INIT_QUERY);
+  const navigate = useNavigate();
+  const onClickQuery = (cateKey, query) => {
+    setQueries({ ...queries, [cateKey]: query });
+    navigate(`/products${getQueryString(queries)}`);
   };
 
   return (
     <ShopWrapper>
       <ShopAsideBox>
-        <AsideTitle>필터</AsideTitle>
-        {SHOP_CATEGORY.map(({ id, title, subTitle, subCategory }) => {
-          return (
-            <>
-              <AsideCategoryListBox key={id}>
-                <AsideCategoryTitleBox>
-                  <AsideCategoryTitle>{title}</AsideCategoryTitle>
-                  <AsideCategorySubTitle>{subTitle}</AsideCategorySubTitle>
-                </AsideCategoryTitleBox>
-                <AsidePlusBtn onClick={onClickCategory}>+</AsidePlusBtn>
-              </AsideCategoryListBox>
-              <AsideOpenCategoryList
-                key={subCategory.id}
+        {Object.entries(SHOP_CATEGORY).map(
+          ([key, { title, subTitle, subCategory }]) => {
+            return (
+              <AsideCategory
+                key={key}
+                cateKey={key}
+                title={title}
+                subTitle={subTitle}
                 subCategory={subCategory}
-                className={`${isOpen ? '' : 'open'}`}
-              >
-                {subCategory.map(({ subId, text }) => {
-                  return (
-                    <AsideOpenCategoryItem key={subId}>
-                      <AsideOpenCategoryInput id="option" type="checkbox" />
-                      <AsideOpenCategoryLabel htmlFor="option">
-                        {text}
-                      </AsideOpenCategoryLabel>
-                    </AsideOpenCategoryItem>
-                  );
-                })}
-              </AsideOpenCategoryList>
-            </>
-          );
-        })}
+                onClickQuery={onClickQuery}
+              />
+            );
+          }
+        )}
       </ShopAsideBox>
       <ShopProduct />
     </ShopWrapper>
@@ -60,124 +53,39 @@ const ShopWrapper = styled.div`
 
 const ShopAsideBox = styled.div`
   width: 50%;
-  margin-right: 25px;
+  margin: 30px 30px 0px 0px;
 `;
 
-const AsideTitle = styled.h1`
-  font-size: 15px;
-  font-weight: bold;
-  margin-bottom: 20px;
-`;
-
-const AsideCategoryListBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: ${({ theme }) => theme.globalBoardStyle};
-`;
-
-const AsideCategoryTitleBox = styled.div`
-  padding: 20px 0px;
-`;
-
-const AsideCategoryTitle = styled.h2`
-  font-size: 13px;
-  font-weight: bold;
-  margin-bottom: 8px;
-`;
-
-const AsideCategorySubTitle = styled.h3`
-  font-size: 13px;
-  color: ${({ theme }) => theme.mainBrandGray05};
-`;
-
-const AsidePlusBtn = styled.span`
-  font-size: 25px;
-  font-weight: lighter;
-  cursor: pointer;
-  color: ${({ theme }) => theme.mainBrandGray05};
-`;
-
-const AsideOpenCategoryList = styled.ul`
-  border-bottom: ${({ theme }) => theme.globalBoardStyle};
-  max-height: 540px;
-  overflow: hidden;
-  transition: max-height ease-in-out 2s 0s;
-
-  &.open {
-    max-height: 0px;
-  }
-`;
-
-const AsideOpenCategoryItem = styled.li``;
-
-const AsideOpenCategoryInput = styled.input`
-  &[id='option'] {
-    position: relative;
-    top: 1.5px;
-  }
-`;
-
-const AsideOpenCategoryLabel = styled.label`
-  font-size: 13px;
-  margin-left: 3px;
-  color: ${({ theme }) => theme.mainBrandGray05};
-  line-height: 26px;
-`;
-
-const SHOP_CATEGORY = [
-  {
-    id: 1,
+const SHOP_CATEGORY = {
+  categoryId: {
     title: '카테고리',
     subTitle: '모든 카테고리',
     subCategory: [
-      { id: 1, title: 'shoes', text: '신발' },
-      { id: 2, title: 'cloth', text: '의류' },
-      { id: 3, title: 'goods', text: '패션잡화' },
+      { id: 1, query: '1', text: '신발' },
+      { id: 2, query: '2', text: '의류' },
+      { id: 3, query: '3', text: '패션잡화' },
     ],
   },
-  {
-    id: 2,
-    title: '성별',
-    subTitle: '모든 성별',
-    subCategory: [
-      { id: 1, title: 'men', text: '남성' },
-      { id: 2, title: 'women', text: '여성' },
-    ],
-  },
-  {
-    id: 3,
+  size: {
     title: '신발 사이즈',
     subTitle: '모든 사이즈',
     subCategory: [
-      { id: 1, text: 230 },
-      { id: 2, text: 240 },
-      { id: 3, text: 250 },
-      { id: 4, text: 260 },
-      { id: 5, text: 270 },
-      { id: 6, text: 280 },
+      { id: 1, query: 230, text: 230 },
+      { id: 2, query: 240, text: 240 },
+      { id: 3, query: 250, text: 250 },
+      { id: 4, query: 260, text: 260 },
+      { id: 5, query: 270, text: 270 },
+      { id: 6, query: 280, text: 280 },
     ],
   },
-  {
-    id: 4,
+  clothsize: {
     title: '의류 사이즈',
     subTitle: '모든 사이즈',
     subCategory: [
-      { id: 1, text: 'S' },
-      { id: 2, text: 'M' },
-      { id: 3, text: 'L' },
-      { id: 4, text: 'XL' },
+      { id: 1, query: 'S', text: 'S' },
+      { id: 2, query: 'M', text: 'M' },
+      { id: 3, query: 'L', text: 'L' },
+      { id: 4, query: 'XL', text: 'XL' },
     ],
   },
-  {
-    id: 5,
-    title: '가격',
-    subTitle: '모든 가격',
-    subCategory: [
-      { id: 1, text: '10만원 이하' },
-      { id: 2, text: '10만원 - 30만원 이하' },
-      { id: 3, text: '30만원 - 50만원 이하' },
-      { id: 4, text: '50만원 이상' },
-    ],
-  },
-];
+};

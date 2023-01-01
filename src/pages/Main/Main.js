@@ -1,6 +1,6 @@
 import React from 'react';
 import MainCarousel from './MainCarousel/MainCarousel';
-import MainShortCutItem from './MainShortCutItem/MainShortCutItem';
+import ShortCutItem from './ShortCutItem/ShortCutItem';
 import MainReuse from './MainReuse/MainReuse';
 import styled from 'styled-components';
 
@@ -9,11 +9,11 @@ const Main = () => {
     <MainWrapper>
       <MainCarousel />
       <MainBox>
-        <MainShortCutList>
+        <ShortCutList>
           {MAIN_SHORTCUT.map(({ id, img, categoryName }) => (
-            <MainShortCutItem key={id} img={img} title={categoryName} />
+            <ShortCutItem key={id} img={img} title={categoryName} />
           ))}
-        </MainShortCutList>
+        </ShortCutList>
         <MainReuse />
       </MainBox>
     </MainWrapper>
@@ -30,7 +30,7 @@ const MainBox = styled.div`
   margin-top: 35px;
 `;
 
-const MainShortCutList = styled.div`
+const ShortCutList = styled.div`
   width: 75%;
   margin: 0 auto;
   display: flex;

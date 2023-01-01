@@ -1,63 +1,104 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ShopProduct = () => {
-  const [shopProductList, setShopProductList] = useState([]);
-
   const navigate = useNavigate();
+  const { search } = useLocation();
+  const [shopProductList, setShopProductList] = useState([]);
+  const [isScroll, setIsScroll] = useState(false);
+  const obsTarget = useRef(null);
 
   const goToDetail = () => {
     navigate('/detail');
   };
 
+  const onClickGoToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   useEffect(() => {
-    fetch('/data/productData.json')
+    window.addEventListener('scroll', () => {
+      const isTop = window.scrollY < 800;
+      setIsScroll(!isTop);
+    });
+  }, []);
+
+  useEffect(() => {
+    fetch(`http://10.58.52.168:8000/products` + search)
       .then(res => res.json())
-      .then(data => {
-        setShopProductList(data);
-      });
+      .then(data => setShopProductList(data.data));
+  }, [search]);
+
+  useEffect(() => {
+    const io = new IntersectionObserver(([{ isIntersecting }]) => {
+      if (isIntersecting) {
+        fetch(`http://10.58.52.168:8000/products`)
+          .then(res => res.json())
+          .then(result => {
+            setShopProductList(prev => [...prev, ...result.data]);
+          });
+      }
+    });
+
+    if (obsTarget.current) {
+      io.observe(obsTarget.current);
+    }
+
+    return () => {
+      io.disconnect();
+    };
   }, []);
 
   return (
     <ShopProductWrapper>
-      <ProductSortSelectBox>
-        <ProductSortSelect>
-          {SHOP_SELECT_SORT.map(({ id, value, title }) => (
-            <option key={id} value={value}>
-              {title}
-            </option>
-          ))}
-        </ProductSortSelect>
-      </ProductSortSelectBox>
+      <SortSelectBox>
+        <SortSelect>
+          <SortSelectBtn>프리미엄순</SortSelectBtn>
+          <SortSelectBtn>발매일순</SortSelectBtn>
+        </SortSelect>
+      </SortSelectBox>
       <ShopProductList>
         {shopProductList.map(product => {
           const {
             id,
-            thumnailImageUrl,
+            thumbnailImageUrl,
             enName,
             krName,
             brandName,
             price: _price,
           } = product;
-          const price = _price.toLocaleString();
+          const price = _price
+            .substr(0, _price.length - 3)
+            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
           return (
             <ShopProductBox key={id}>
               <ShopProductThumb>
-                <img src={thumnailImageUrl} alt={enName} onClick={goToDetail} />
+                <img
+                  src={thumbnailImageUrl}
+                  alt={enName}
+                  onClick={goToDetail}
+                />
               </ShopProductThumb>
               <ShopProductBrandTitle>{brandName}</ShopProductBrandTitle>
               <ShopProductTitle>
                 <h3>{enName}</h3>
                 <h4>{krName}</h4>
               </ShopProductTitle>
-              <ShopProductPrice>{price}원</ShopProductPrice>
+              <ShopProductPrice>
+                {!_price ? '-' : price + '원'}
+              </ShopProductPrice>
               <ShopProductCurrentPrice>즉시 구매가</ShopProductCurrentPrice>
             </ShopProductBox>
           );
         })}
       </ShopProductList>
+      {isScroll && <AtTheTop onClick={onClickGoToTop}>&#8593;</AtTheTop>}
+      <ProductObserverTarget ref={obsTarget} />
     </ShopProductWrapper>
   );
 };
@@ -66,23 +107,34 @@ export default ShopProduct;
 
 const ShopProductWrapper = styled.div``;
 
-const ProductSortSelectBox = styled.div`
-  width: 100px;
-  position: absolute;
-  right: 185px;
-  border: 1px solid ${({ theme }) => theme.mainBrandGray05};
+const SortSelectBox = styled.div`
+  width: 100%;
+  position: relative;
 `;
 
-const ProductSortSelect = styled.select`
-  width: 100%;
-  height: 100%;
-  padding: 5px 6px;
-  border: 0;
-  outline: none;
+const SortSelect = styled.div`
+  width: 170px;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+`;
+
+const SortSelectBtn = styled.button`
+  all: unset;
+  padding: 10px 12px;
+  font-size: 14px;
+  text-align: center;
+  background-color: ${({ theme }) => theme.buttonDisabled};
+  border-radius: 30px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.buttonActive};
+    color: white;
+  }
 `;
 
 const ShopProductList = styled.div`
-  width: 100%;
+  width: 900px;
   padding-top: 50px;
   display: flex;
   justify-content: space-between;
@@ -102,8 +154,14 @@ const ShopProductThumb = styled.div`
 
   img {
     width: 100%;
-    object-position: 0px -30px;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.8s ease-in-out;
     cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 `;
 
@@ -144,20 +202,26 @@ const ShopProductCurrentPrice = styled.p`
   color: ${({ theme }) => theme.mainBrandGray05};
 `;
 
-const SHOP_SELECT_SORT = [
-  {
-    id: 1,
-    value: 'popular',
-    title: '인기순',
-  },
-  {
-    id: 2,
-    value: 'premium',
-    title: '프리미엄순',
-  },
-  {
-    id: 3,
-    value: 'latest',
-    title: '발매일순',
-  },
-];
+const AtTheTop = styled.div`
+  width: 45px;
+  height: 45px;
+  position: fixed;
+  right: 80px;
+  bottom: 50px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+  box-shadow: ${({ theme }) => theme.globalBoxShadow};
+  border: ${({ theme }) => theme.globalBorderStyle};
+  border-radius: 50%;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.mainBrandBlack};
+    color: white;
+  }
+`;
+
+const ProductObserverTarget = styled.div`
+  width: 100%;
+  height: 300px;
+`;
