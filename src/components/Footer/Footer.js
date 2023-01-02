@@ -97,7 +97,7 @@ const Footer = () => {
           판매자가 등록한 상품정보에 대해서 책임을 지지 않습니다. 단,
           거래과정에서 검수하고 보증하는 내용에 대한 책임은 당사에 있습니다.
         </NoticeParagraph>
-        <p>© KREAM Corp.</p>
+        <p>© ICECREAM Corp.</p>
       </NoticeSection>
     </FooterWrapper>
   );
