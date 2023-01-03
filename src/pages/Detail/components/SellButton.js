@@ -1,10 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { flexBox } from '../../../styles/mixin';
 
 const SellButton = ({ size }) => {
+  const navigate = useNavigate();
+
+  const onSellClick = () => {
+    navigate('/sell/select');
+  };
+
   return (
-    <SellBtn>
+    <SellBtn onClick={onSellClick}>
       <BtnTitle size={size}>판매</BtnTitle>
       <BtnText>
         <BtnPrice>123,123원</BtnPrice>

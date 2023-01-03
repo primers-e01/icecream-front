@@ -112,6 +112,7 @@ const Detail = () => {
                 />
               </SizeBtnBox>
             </ItemSizeBox>
+
             <ItemPriceBox>
               <SizePriceText>최근 거래가</SizePriceText>
               <RecentPriceBox>

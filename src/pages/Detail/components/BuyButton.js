@@ -1,10 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { flexBox } from '../../../styles/mixin';
 
 const BuyButton = ({ size }) => {
+  const navigate = useNavigate();
+
+  const onBuyClick = () => {
+    navigate('/buy/select');
+  };
+
   return (
-    <BuyBtn>
+    <BuyBtn onClick={onBuyClick}>
       <BtnTitle size={size}>구매</BtnTitle>
       <BtnText>
         <BtnPrice>123,123원</BtnPrice>

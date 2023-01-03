@@ -1,6 +1,6 @@
 const chartData = [
   {
-    id: '데이터',
+    id: '123',
     data: [
       {
         x: '2022/11/11',
