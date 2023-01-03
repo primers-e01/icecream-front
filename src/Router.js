@@ -13,6 +13,7 @@ import SellSelect from './pages/BuySell/SellSelect';
 import BuySelect from './pages/BuySell/BuySelect';
 import Sell from './pages/BuySell/Sell';
 import Buy from './pages/BuySell/Buy';
+import StyleDetail from './pages/StyleDetail/StyleDetail';
 
 const Router = () => {
   return (
@@ -30,6 +31,7 @@ const Router = () => {
         <Route path="/buy/select" element={<BuySelect />} />
         <Route path="/sell" element={<Sell />} />
         <Route path="/buy" element={<Buy />} />
+        <Route path="/style-detail/:id" element={<StyleDetail />} />
       </Routes>
       <Footer />
     </BrowserRouter>

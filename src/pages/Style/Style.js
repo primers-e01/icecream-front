@@ -1,49 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSearchParams } from 'react-router-dom';
+import Card from './Card';
 
 const Style = () => {
   const [feedList, setFeedList] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [clickedFilter, setClickedFilter] = useState('trend');
 
   useEffect(() => {
-    fetch('/data/data.json')
+    fetch('/data/StyleData.json')
       .then(response => response.json())
       .then(result => setFeedList(result));
-  }, []);
+  }, [searchParams]);
+
+  const onClickTrend = () => {
+    searchParams.set('sort', 'trending');
+    setSearchParams(searchParams);
+    setClickedFilter('trend');
+  };
+
+  const onClickNewest = () => {
+    searchParams.set('sort', 'newest');
+    setSearchParams(searchParams);
+    setClickedFilter('newest');
+  };
 
   return (
     <SocialHeader>
       <StyleTab>
-        <ItemTab>인기</ItemTab>
-        <ItemTab>최신</ItemTab>
+        <ItemTab active={clickedFilter === 'trend'} onClick={onClickTrend}>
+          인기
+        </ItemTab>
+        <ItemTab active={clickedFilter === 'newest'} onClick={onClickNewest}>
+          최신
+        </ItemTab>
       </StyleTab>
       <Container>
         <SocialFeed>
           {feedList.map(feed => {
-            return (
-              <FeedCard key={feed.id}>
-                <FeedImage>
-                  <UserImage src={feed.post_image_url} />
-                </FeedImage>
-                <User>
-                  <UserInfo>
-                    <UserProfileImage src={feed.profile_image_url} />
-                    <UserId>{feed.nickName}</UserId>
-                  </UserInfo>
-                  <Like>
-                    <LikeButton>
-                      <FontAwesomeIcon
-                        icon="fa-regular fa-face-smile"
-                        size="lg"
-                        color="gray"
-                      />
-                    </LikeButton>
-                    <LikeCount>{feed.likes}</LikeCount>
-                  </Like>
-                </User>
-                <FeedText>{feed.feed_text}</FeedText>
-              </FeedCard>
-            );
+            return <Card key={feed.id} {...feed} />;
           })}
         </SocialFeed>
       </Container>
@@ -73,16 +69,15 @@ const ItemTab = styled.button`
   padding: 8px 12px;
   font-size: 18px;
   font-weight: 700;
+  border: none;
   border-radius: 22px;
-  background-color: black;
-  color: white;
-  &:hover {
-    cursor: pointer;
-  }
+  background-color: ${props => (props.active ? 'black' : 'white')};
+  color: ${props => (props.active ? 'white' : 'black')};
+  cursor: pointer;
 `;
 
 const Container = styled.div`
-  padding: 30px 40px;
+  padding: 30px 250px;
   width: 100%;
   height: auto;
 `;
@@ -92,62 +87,6 @@ const SocialFeed = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   padding-top: 140px;
-`;
-
-const FeedCard = styled.div`
-  width: 300px;
-  margin: 10px;
-`;
-
-const FeedImage = styled.div`
-  width: 100%;
-  height: auto;
-`;
-const UserImage = styled.img`
-  width: 300px;
-  height: 400px;
-  border-radius: 10px;
-  object-fit: cover;
-`;
-
-const User = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const UserInfo = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 8px 0;
-  width: 100%;
-  height: auto;
-`;
-
-const UserProfileImage = styled.img`
-  width: 28px;
-  border-radius: 50%;
-`;
-
-const UserId = styled.p`
-  margin-left: 5px;
-  font-size: 17px;
-`;
-
-const LikeButton = styled.div`
-  display: flex;
-`;
-
-const LikeCount = styled.p`
-  margin-left: 5px;
-  color: gray;
-`;
-
-const FeedText = styled.p`
-  margin: 10px 0;
-`;
-
-const Like = styled.div`
-  display: flex;
 `;
 
 export default Style;

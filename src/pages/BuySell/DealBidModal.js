@@ -14,6 +14,7 @@ const DealBidModal = ({
 }) => {
   const onCloseClick = () => setIsBidClicked(false);
 
+<<<<<<< HEAD:src/pages/BuySell/DealBidModal.js
   const onBtnClick = e => {
     fetch(`${modalMap[type][selectType].api}`, {
       method: 'POST',
@@ -29,6 +30,9 @@ const DealBidModal = ({
       }),
     });
   };
+=======
+  const onBtnClick = e => {};
+>>>>>>> 453e89a (ADD: Style 페이지 구현):src/pages/BuySell/DealAlertModal.js
 
   return (
     <Wrapper>
