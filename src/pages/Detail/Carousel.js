@@ -10,8 +10,10 @@ import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-const Carousel = () => {
+const Carousel = ({ images }) => {
   const swiperRef = useRef(null);
+
+  if (!images) return;
 
   return (
     <StyledSwiper
@@ -22,10 +24,10 @@ const Carousel = () => {
       ref={swiperRef}
     >
       {/* TODO : 추후에 백 통신 후 alt 변경 */}
-      {IMAGE_LIST.map(({ id, img }) => {
+      {images.map(({ alt, url }) => {
         return (
-          <SwiperSlide key={id}>
-            <img src={img} alt="img" />
+          <SwiperSlide key={url}>
+            <img src={url} alt={alt} width="400px" height="400px" />
           </SwiperSlide>
         );
       })}
@@ -46,14 +48,8 @@ const Carousel = () => {
     </StyledSwiper>
   );
 };
-export default Carousel;
 
-const IMAGE_LIST = [
-  { id: 1, img: 'http://placeimg.com/640/640/nature' },
-  { id: 2, img: 'http://placeimg.com/640/640/tech' },
-  { id: 3, img: 'http://placeimg.com/640/640/animal' },
-  { id: 4, img: 'http://placeimg.com/640/640/nature' },
-];
+export default Carousel;
 
 const PrevBtn = styled.div`
   position: absolute;

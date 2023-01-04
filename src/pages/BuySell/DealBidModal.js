@@ -2,13 +2,32 @@ import React from 'react';
 import styled from 'styled-components';
 import { positionCenter } from '../../styles/mixin';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { API } from '../../config/config';
 
-const DealAlertModal = ({ setIsModalClicked, price, type }) => {
-  const onCloseClick = () => setIsModalClicked(false);
+const DealBidModal = ({
+  setIsBidClicked,
+  price,
+  formatPrice,
+  type,
+  size,
+  selectType,
+}) => {
+  const onCloseClick = () => setIsBidClicked(false);
 
   const onBtnClick = e => {
-    console.log(e);
-    // post
+    fetch(`${modalMap[type][selectType].api}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('TOKEN'),
+      },
+      body: JSON.stringify({
+        // TODO: 사이즈 선택창 완료 후 수정
+        productId: 4,
+        size: size,
+        price: formatPrice,
+      }),
+    });
   };
 
   return (
@@ -23,6 +42,7 @@ const DealAlertModal = ({ setIsModalClicked, price, type }) => {
 
       <TitleBox>
         <PriceText>총 결제금액</PriceText>
+        {/* TODO: 백엔드 데이터 추가 */}
         <Price type={type}>{price}원</Price>
       </TitleBox>
 
@@ -33,14 +53,14 @@ const DealAlertModal = ({ setIsModalClicked, price, type }) => {
 
       <BtnBox>
         <Btn type={type} onClick={onBtnClick}>
-          {type === 'sell' ? '판매 입찰완료' : '구매 입찰완료'}
+          {modalMap[type][selectType].btn}
         </Btn>
       </BtnBox>
     </Wrapper>
   );
 };
 
-export default DealAlertModal;
+export default DealBidModal;
 
 const Wrapper = styled.div`
   ${positionCenter('fixed')}
@@ -109,6 +129,36 @@ const Btn = styled.button`
   border: none;
   outline: none;
   border-radius: 14px;
-
   cursor: pointer;
 `;
+
+// TODO: 리팩토링
+const modalMap = {
+  sell: {
+    '판매 입찰': {
+      text: '판매 입찰',
+      api: API.sellBid,
+      btn: '판매입찰 완료',
+    },
+
+    '즉시 판매': {
+      text: '즉시 판매',
+      api: API.sellNow,
+      btn: '즉시판매 완료',
+    },
+  },
+
+  buy: {
+    '구매 입찰': {
+      text: '구매 입찰',
+      api: API.buyBid,
+      btn: '구매입찰 완료',
+    },
+
+    '즉시 구매': {
+      text: '즉시 구매',
+      api: API.buyNow,
+      btn: '즉시구매 완료',
+    },
+  },
+};

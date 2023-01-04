@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { API } from '../../config/config';
 import { flexBox, positionCenter } from '../../styles/mixin';
+import { useParams } from 'react-router-dom';
 
 const BTN_LIST = [
   { id: 1, list: '체결 거래 ', data: 'tradeDataAll' },
@@ -15,14 +16,15 @@ const MoreModal = ({ setIsMoreClicked }) => {
   const [tableData, setTableData] = useState();
   const [loadData, setLoadData] = useState();
 
+  const { productId } = useParams();
+
   const ref = useRef(null);
 
   // TODO : 이해하기
   useEffect(() => {
-    let dataList = BTN_LIST.find(item => item.id === isFilterClicked);
     const observer = new IntersectionObserver(e => {
       if (e[0].isIntersecting) {
-        fetch(`${API.products}/3`, {
+        fetch(`${API.products}/${productId}`, {
           method: 'GET',
         })
           .then(response => response.json())

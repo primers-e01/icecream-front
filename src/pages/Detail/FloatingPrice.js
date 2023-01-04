@@ -4,19 +4,19 @@ import { flexBox } from '../../styles/mixin';
 import BuyButton from './components/BuyButton';
 import SellButton from './components/SellButton';
 
-const FloatingPrice = () => {
+const FloatingPrice = ({ productData }) => {
   return (
     <Wrapper>
       <ItemBox>
-        <ItemImg src="http://placeimg.com/640/640/nature" />
+        <ItemImg src={productData?.thumbnailImageUrl} />
         <ItemDescription>
-          <ItemEnglishName>Jordan 1 Retro High OG Chicago 2022</ItemEnglishName>
-          <ItemKoreanName>조던 1 레트로 하이 OG 시카고 2022</ItemKoreanName>
+          <ItemEnglishName>{productData?.enName}</ItemEnglishName>
+          <ItemKoreanName>{productData?.krName}</ItemKoreanName>
         </ItemDescription>
       </ItemBox>
       <BtnBox>
-        <BuyButton size={15} />
-        <SellButton size={15} />
+        <BuyButton size={15} productData={productData} />
+        <SellButton size={15} productData={productData} />
       </BtnBox>
     </Wrapper>
   );

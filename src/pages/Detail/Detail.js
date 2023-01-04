@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Carousel from './Carousel';
@@ -12,36 +13,15 @@ import useOutSideClick from '../../hooks/useOutSideClick';
 import { API } from '../../config/config';
 import { flexBox } from '../../styles/mixin';
 
-const GUIDE_LIST = [
-  {
-    id: 1,
-    icon: 'fa-solid fa-certificate',
-    title: '100% 정품 보증',
-    description:
-      'ICECREAM에서 검수한 상품이 정품이 아닐 경우, 구매가의 3배를 보상합니다.',
-  },
-  {
-    id: 2,
-    icon: 'fa-regular fa-circle-check',
-    title: '엄격한 다중 검수',
-    description:
-      '모든 상품은 검수센터에 도착한 후, 상품별 전문가 그룹의 체계적인 시스템을 거쳐 검수를 진행합니다.',
-  },
-  {
-    id: 3,
-    icon: 'fa-solid fa-gift',
-    title: '정품 인증 패키지',
-    description:
-      '검수에 합격한 경우에 한하여 ICECREAM의 정품 인증 패키지가 포함된 상품이 배송됩니다.',
-  },
-];
-
 const Detail = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [isFloat, setIsFloat] = useState(false);
   const [pageData, setPageData] = useState({});
-  const productData = pageData.data?.productData[0];
+
+  const productData = pageData?.data?.productData[0];
   const tableData = pageData?.data?.tradeLimit[0];
+
+  const { productId } = useParams();
 
   const ref = useRef();
   const dealBtnRef = useRef(null);
@@ -51,7 +31,7 @@ const Detail = () => {
   useOutSideClick(ref, () => setIsClicked(false));
 
   useEffect(() => {
-    fetch(`${API.products}/3`)
+    fetch(`${API.products}/${productId}`)
       .then(response => response.json())
       .then(setPageData);
   }, []);
@@ -75,11 +55,11 @@ const Detail = () => {
           <AlertModal productData={productData} setIsClicked={setIsClicked} />
         )}
       </div>
-      {isFloat && <FloatingPrice />}
+      {isFloat && <FloatingPrice productData={productData} />}
 
       <ImageColumn>
         <ItemImgBox>
-          <Carousel />
+          <Carousel images={productData?.images} />
 
           <ItemAlertBox onClick={onAlertClick}>
             <AlertTitleBox>
@@ -125,8 +105,8 @@ const Detail = () => {
           </ItemFigureBox>
 
           <DealBtnBox ref={dealBtnRef}>
-            <BuyButton size={18} />
-            <SellButton size={18} />
+            <BuyButton size={18} productData={productData} />
+            <SellButton size={18} productData={productData} />
           </DealBtnBox>
         </TitleSection>
 
@@ -458,3 +438,27 @@ const NoticeSection = styled.section`
   padding-top: 40px;
   margin-top: 20px;
 `;
+
+const GUIDE_LIST = [
+  {
+    id: 1,
+    icon: 'fa-solid fa-certificate',
+    title: '100% 정품 보증',
+    description:
+      'ICECREAM에서 검수한 상품이 정품이 아닐 경우, 구매가의 3배를 보상합니다.',
+  },
+  {
+    id: 2,
+    icon: 'fa-regular fa-circle-check',
+    title: '엄격한 다중 검수',
+    description:
+      '모든 상품은 검수센터에 도착한 후, 상품별 전문가 그룹의 체계적인 시스템을 거쳐 검수를 진행합니다.',
+  },
+  {
+    id: 3,
+    icon: 'fa-solid fa-gift',
+    title: '정품 인증 패키지',
+    description:
+      '검수에 합격한 경우에 한하여 ICECREAM의 정품 인증 패키지가 포함된 상품이 배송됩니다.',
+  },
+];

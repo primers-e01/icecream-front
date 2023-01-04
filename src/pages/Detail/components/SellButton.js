@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { flexBox } from '../../../styles/mixin';
 
-const SellButton = ({ size }) => {
+const SellButton = ({ size, productData }) => {
   const navigate = useNavigate();
 
   const onSellClick = () => {
@@ -14,7 +14,9 @@ const SellButton = ({ size }) => {
     <SellBtn onClick={onSellClick}>
       <BtnTitle size={size}>판매</BtnTitle>
       <BtnText>
-        <BtnPrice>123,123원</BtnPrice>
+        <BtnPrice>
+          {Math.floor(productData?.sellNow).toLocaleString()}원
+        </BtnPrice>
         <BtnType>즉시 판매가</BtnType>
       </BtnText>
     </SellBtn>

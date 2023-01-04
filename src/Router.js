@@ -22,7 +22,7 @@ const Router = () => {
         <Route path="/" element={<Main />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/shop" element={<Shop />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:productId" element={<Detail />} />
         <Route path="/style" element={<Style />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/kakaoLogin" element={<KakaoLogin />} />

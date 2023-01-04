@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import ChartLine from './ChartLine';
 import MoreModal from './MoreModal';
@@ -26,7 +26,7 @@ const ChartSection = ({ chartData, tableData }) => {
   const [loadData, setLoadData] = useState(tableData.tradeDataLimit);
   const ref = useRef();
 
-  // TODO : 로직 리팩토링
+  // TODO: 로직 리팩토링
   const onFilterClick = ({ target }) => {
     if (isFilterClicked === Number(target.id)) return;
     setIsFilterClicked(
@@ -95,7 +95,6 @@ const ChartSection = ({ chartData, tableData }) => {
         </ChartTableHead>
 
         <ChartTableBody>
-          {/* TODO : 초기값 설정 */}
           {loadData?.map(({ id, size, price, date }) => {
             const KRPrice = Math.floor(price).toLocaleString();
             return (
@@ -156,7 +155,12 @@ const ChartTableHead = styled.thead`
   border-bottom: ${({ theme }) => theme.globalBoardStyle};
   font-size: 12px;
 
+  & tr {
+    display: flex;
+  }
+
   & th {
+    flex: 1;
     color: ${({ theme }) => theme.mainBrandGray05};
     padding-bottom: 9px;
   }
@@ -171,7 +175,12 @@ const ChartTableBody = styled.tbody`
   font-size: 14px;
   line-height: 17px;
 
+  & tr {
+    display: flex;
+  }
+
   & td {
+    flex: 1;
     padding-top: 9px;
   }
 

@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { flexBox } from '../../../styles/mixin';
 
-const BuyButton = ({ size }) => {
+const BuyButton = ({ size, productData }) => {
   const navigate = useNavigate();
+
+  const buyNow = Math.floor(productData?.buyNow).toLocaleString();
 
   const onBuyClick = () => {
     navigate('/buy/select');
@@ -14,7 +16,7 @@ const BuyButton = ({ size }) => {
     <BuyBtn onClick={onBuyClick}>
       <BtnTitle size={size}>구매</BtnTitle>
       <BtnText>
-        <BtnPrice>123,123원</BtnPrice>
+        <BtnPrice>{buyNow}원</BtnPrice>
         <BtnType>즉시 구매가</BtnType>
       </BtnText>
     </BuyBtn>

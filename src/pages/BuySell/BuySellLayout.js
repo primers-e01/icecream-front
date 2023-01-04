@@ -1,9 +1,10 @@
 import { React, useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { API } from '../../config/config';
 import useOutSideClick from '../../hooks/useOutSideClick';
 import { flexBox } from '../../styles/mixin';
-import DealAlertModal from './DealAlertModal';
+import DealBidModal from './DealBidModal';
 
 const BTN_BUY_ITEM = [{ item: '구매 입찰' }, { item: '즉시 구매' }];
 const BTN_SELL_ITEM = [{ item: '판매 입찰' }, { item: '즉시 판매' }];
@@ -12,17 +13,14 @@ const BuySellLayout = ({ type, item }) => {
   const [selectType, setSelectType] = useState(item);
   const [inputValue, setInputValue] = useState('');
   const [checkInputValue, setCheckInputValue] = useState(true);
-  const [isModalClicked, setIsModalClicked] = useState(false);
+  const [isBidClicked, setIsBidClicked] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const ref = useRef();
 
   const getQuerySize = searchParams.get('size');
 
-  const onDealBtnClick = () => setIsModalClicked(true);
-
-  // TODO: 즉시결제 추가
-  const onDealNowBtnClick = () => {};
+  const onDealBtnClick = () => setIsBidClicked(true);
 
   const onClickTab = item => setSelectType(item);
 
@@ -37,22 +35,24 @@ const BuySellLayout = ({ type, item }) => {
     setCheckInputValue(checkInputValueOver30000);
     setInputValue(comma(uncomma(value)));
   };
-  // TODO: 백에 넘겨줄 데이터
-  // console.log('Number noComma inputValue : ', Number(uncomma(inputValue)));
 
-  useOutSideClick(ref, () => setIsModalClicked(false));
+  useOutSideClick(ref, () => setIsBidClicked(false));
 
   return (
     <BuyBackGround>
       <div ref={ref}>
-        {isModalClicked && (
-          <DealAlertModal
-            setIsModalClicked={setIsModalClicked}
+        {isBidClicked && (
+          <DealBidModal
+            setIsBidClicked={setIsBidClicked}
             price={comma(uncomma(inputValue))}
+            formatPrice={uncomma(inputValue)}
             type={type}
+            size={getQuerySize}
+            selectType={selectType}
           />
         )}
       </div>
+
       <Title>
         {type === 'sell'
           ? selectType === '판매 입찰'
@@ -62,6 +62,7 @@ const BuySellLayout = ({ type, item }) => {
           ? '구매 입찰하기'
           : '즉시 구매하기'}
       </Title>
+
       <BuyWrapper>
         <BuyBox>
           <ItemInfoBox>
@@ -148,7 +149,7 @@ const BuySellLayout = ({ type, item }) => {
           <BtnArea>
             <BtnBox type={type}>
               {selectType === '즉시 구매' || selectType === '즉시 판매' ? (
-                <Btn onClick={onDealNowBtnClick}>
+                <Btn onClick={onDealBtnClick}>
                   <BtnText>
                     {type === 'sell' ? '즉시 판매 계속' : '즉시 구매 계속'}
                   </BtnText>
