@@ -36,7 +36,9 @@ const Nav = () => {
       </NavTopBox>
 
       <NavMainBox>
-        <NavLogoBox>ICECREAM</NavLogoBox>
+        <NavLogoBox>
+          <Link to="/">ICECREAM</Link>
+        </NavLogoBox>
         <NavMainList>
           {NAV_MAIN.map(({ id, list, link }) => {
             return (
