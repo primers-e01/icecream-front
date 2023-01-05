@@ -37,7 +37,12 @@ const Nav = () => {
 
       <NavMainBox>
         <NavLogoBox>
-          <Link to="/">ICECREAM</Link>
+          <Link to="/">
+            <LogoImg
+              src="https://cdn.discordapp.com/attachments/1060384508286877719/1060410692068450385/052f177d26f60b77.png"
+              alt="Logo"
+            />
+          </Link>
         </NavLogoBox>
         <NavMainList>
           {NAV_MAIN.map(({ id, list, link }) => {
@@ -88,6 +93,10 @@ const NavMainBox = styled.div`
 `;
 
 const NavLogoBox = styled.div``;
+
+const LogoImg = styled.img`
+  width: 130px;
+`;
 
 const NavMainList = styled.ul`
   ${flexBox()}
