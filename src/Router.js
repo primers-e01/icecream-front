@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 import Detail from './pages/Detail/Detail';
@@ -18,6 +19,7 @@ import StyleDetail from './pages/StyleDetail/StyleDetail';
 const Router = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Nav />
       <Routes>
         <Route path="/products/main" element={<Main />} />
@@ -31,7 +33,7 @@ const Router = () => {
         <Route path="/buy/select" element={<BuySelect />} />
         <Route path="/sell" element={<Sell />} />
         <Route path="/buy" element={<Buy />} />
-        <Route path="/style-detail/:id" element={<StyleDetail />} />
+        <Route path="/posts/details" element={<StyleDetail />} />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -27,7 +27,7 @@ const Carousel = ({ images }) => {
       {images.map(({ alt, url }) => {
         return (
           <SwiperSlide key={url}>
-            <img src={url} alt={alt} width="400px" height="400px" />
+            <img src={url} alt={alt} width="400px" height="auto" />
           </SwiperSlide>
         );
       })}

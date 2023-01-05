@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { API } from '../../../config/config';
 
 const MainProduct = () => {
   const [mainProductList, setMainProductList] = useState([]);
@@ -12,7 +13,7 @@ const MainProduct = () => {
   };
 
   useEffect(() => {
-    fetch(`http://10.58.52.168:8000/products`)
+    fetch(`${API.products}`)
       .then(res => res.json())
       .then(data => setMainProductList(data.data));
   }, []);
@@ -20,7 +21,7 @@ const MainProduct = () => {
   useEffect(() => {
     const io = new IntersectionObserver(([{ isIntersecting }]) => {
       if (isIntersecting) {
-        fetch(`http://10.58.52.168:8000/products`)
+        fetch(`${API.products}`)
           .then(res => res.json())
           .then(result => {
             setMainProductList(prev => [...prev, ...result.data]);

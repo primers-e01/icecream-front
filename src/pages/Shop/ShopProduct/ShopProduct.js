@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { API } from '../../../config/config';
 
 const ShopProduct = () => {
   const navigate = useNavigate();
@@ -9,8 +10,8 @@ const ShopProduct = () => {
   const [isScroll, setIsScroll] = useState(false);
   const obsTarget = useRef(null);
 
-  const goToDetail = () => {
-    navigate('/detail');
+  const goToDetail = id => {
+    navigate(`/detail/${id}`);
   };
 
   const onClickGoToTop = () => {
@@ -28,7 +29,7 @@ const ShopProduct = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://10.58.52.168:8000/products` + search)
+    fetch(`${API.products}` + search)
       .then(res => res.json())
       .then(data => setShopProductList(data.data));
   }, [search]);
@@ -36,7 +37,7 @@ const ShopProduct = () => {
   useEffect(() => {
     const io = new IntersectionObserver(([{ isIntersecting }]) => {
       if (isIntersecting) {
-        fetch(`http://10.58.52.168:8000/products`)
+        fetch(`${API.products}`)
           .then(res => res.json())
           .then(result => {
             setShopProductList(prev => [...prev, ...result.data]);
@@ -81,7 +82,7 @@ const ShopProduct = () => {
                 <img
                   src={thumbnailImageUrl}
                   alt={enName}
-                  onClick={goToDetail}
+                  onClick={() => goToDetail(id)}
                 />
               </ShopProductThumb>
               <ShopProductBrandTitle>{brandName}</ShopProductBrandTitle>
@@ -134,9 +135,10 @@ const SortSelectBtn = styled.button`
 `;
 
 const ShopProductList = styled.div`
-  width: 900px;
+  /* width: 900px; */
   padding-top: 50px;
   display: flex;
+  gap: 10px;
   justify-content: space-between;
   flex-wrap: wrap;
 `;

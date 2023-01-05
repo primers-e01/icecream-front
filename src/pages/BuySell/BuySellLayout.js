@@ -1,4 +1,4 @@
-import { React, useState, useRef } from 'react';
+import { React, useState, useRef, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { API } from '../../config/config';
@@ -15,6 +15,8 @@ const BuySellLayout = ({ type, item }) => {
   const [checkInputValue, setCheckInputValue] = useState(true);
   const [isBidClicked, setIsBidClicked] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const [productData, setProductData] = useState();
 
   const ref = useRef();
 
@@ -38,6 +40,16 @@ const BuySellLayout = ({ type, item }) => {
 
   useOutSideClick(ref, () => setIsBidClicked(false));
 
+  useEffect(() => {
+    fetch(`${API.products}/next/1`)
+      .then(res => res.json())
+      .then(data => setProductData(data.data));
+  }, []);
+
+  console.log(productData);
+
+  if (!productData) return;
+
   return (
     <BuyBackGround>
       <div ref={ref}>
@@ -49,6 +61,8 @@ const BuySellLayout = ({ type, item }) => {
             type={type}
             size={getQuerySize}
             selectType={selectType}
+            buyNow={productData.buyNow}
+            sellNow={productData.sellNow}
           />
         )}
       </div>
@@ -67,16 +81,14 @@ const BuySellLayout = ({ type, item }) => {
         <BuyBox>
           <ItemInfoBox>
             <ItemImg
-              src="http://placeimg.com/640/640/people"
+              src={productData.thumbnailImageUrl}
               alt="제품 이미지"
               width="80px"
             />
             <ItemInfo>
-              <ItemCode>DZ5485-612</ItemCode>
-              <ItemEnglishName>
-                Jordan 1 Retro High OG Chicago 2022
-              </ItemEnglishName>
-              <ItemKoreanName>조던 1 레트로 하이 OG 시카고 2022</ItemKoreanName>
+              <ItemCode>{productData.modelNumber}</ItemCode>
+              <ItemEnglishName>{productData.enName}</ItemEnglishName>
+              <ItemKoreanName>{productData.krName}</ItemKoreanName>
               <ItemSize>{getQuerySize}</ItemSize>
             </ItemInfo>
           </ItemInfoBox>
@@ -84,11 +96,13 @@ const BuySellLayout = ({ type, item }) => {
           <PriceBox>
             <BuyNowPrice>
               <Text>즉시 구매가</Text>
-              <Price>123,000원</Price>
+              <Price>{Math.floor(productData.buyNow).toLocaleString()}원</Price>
             </BuyNowPrice>
             <SellNowPrice>
               <Text>즉시 판매가</Text>
-              <Price>123,000원</Price>
+              <Price>
+                {Math.floor(productData.sellNow).toLocaleString()}원
+              </Price>
             </SellNowPrice>
           </PriceBox>
 
@@ -138,7 +152,9 @@ const BuySellLayout = ({ type, item }) => {
               <PriceTitle checkInputValue={true}>
                 {type === 'sell' ? '즉시 판매가' : '즉시 구매가'}
               </PriceTitle>
-              <PriceText>223,000원</PriceText>
+              <PriceText>
+                {Math.floor(productData.sellNow).toLocaleString()}원
+              </PriceText>
             </DealNowSection>
           ) : (
             ''

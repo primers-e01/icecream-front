@@ -46,14 +46,14 @@ export default Shop;
 const ShopWrapper = styled.div`
   width: 80%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0 auto;
   padding: 131px 40px 80px;
 `;
 
 const ShopAsideBox = styled.div`
-  width: 50%;
-  margin: 30px 30px 0px 0px;
+  min-width: 200px;
+  margin: 30px 60px 0px 0px;
 `;
 
 const SHOP_CATEGORY = {

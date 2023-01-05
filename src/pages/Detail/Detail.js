@@ -18,9 +18,10 @@ const Detail = () => {
   const [isFloat, setIsFloat] = useState(false);
   const [pageData, setPageData] = useState({});
 
-  const productData = pageData?.data?.productData[0];
-  const tableData = pageData?.data?.tradeLimit[0];
+  const newProductData = pageData.data;
 
+  const productData = newProductData && newProductData.productData;
+  const tableData = pageData.data?.tradeLimit[0];
   const { productId } = useParams();
 
   const ref = useRef();

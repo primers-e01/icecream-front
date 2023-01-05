@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { API } from '../../config/config';
 import StyleCard from './StyleCard';
 
 const StyleDetail = () => {
@@ -8,24 +9,27 @@ const StyleDetail = () => {
   const [postPage, setPostPage] = useState([]);
   const params = useParams();
 
-  useEffect(() => {
-    fetch('/data/StyleData.json')
-      .then(response => response.json())
-      .then(result => {
-        setPostPage(result);
-        setLoading(false);
-      });
-  }, []);
+  const location = useLocation();
 
-  if (loading) return <h1>로딩중입니다.</h1>;
+  console.log('state : ', location.state);
+
+  // useEffect(() => {
+  //   fetch(`${API.styleDetail}`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({}),
+  //   });
+  // }, []);
+
+  // if (loading) return <h1>로딩중입니다.</h1>;
 
   return (
     <Container>
       <Content>
         <SocialPost>
-          {postPage.map(post => {
-            return <StyleCard key={post.id} {...post} />;
-          })}
+          <StyleCard {...location.state} />
         </SocialPost>
       </Content>
     </Container>

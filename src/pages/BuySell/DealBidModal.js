@@ -11,9 +11,14 @@ const DealBidModal = ({
   type,
   size,
   selectType,
+  buyNow,
+  sellNow,
 }) => {
+  const buyNowPrice = Math.floor(buyNow).toLocaleString();
+  const sellNowPrice = Math.floor(sellNow).toLocaleString();
   const onCloseClick = () => setIsBidClicked(false);
-
+  console.log(type);
+  console.log(selectType);
   const onBtnClick = e => {
     fetch(`${modalMap[type][selectType].api}`, {
       method: 'POST',
@@ -28,6 +33,7 @@ const DealBidModal = ({
         price: formatPrice,
       }),
     });
+    alert('입찰완료');
   };
 
   return (
@@ -43,6 +49,15 @@ const DealBidModal = ({
       <TitleBox>
         <PriceText>총 결제금액</PriceText>
         {/* TODO: 백엔드 데이터 추가 */}
+        {/* <Price>
+          {type === 'sell'
+            ? selectType === '판매 입찰'
+              ? { price }
+              : { buyNowPrice }
+            : selectType === '구매 입찰'
+            ? { price }
+            : { buyNowPrice }}
+        </Price> */}
         <Price type={type}>{price}원</Price>
       </TitleBox>
 

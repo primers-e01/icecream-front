@@ -4,20 +4,24 @@ import styled from 'styled-components';
 import { flexBox } from '../../styles/mixin';
 
 const SIZE_BTN = [
-  { size: 230 },
-  { size: 240 },
-  { size: 250 },
-  { size: 260 },
-  { size: 270 },
-  { size: 280 },
+  { size: 230, price: '100,000' },
+  { size: 240, price: '200,000' },
+  { size: 250, price: '300,000' },
+  { size: 260, price: '400,000' },
+  { size: 270, price: '500,000' },
+  { size: 280, price: '600,000' },
 ];
 
 const SelectLayout = ({ type }) => {
   const [selectSize, setSelectSize] = useState();
+  const [selectedPrice, setSelectedPrice] = useState();
 
   const navigate = useNavigate();
 
-  const onSizeClick = size => setSelectSize(size);
+  const onSizeClick = (size, price) => {
+    setSelectSize(size);
+    setSelectedPrice(price);
+  };
 
   return (
     <BuyBackGround>
@@ -26,31 +30,31 @@ const SelectLayout = ({ type }) => {
         <BuyBox>
           <ItemInfoBox>
             <ItemImg
-              src="http://placeimg.com/640/640/people"
+              // TODO: 백 데이터로 수정
+              src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1608667508764-33cf0726b13a%3Fixlib%3Drb-4.0.3%26ixid%3DMnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8%26auto%3Dformat%26fit%3Dcrop%26w%3D880%26q%3D80"
               alt="제품 이미지"
               width="80px"
             />
             <ItemInfo>
-              <ItemCode>DZ5485-612</ItemCode>
-              <ItemEnglishName>
-                Jordan 1 Retro High OG Chicago 2022
-              </ItemEnglishName>
-              <ItemKoreanName>조던 1 레트로 하이 OG 시카고 2022</ItemKoreanName>
+              {/* TODO: 백 데이터로 수정 */}
+              <ItemCode>AA001</ItemCode>
+              <ItemEnglishName>Etiam ac tortor iaculis</ItemEnglishName>
+              <ItemKoreanName>에티암 에크 토터</ItemKoreanName>
             </ItemInfo>
           </ItemInfoBox>
 
           <ItemSelectBox>
             <SelectList>
-              {SIZE_BTN.map(({ size }) => {
+              {SIZE_BTN.map(({ size, price }) => {
                 return (
                   <SelectItem
-                    onClick={() => onSizeClick(size)}
+                    onClick={() => onSizeClick(size, price)}
                     className={size === selectSize && 'active'}
                     key={size}
                   >
                     <SizeBtn>
                       <Size>{size}</Size>
-                      <Price type={type}>123,000</Price>
+                      <Price type={type}>{price}</Price>
                     </SizeBtn>
                   </SelectItem>
                 );
@@ -65,7 +69,7 @@ const SelectLayout = ({ type }) => {
                 type={type}
               >
                 <Btn>
-                  <BtnPrice>123,000</BtnPrice>
+                  <BtnPrice>{selectedPrice}</BtnPrice>
                   <BtnText>일반배송(5-7일소요)</BtnText>
                 </Btn>
               </BtnBox>

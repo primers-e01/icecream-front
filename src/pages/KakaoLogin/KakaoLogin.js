@@ -17,7 +17,7 @@ const KakaoLogin = () => {
       .then(response => response.json())
       .then(response => {
         localStorage.setItem('accessToken', response.accessToken);
-        navigate('/');
+        navigate('/products/main');
       });
   }, []);
 

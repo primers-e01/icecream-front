@@ -5,15 +5,18 @@ import { flexBox } from '../../styles/mixin';
 import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 
-const StyleCard = props => {
-  const {
-    profile_image_url,
-    nickName,
-    post_image_url,
-    products,
-    likes,
-    feed_text,
-  } = props;
+const StyleCard = ({
+  post_image_url,
+  en_name,
+  feed_text,
+  likes,
+  nickname,
+  original_price,
+  product_id,
+  profile_image_url,
+  thumbnail_image_url,
+}) => {
+  console.log('1231231312', post_image_url);
 
   const [isToggle, setIsToggle] = useState(false);
   const isLiked = () => {
@@ -25,7 +28,7 @@ const StyleCard = props => {
       <UserInfoState>
         <UserInfo>
           <UserProfileImage src={profile_image_url} />
-          <UserId>{nickName}</UserId>
+          <UserId>{nickname}</UserId>
         </UserInfo>
         <FollowButton>팔로우</FollowButton>
       </UserInfoState>
@@ -41,13 +44,15 @@ const StyleCard = props => {
       </SocialProduct>
       <ProductList>
         <ProductItem>
-          <ProductImage src={products[0].thumbnail_image_url} />
+          <ProductImage src={thumbnail_image_url} />
         </ProductItem>
         <ProductItem>
-          <ProductName>{products[0].en_name}</ProductName>
+          <ProductName>{en_name}</ProductName>
         </ProductItem>
         <ProductItem>
-          <ProductPrice>{products[0].price.toLocaleString()}원</ProductPrice>
+          <ProductPrice>
+            {Math.floor(original_price).toLocaleString('ko-KR')}원
+          </ProductPrice>
         </ProductItem>
       </ProductList>
       <SocialContent>

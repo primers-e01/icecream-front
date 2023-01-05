@@ -10,7 +10,7 @@ const NAV_TOP = [
 ];
 
 const NAV_MAIN = [
-  { id: 1, list: 'STYLE', link: '/style' },
+  { id: 1, list: 'STYLE', link: '/style?filterBy=trending' },
   { id: 2, list: 'SHOP', link: '/products' },
   { id: 3, list: 'ABOUT', link: '/about' },
   {
@@ -21,10 +21,10 @@ const NAV_MAIN = [
 const Nav = () => {
   const navigate = useNavigate();
 
-  const token = localStorage.getItem('TOKEN') ?? '';
+  const token = localStorage.getItem('accessToken') ?? '';
 
   const logOutClick = () => {
-    localStorage.removeItem('TOKEN');
+    localStorage.removeItem('accessToken');
     navigate('/products/main');
   };
 

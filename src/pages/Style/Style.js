@@ -2,26 +2,33 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useSearchParams } from 'react-router-dom';
 import Card from './Card';
+import { flexBox } from '../../styles/mixin';
+import { API } from '../../config/config';
 
 const Style = () => {
   const [feedList, setFeedList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [clickedFilter, setClickedFilter] = useState('trend');
 
+  console.log(searchParams.toString());
+  console.log(`${API.style}?${searchParams.toString()}`);
+
+  console.log(feedList);
+
   useEffect(() => {
-    fetch('/data/StyleData.json')
+    fetch(`${API.style}?${searchParams.toString()}`)
       .then(response => response.json())
-      .then(result => setFeedList(result));
+      .then(result => setFeedList(result.posts));
   }, [searchParams]);
 
   const onClickTrend = () => {
-    searchParams.set('sort', 'trending');
+    searchParams.set('filterBy', 'trending');
     setSearchParams(searchParams);
     setClickedFilter('trend');
   };
 
   const onClickNewest = () => {
-    searchParams.set('sort', 'newest');
+    searchParams.set('filterBy', 'newest');
     setSearchParams(searchParams);
     setClickedFilter('newest');
   };
@@ -48,21 +55,17 @@ const Style = () => {
 };
 
 const SocialHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ${flexBox('', '', 'column')}
   width: 100%;
 `;
 
 const StyleTab = styled.div`
-  display: flex;
+  ${flexBox()}
   position: fixed;
-  justify-content: center;
   padding: 18px 10px;
   top: 100px;
   width: 100%;
-  background-color: white;
+  background-color: #fff;
 `;
 
 const ItemTab = styled.button`
@@ -77,9 +80,10 @@ const ItemTab = styled.button`
 `;
 
 const Container = styled.div`
-  padding: 30px 250px;
-  width: 100%;
+  padding: 30px 40px 120px;
+  max-width: 1360px;
   height: auto;
+  margin: 0 auto;
 `;
 
 const SocialFeed = styled.div`

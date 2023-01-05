@@ -34,12 +34,10 @@ const MoreModal = ({ setIsMoreClicked }) => {
           });
       }
     });
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-    return () => {
-      observer.disconnect();
-    };
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => observer.disconnect();
   }, []);
 
   const onCloseClick = () => {
@@ -69,16 +67,14 @@ const MoreModal = ({ setIsMoreClicked }) => {
           <ItemInfoBox>
             <ImgBox>
               <ItemImg
-                src="http://placeimg.com/640/640/people"
+                src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1608667508764-33cf0726b13a%3Fixlib%3Drb-4.0.3%26ixid%3DMnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8%26auto%3Dformat%26fit%3Dcrop%26w%3D880%26q%3D80"
                 alt="제품 이미지"
               />
             </ImgBox>
 
             <ItemInfo>
-              <ItemEnglishName>
-                Jordan 1 Retro High OG Chicago 2022
-              </ItemEnglishName>
-              <ItemKoreanName>조던 1 레트로 하이 OG 시카고 2022</ItemKoreanName>
+              <ItemEnglishName>Etiam ac tortor iaculis</ItemEnglishName>
+              <ItemKoreanName>에티암 에크 토터</ItemKoreanName>
               <SizeBtn>
                 <BtnText>모든 사이즈</BtnText>
                 <BtnIcon>
