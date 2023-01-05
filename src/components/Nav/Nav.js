@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { flexBox } from '../../styles/mixin';
@@ -7,20 +7,27 @@ import { flexBox } from '../../styles/mixin';
 const NAV_TOP = [
   { id: 1, list: '고객센터', link: '/notice' },
   { id: 2, list: '마이페이지', link: '/mypage' },
-  { id: 3, list: '로그인 / 회원가입', link: '/signup' },
 ];
 
 const NAV_MAIN = [
   { id: 1, list: 'STYLE', link: '/style' },
-  { id: 2, list: 'SHOP', link: '/shop' },
+  { id: 2, list: 'SHOP', link: '/products' },
   { id: 3, list: 'ABOUT', link: '/about' },
   {
     id: 4,
     list: <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" size="2x" />,
   },
 ];
-
 const Nav = () => {
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem('TOKEN') ?? '';
+
+  const logOutClick = () => {
+    localStorage.removeItem('TOKEN');
+    navigate('/products/main');
+  };
+
   return (
     <NavWrapper>
       <NavTopBox>
@@ -32,12 +39,19 @@ const Nav = () => {
               </NavTopItem>
             );
           })}
+          <NavTopItem>
+            {token ? (
+              <LogOutBtn onClick={logOutClick}>로그아웃</LogOutBtn>
+            ) : (
+              <Link to="/signup">로그인 / 회원가입</Link>
+            )}
+          </NavTopItem>
         </NavTopList>
       </NavTopBox>
 
       <NavMainBox>
         <NavLogoBox>
-          <Link to="/">
+          <Link to="/products/main">
             <LogoImg
               src="https://cdn.discordapp.com/attachments/1060384508286877719/1060410692068450385/052f177d26f60b77.png"
               alt="Logo"
@@ -84,6 +98,10 @@ const NavTopItem = styled.li`
   font-size: 12px;
   margin-left: 24px;
   letter-spacing: 1px;
+`;
+
+const LogOutBtn = styled.span`
+  cursor: pointer;
 `;
 
 const NavMainBox = styled.div`
