@@ -66,7 +66,8 @@
 </br>
 
 # 데모 영상
-추가 예정
+
+https://drive.google.com/file/d/1IfT3r0Y_Wyw5Ya4UrhfwWq1TaA0HhZM9/view?usp=sharing
 
 </br>
 
@@ -77,12 +78,13 @@
 | 스타일페이지 | <img width=50% src=https://> |
 | 스타일상세페이지 | <img width=50% src=https://> |
 | 메인페이지 | <img width=50% src=https://> |
+| 카테고리 페이지 | <img width=50% src=https://> |
 | 상세 페이지 | <img width=50% src=https://> |
-| 사이즈 선택 페이지 | <img width=50% src=https://> |
 | 입찰 페이지 | <img width=50% src=https://> |
 
 
 </br>
+
 
 ## 로그인
 - 
@@ -110,7 +112,9 @@
 -
 
 ## Footer
-- 
+-
+-
+-
 
 ## 상세페이지
 - 
