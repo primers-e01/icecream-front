@@ -1,4 +1,4 @@
-![waving](https://capsule-render.vercel.app/api?type=waving&height=200&fontAlignY=40&text=ICECREAM&color=gradient)
+![waving](https://capsule-render.vercel.app/api?type=waving&height=200&fontAlignY=40&text=🍦ICECREAM&color=gradient)
 
 - 입찰 시스템을 통한 거래 중개 사이트를 모델링한 프로젝트입니다.
 
@@ -49,8 +49,7 @@
 | :--: | :--: | :--: | :--: |
 | <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/nginx-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/mysql-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/restapi-icon.svg" alt="icon" width="65" height="65" /> |
 
-
-
+</br>
 
 # 협업 툴
 
@@ -68,6 +67,8 @@
 
 | <img width="513" alt="스크린샷 2023-01-08 오후 5 23 04" src="https://user-images.githubusercontent.com/83495141/211186939-79bbb7d7-c58c-427a-a6c7-82c3b2a7e4c1.png"> | <img width="1406" alt="스크린샷 2023-01-08 오후 5 24 05" src="https://user-images.githubusercontent.com/83495141/211186994-dfb0555d-d00c-443b-a973-b565a0e01553.png"> |
 |:-:|:-:|
+
+</br>
 
 # 데모 영상
 
