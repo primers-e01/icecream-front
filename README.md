@@ -73,58 +73,59 @@ https://drive.google.com/file/d/1IfT3r0Y_Wyw5Ya4UrhfwWq1TaA0HhZM9/view?usp=shari
 
 # 구현 기능  FrontEnd
 
-| 카카오로그인 | <img width=50% src=https://user-images.githubusercontent.com/83495141/211184538-ec7381b9-efe8-459c-97aa-3196e6ea8de4.gif> | ㅇ |
+| 카카오로그인 | <img width=50% src=https://user-images.githubusercontent.com/83495141/211184538-ec7381b9-efe8-459c-97aa-3196e6ea8de4.gif> | 문다연 |
 | :--: | :--: | :--: |
-| 스타일페이지 | <img width=50% src=https://user-images.githubusercontent.com/83495141/211184537-07565dbf-58d9-486d-a9e0-57ffdea232b2.gif> | ㅇ |
-| 메인페이지 | <img width=50% src=https://user-images.githubusercontent.com/83495141/211184772-36a189c3-662d-4be2-af78-84ccf3646262.gif> | ㅇ |
-| 카테고리 페이지 | <img width=50% src=https://user-images.githubusercontent.com/83495141/211184535-3ed20c0c-d26c-4b71-aed3-9e493129ca85.gif> | ㅇ |
-| 상세 페이지 | <img width=50% src=https://user-images.githubusercontent.com/83495141/211184533-623a0c6d-d08b-40c4-a1f1-2931d20b7547.gif> | ㅇ |
-| 그래프 | <img width=50% src=https://user-images.githubusercontent.com/83495141/211184525-339aeea5-0862-45aa-98d6-14a4cac0c864.gif> | ㅇ |
-| 입찰 페이지 | <img width=50% src=https://user-images.githubusercontent.com/83495141/211184532-9d45f952-ff36-4918-b143-47032573faab.gif> | ㅇ |
+| 스타일페이지 | <img width=50% src=https://user-images.githubusercontent.com/83495141/211184537-07565dbf-58d9-486d-a9e0-57ffdea232b2.gif> | 문다연 |
+| 메인페이지 | <img width=50% src=https://user-images.githubusercontent.com/83495141/211184772-36a189c3-662d-4be2-af78-84ccf3646262.gif> | 서혜선 |
+| 카테고리 페이지 | <img width=50% src=https://user-images.githubusercontent.com/83495141/211184535-3ed20c0c-d26c-4b71-aed3-9e493129ca85.gif> | 서혜선 |
+| 상세 페이지 | <img width=50% src=https://user-images.githubusercontent.com/83495141/211184533-623a0c6d-d08b-40c4-a1f1-2931d20b7547.gif> | 김태윤 |
+| 그래프 | <img width=50% src=https://user-images.githubusercontent.com/83495141/211184525-339aeea5-0862-45aa-98d6-14a4cac0c864.gif> | 김태윤 |
+| 입찰 페이지 | <img width=50% src=https://user-images.githubusercontent.com/83495141/211184532-9d45f952-ff36-4918-b143-47032573faab.gif> | 김태윤 |
 
 
 </br>
 
 
-## 로그인
+## 카카오 로그인 (문다연)
 - 
 -
 -
 
-## 회원가입
+## 스타일 페이지 (문다연)
 - 
 -
 -
 
-## 메인페이지
+## 메인페이지 (서혜선)
 - 
 - 
 -
 
-## 카테고리
+## 카테고리 (서혜선)
 - 
 -
 -
 
-## 네비게이션바
+## 네비게이션바 (김태윤)
 - 
 -
 -
 
-## Footer
+## Footer (김태윤)
 -
 -
 -
 
-## 상세페이지
+## 상세페이지 (김태윤)
 - 
 - 
 - 
 
-## 장바구니
+
+## 구매페이지 (김태윤)
 - 
--
--
+- 
+- 
 
 </br>
 
