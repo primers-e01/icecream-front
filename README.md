@@ -18,7 +18,7 @@
 </br>
 
 # 개발 인원 및 파트
-
+## FE
 | 김태윤 (Project Manager) | 네비게이션바, Footer, 상세페이지, 사이즈 선택 페이지, 구매, 판매 페이지 | <a href="https://github.com/Taeyooooon"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/></a> |
 | --- | --- | --- |
 | 문다연 | 카카오 소셜 로그인, 스타일 페이지, 스타일 상세 페이지 | <a href="https://github.com/mundayeonn"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/></a> |
@@ -26,9 +26,11 @@
 
 </br>
 
-| 임다슬 (Product Manager) | ㅁㅁㅁ | <a href="https://github.com/gkgkda"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/></a> |
-| --- | --- | --- |
-| 전민식 | ㅁㅁㅁ | <a href="https://github.com/minsicko"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/></a> |
+## BE
+
+| 임다슬 (Product Manager) | <a href="https://github.com/gkgkda"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/></a> |
+| --- | --- |
+| 전민식 | <a href="https://github.com/minsicko"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/></a> |
 
 </br>
 
