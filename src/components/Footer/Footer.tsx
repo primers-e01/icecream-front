@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faComment } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 const MENU_LIST = [
@@ -20,9 +22,9 @@ const CORPORATION_LIST = [
 ];
 
 const CORPORATION_ICON = [
-  { id: 1, list: <FontAwesomeIcon icon="fa-brands fa-instagram" size="2x" /> },
-  { id: 2, list: <FontAwesomeIcon icon="fa-brands fa-facebook" size="2x" /> },
-  { id: 3, list: <FontAwesomeIcon icon="fa-solid fa-comment" size="2x" /> },
+  { id: 1, list: <FontAwesomeIcon icon={faInstagram} size="2x" /> },
+  { id: 2, list: <FontAwesomeIcon icon={faFacebook} size="2x" /> },
+  { id: 3, list: <FontAwesomeIcon icon={faComment} size="2x" /> },
 ];
 
 const Footer = () => {

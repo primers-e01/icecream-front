@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { flexBox } from '../../styles/mixin';
@@ -12,13 +12,17 @@ const SIZE_BTN = [
   { size: 280, price: '600,000' },
 ];
 
-const SelectLayout = ({ type }) => {
-  const [selectSize, setSelectSize] = useState();
-  const [selectedPrice, setSelectedPrice] = useState();
+interface Props {
+  type: string;
+}
+
+const SelectLayout = ({ type }: Props) => {
+  const [selectSize, setSelectSize] = useState<number | undefined>();
+  const [selectedPrice, setSelectedPrice] = useState<string | undefined>();
 
   const navigate = useNavigate();
 
-  const onSizeClick = (size, price) => {
+  const onSizeClick = (size: number, price: string) => {
     setSelectSize(size);
     setSelectedPrice(price);
   };
@@ -49,7 +53,7 @@ const SelectLayout = ({ type }) => {
                 return (
                   <SelectItem
                     onClick={() => onSizeClick(size, price)}
-                    className={size === selectSize && 'active'}
+                    className={size === selectSize ? 'active' : ''}
                     key={size}
                   >
                     <SizeBtn>
@@ -183,7 +187,7 @@ const Size = styled.span`
   font-size: 14px;
 `;
 
-const Price = styled.span`
+const Price = styled.span<{ type: string }>`
   display: block;
   color: ${({ type }) => (type === 'sell' ? '#41b979' : '#ef6253')};
   line-height: 14px;
@@ -196,7 +200,7 @@ const BtnArea = styled.div`
   border-top: ${({ theme }) => theme.globalBoardStyle};
 `;
 
-const BtnBox = styled.div`
+const BtnBox = styled.div<{ type: string }>`
   width: calc(100% - 6px);
   margin: 0 3px;
   display: inline-block;

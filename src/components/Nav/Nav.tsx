@@ -2,7 +2,14 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { flexBox } from '../../styles/mixin';
+
+interface NavMainType {
+  id: number;
+  list: string | JSX.Element;
+  link?: string;
+}
 
 const NAV_TOP = [
   { id: 1, list: '고객센터', link: '/notice' },
@@ -15,7 +22,7 @@ const NAV_MAIN = [
   { id: 3, list: 'ABOUT', link: '/about' },
   {
     id: 4,
-    list: <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" size="2x" />,
+    list: <FontAwesomeIcon icon={faMagnifyingGlass} size="2x" />,
   },
 ];
 const Nav = () => {
@@ -59,10 +66,11 @@ const Nav = () => {
           </Link>
         </NavLogoBox>
         <NavMainList>
-          {NAV_MAIN.map(({ id, list, link }) => {
+          {NAV_MAIN.map(({ id, list, link }: NavMainType) => {
             return (
               <NavMainItem key={id}>
-                <Link to={link}>{list}</Link>
+                {/* TODO: 나중에 확인 link undefined 처리 필요*/}
+                {link ? <Link to={link}>{list}</Link> : ''}
               </NavMainItem>
             );
           })}

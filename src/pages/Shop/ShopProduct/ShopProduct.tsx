@@ -10,7 +10,7 @@ const ShopProduct = () => {
   const [isScroll, setIsScroll] = useState(false);
   const obsTarget = useRef(null);
 
-  const goToDetail = id => {
+  const goToDetail = (id: number) => {
     navigate(`/detail/${id}`);
   };
 

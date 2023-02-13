@@ -4,7 +4,18 @@ import { flexBox } from '../../styles/mixin';
 import BuyButton from './components/BuyButton';
 import SellButton from './components/SellButton';
 
-const FloatingPrice = ({ productData }) => {
+interface Props {
+  productData: {
+    thumbnailImageUrl: string;
+    modelNumber: string;
+    enName: string;
+    krName: string;
+    sellNow: number;
+    buyNow: number;
+  };
+}
+
+const FloatingPrice = ({ productData }: Props) => {
   return (
     <Wrapper>
       <ItemBox>

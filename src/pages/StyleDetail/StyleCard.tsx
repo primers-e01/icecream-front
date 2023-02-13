@@ -2,8 +2,23 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { flexBox } from '../../styles/mixin';
-import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
+import {
+  faHeart as regularHeart,
+  faShareFromSquare,
+} from '@fortawesome/free-regular-svg-icons';
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
+
+interface Props {
+  post_image_url: string;
+  en_name: string;
+  feed_text: string;
+  likes: number;
+  nickname: string;
+  original_price: number;
+  product_id: number;
+  profile_image_url: string;
+  thumbnail_image_url: string;
+}
 
 const StyleCard = ({
   post_image_url,
@@ -15,9 +30,7 @@ const StyleCard = ({
   product_id,
   profile_image_url,
   thumbnail_image_url,
-}) => {
-  console.log('1231231312', post_image_url);
-
+}: Props) => {
   const [isToggle, setIsToggle] = useState(false);
   const isLiked = () => {
     setIsToggle(!isToggle);
@@ -76,7 +89,7 @@ const StyleCard = ({
         <ShareButton>
           <FontAwesomeIcon
             className="share"
-            icon="fa-regular fa-share-from-square"
+            icon={faShareFromSquare}
             size="2x"
           />
         </ShareButton>

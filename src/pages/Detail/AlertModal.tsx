@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 import { positionCenter } from '../../styles/mixin';
 
 const IMAGE_LIST = [
@@ -9,18 +10,19 @@ const IMAGE_LIST = [
   { id: 3, img: 'http://placeimg.com/640/640/animal' },
   { id: 4, img: 'http://placeimg.com/640/640/nature' },
 ];
+interface Props {
+  setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  //TODO 데이터 형식 확인해서 바꿀 것.
+  productData: any;
+}
 
-const AlertModal = ({ setIsClicked, productData }) => {
+const AlertModal = ({ setIsClicked, productData }: Props) => {
   const onCloseClick = () => setIsClicked(false);
 
   return (
     <AlertModalWrapper>
       <IconBox>
-        <FontAwesomeIcon
-          icon="fa-solid fa-x"
-          size="lg"
-          onClick={onCloseClick}
-        />
+        <FontAwesomeIcon icon={faX} size="lg" onClick={onCloseClick} />
       </IconBox>
       <AlertTitle>상품 특이 사항</AlertTitle>
 

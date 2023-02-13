@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { flexBox } from '../../styles/mixin';
 
 const DROPDOWN_LIST = [
@@ -130,10 +131,12 @@ const DROPDOWN_LIST = [
 ];
 
 const Dropdown = () => {
-  const [isOpen, setIsOpen] = useState(null);
+  const [isOpen, setIsOpen] = useState<number | null>(null);
 
-  const onClick = ({ target }) => {
-    setIsOpen(isOpen === Number(target.id) ? null : Number(target.id));
+  const onClick = (event: React.MouseEvent) => {
+    setIsOpen(
+      isOpen === Number(event.target.id) ? null : Number(event.target.id)
+    );
   };
 
   return (
@@ -144,7 +147,7 @@ const Dropdown = () => {
           return (
             <DropdownItem key={id}>
               <TitleBox
-                condition={isOpen === id && 'opened'}
+                condition={isOpen === id ? 'opened' : ''}
                 id={id}
                 onClick={onClick}
               >
@@ -153,11 +156,7 @@ const Dropdown = () => {
                 </DropdownText>
                 <FontAwesomeIcon
                   id={id}
-                  icon={
-                    isOpen === id
-                      ? 'fa-solid fa-chevron-up'
-                      : 'fa-solid fa-chevron-down'
-                  }
+                  icon={isOpen === id ? faChevronUp : faChevronDown}
                   className="icon"
                 />
               </TitleBox>
@@ -198,17 +197,13 @@ const DropdownList = styled.ul``;
 
 const DropdownItem = styled.li``;
 
-const TitleBox = styled.div`
+const TitleBox = styled.div<{ condition: string }>`
   ${flexBox('space-between', 'center')}
   position: relative;
   padding: 18px 0;
   border-bottom: ${({ theme }) => theme.globalBoardStyle};
   border-color: ${props => props.condition && 'black'};
   cursor: pointer;
-
-  & .icon * {
-    color: #bbbbbb;
-  }
 `;
 
 const DropdownText = styled.span`

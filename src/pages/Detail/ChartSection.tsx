@@ -5,6 +5,12 @@ import MoreModal from './MoreModal';
 import useOutSideClick from '../../hooks/useOutSideClick';
 import { flexBox } from '../../styles/mixin';
 
+interface LoadData {
+  id: number;
+  size: number;
+  price: number;
+  date: string;
+}
 const CHART_FILTERLIST = [
   { id: 1, list: '1개월' },
   { id: 2, list: '3개월' },
@@ -20,21 +26,21 @@ const CHART_DEALLIST = [
 ];
 
 const ChartSection = ({ chartData, tableData }) => {
-  const [isFilterClicked, setIsFilterClicked] = useState(5);
-  const [isDealClicked, setIsDealClicked] = useState(6);
-  const [isMoreOpen, setIsMoreClicked] = useState(false);
+  const [isFilterClicked, setIsFilterClicked] = useState<number | null>(5);
+  const [isDealClicked, setIsDealClicked] = useState<number | null>(6);
+  const [isMoreOpen, setIsMoreClicked] = useState<boolean | undefined>(false);
   const [loadData, setLoadData] = useState(tableData.tradeDataLimit);
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
 
   // TODO: 로직 리팩토링
-  const onFilterClick = ({ target }) => {
+  const onFilterClick = ({ target }: React.MouseEvent) => {
     if (isFilterClicked === Number(target.id)) return;
     setIsFilterClicked(
       isFilterClicked === Number(target.id) ? null : Number(target.id)
     );
   };
 
-  const onDealClick = (id, data) => {
+  const onDealClick = (id: number, data: string) => {
     if (isDealClicked === Number(id)) return;
     setIsDealClicked(isDealClicked === Number(id) ? null : Number(id));
     setLoadData([...tableData[data]]);
@@ -95,7 +101,7 @@ const ChartSection = ({ chartData, tableData }) => {
         </ChartTableHead>
 
         <ChartTableBody>
-          {loadData?.map(({ id, size, price, date }) => {
+          {loadData?.map(({ id, size, price, date }: LoadData) => {
             const KRPrice = Math.floor(price).toLocaleString();
             return (
               <tr key={id}>
@@ -131,7 +137,7 @@ const ChartBtnList = styled.ul`
   width: 100%;
 `;
 
-const ChartBtnItem = styled.li`
+const ChartBtnItem = styled.li<{ clicked: boolean }>`
   flex: 1;
   margin: 2px;
   padding: 7px 0 9px;

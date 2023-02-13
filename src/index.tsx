@@ -10,7 +10,9 @@ import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/theme';
 library.add(fab, far, fas);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
 root.render(
   <ThemeProvider theme={theme}>
     <GlobalStyle />

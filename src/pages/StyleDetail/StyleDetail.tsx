@@ -11,19 +11,17 @@ const StyleDetail = () => {
 
   const location = useLocation();
 
-  console.log('state : ', location.state);
+  useEffect(() => {
+    fetch(`${API.styleDetail}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({}),
+    });
+  }, []);
 
-  // useEffect(() => {
-  //   fetch(`${API.styleDetail}`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({}),
-  //   });
-  // }, []);
-
-  // if (loading) return <h1>로딩중입니다.</h1>;
+  if (loading) return <h1>로딩중입니다.</h1>;
 
   return (
     <Container>

@@ -5,15 +5,21 @@ import Card from './Card';
 import { flexBox } from '../../styles/mixin';
 import { API } from '../../config/config';
 
+interface Feed {
+  id: number;
+  userId: number;
+  postId: number;
+  post_image_url: string;
+  profile_image_url: string;
+  nickname: string;
+  likes: number;
+  feed_text: string;
+}
+
 const Style = () => {
-  const [feedList, setFeedList] = useState([]);
+  const [feedList, setFeedList] = useState<Feed[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [clickedFilter, setClickedFilter] = useState('trend');
-
-  console.log(searchParams.toString());
-  console.log(`${API.style}?${searchParams.toString()}`);
-
-  console.log(feedList);
 
   useEffect(() => {
     fetch(`${API.style}?${searchParams.toString()}`)
@@ -68,7 +74,7 @@ const StyleTab = styled.div`
   background-color: #fff;
 `;
 
-const ItemTab = styled.button`
+const ItemTab = styled.button<{ active: boolean }>`
   padding: 8px 12px;
   font-size: 18px;
   font-weight: 700;

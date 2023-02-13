@@ -3,7 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { flexBox } from '../../../styles/mixin';
 
-const SellButton = ({ size, productData }) => {
+interface Props {
+  size: number;
+  //TODO: 데이터 확인 후 타입 수정
+  productData: {
+    thumbnailImageUrl: string;
+    modelNumber: string;
+    enName: string;
+    krName: string;
+    sellNow: number;
+    buyNow: number;
+  };
+}
+
+const SellButton = ({ size, productData }: Props) => {
   const navigate = useNavigate();
 
   const onSellClick = () => {
@@ -46,7 +59,7 @@ const SellBtn = styled.a`
   }
 `;
 
-const BtnTitle = styled.strong`
+const BtnTitle = styled.strong<{ size: number }>`
   width: 55px;
   font-weight: 700;
   font-size: ${props => props.size}px;

@@ -1,13 +1,30 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+interface Props {
+  cateKey: string;
+  title: string;
+  subTitle: string;
+  subCategory: {
+    id: number;
+    query: number | string;
+    text: number | string;
+  }[];
+  onClickQuery: (cateKey: string, query: number | string) => void;
+}
+
+interface Element {
+  query: number | string;
+  text: number | string;
+}
+
 const AsideCategory = ({
   cateKey,
   title,
   subTitle,
   subCategory,
   onClickQuery,
-}) => {
+}: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const onClickCate = () => {
@@ -25,7 +42,7 @@ const AsideCategory = ({
       </CategoryListBox>
       <AsideOpenList key={cateKey} className={isOpen ? '' : 'open'}>
         {subCategory &&
-          subCategory.map(({ query, text }) => {
+          subCategory.map(({ query, text }: Element) => {
             return (
               <AsideOpenItem key={query}>
                 <AsideOpenBtn onClick={() => onClickQuery(cateKey, query)}>

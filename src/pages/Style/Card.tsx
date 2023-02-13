@@ -1,30 +1,37 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { API } from '../../config/config';
 
-const Card = props => {
-  const {
-    userId,
-    postId,
-    post_image_url,
-    profile_image_url,
-    nickname,
-    likes,
-    feed_text,
-  } = props;
+interface Props {
+  id: number;
+  userId: number;
+  postId: number;
+  post_image_url: string;
+  profile_image_url: string;
+  nickname: string;
+  likes: number;
+  feed_text: string;
+}
 
+const Card = ({
+  userId,
+  postId,
+  post_image_url,
+  profile_image_url,
+  nickname,
+  likes,
+  feed_text,
+}: Props) => {
   const [isToggle, setIsToggle] = useState(false);
 
   const navigate = useNavigate();
 
   const isLiked = () => setIsToggle(!isToggle);
   const onImageClick = () => {
-    console.log('userId', String(userId));
-    console.log('post : ', postId);
     fetch(`${API.styleDetail}`, {
       method: 'POST',
       headers: {
@@ -37,11 +44,10 @@ const Card = props => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('1111111111', data.data[0]);
         navigate(`/posts/details`, { state: { ...data.data[0] } });
       });
   };
-  // to={`/posts/details/${id}`}
+
   return (
     <FeedCard>
       <div onClick={onImageClick}>

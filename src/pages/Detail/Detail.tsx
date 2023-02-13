@@ -2,6 +2,16 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faArrowRight,
+  faCertificate,
+  faGift,
+  faTruck,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faCircleCheck,
+  faSquareCaretDown,
+} from '@fortawesome/free-regular-svg-icons';
 import Carousel from './Carousel';
 import AlertModal from './AlertModal';
 import FloatingPrice from './FloatingPrice';
@@ -24,8 +34,8 @@ const Detail = () => {
   const tableData = pageData.data?.tradeLimit[0];
   const { productId } = useParams();
 
-  const ref = useRef();
-  const dealBtnRef = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const dealBtnRef = useRef<HTMLDivElement>(null);
 
   const onAlertClick = () => setIsClicked(true);
 
@@ -71,7 +81,7 @@ const Detail = () => {
               해당 상품의 개체별 특이사항 안내해드립니다.
             </AlertLightText>
             <AlertIcon>
-              <FontAwesomeIcon icon="fa-solid fa-arrow-right" size="lg" />
+              <FontAwesomeIcon icon={faArrowRight} size="lg" />
             </AlertIcon>
           </ItemAlertBox>
         </ItemImgBox>
@@ -87,10 +97,7 @@ const Detail = () => {
               <SizePriceText>사이즈</SizePriceText>
               <SizeBtnBox>
                 <SizeBtnText>모든 사이즈</SizeBtnText>
-                <FontAwesomeIcon
-                  icon="fa-regular fa-square-caret-down"
-                  size="lg"
-                />
+                <FontAwesomeIcon icon={faSquareCaretDown} size="lg" />
               </SizeBtnBox>
             </ItemSizeBox>
 
@@ -141,7 +148,7 @@ const Detail = () => {
         <DeliverySection>
           <DeliveryTitle>배송정보</DeliveryTitle>
           <DeliveryBox>
-            <FontAwesomeIcon icon="fa-solid fa-truck" size="2x" />
+            <FontAwesomeIcon icon={faTruck} size="2x" />
             <DeliveryTextBox>
               <DeliveryBoldText>일반 배송 </DeliveryBoldText>
               <span>3000원</span>
@@ -443,21 +450,21 @@ const NoticeSection = styled.section`
 const GUIDE_LIST = [
   {
     id: 1,
-    icon: 'fa-solid fa-certificate',
+    icon: faCertificate,
     title: '100% 정품 보증',
     description:
       'ICECREAM에서 검수한 상품이 정품이 아닐 경우, 구매가의 3배를 보상합니다.',
   },
   {
     id: 2,
-    icon: 'fa-regular fa-circle-check',
+    icon: faCircleCheck,
     title: '엄격한 다중 검수',
     description:
       '모든 상품은 검수센터에 도착한 후, 상품별 전문가 그룹의 체계적인 시스템을 거쳐 검수를 진행합니다.',
   },
   {
     id: 3,
-    icon: 'fa-solid fa-gift',
+    icon: faGift,
     title: '정품 인증 패키지',
     description:
       '검수에 합격한 경우에 한하여 ICECREAM의 정품 인증 패키지가 포함된 상품이 배송됩니다.',

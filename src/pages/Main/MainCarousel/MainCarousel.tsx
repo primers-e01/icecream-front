@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const MainCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleSlide = index => {
+  const handleSlide = (index: number) => {
     if (index < 0) {
       index = SLIDE.length - 1;
     } else if (index >= SLIDE.length) {
@@ -14,7 +14,7 @@ const MainCarousel = () => {
     setCurrentIndex(index);
   };
 
-  const onClickSlideBtn = direction => {
+  const onClickSlideBtn = (direction: number) => {
     handleSlide(currentIndex + direction);
   };
 
@@ -82,7 +82,7 @@ const CarouselNextBtn = styled.div`
   }
 `;
 
-const CarouselSliderList = styled.div`
+const CarouselSliderList = styled.div<{ currentIndex: number }>`
   width: 300%;
   height: 400px;
   display: flex;

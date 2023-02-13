@@ -4,6 +4,7 @@ import ShopProduct from './ShopProduct/ShopProduct';
 import styled from 'styled-components';
 import { getQueryString } from '../../utils/queryString';
 import { useNavigate } from 'react-router-dom';
+
 const INIT_QUERY = {
   categoryId: '',
   shoesize: '',
@@ -13,7 +14,7 @@ const INIT_QUERY = {
 const Shop = () => {
   const [queries, setQueries] = useState(INIT_QUERY);
   const navigate = useNavigate();
-  const onClickQuery = (cateKey, query) => {
+  const onClickQuery = (cateKey: string, query: number | string) => {
     setQueries({ ...queries, [cateKey]: query });
     navigate(`/products${getQueryString(queries)}`);
   };

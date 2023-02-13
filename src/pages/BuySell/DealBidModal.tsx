@@ -2,7 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { positionCenter } from '../../styles/mixin';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 import { API } from '../../config/config';
+
+interface Props {
+  setIsBidClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  price: string;
+  formatPrice: string;
+  type: string;
+  size: string | null;
+  selectType: string;
+  // TODO: 나중에 타입확인
+  buyNow: any;
+  sellNow: any;
+}
 
 const DealBidModal = ({
   setIsBidClicked,
@@ -13,13 +26,13 @@ const DealBidModal = ({
   selectType,
   buyNow,
   sellNow,
-}) => {
+}: Props) => {
   const buyNowPrice = Math.floor(buyNow).toLocaleString();
   const sellNowPrice = Math.floor(sellNow).toLocaleString();
   const onCloseClick = () => setIsBidClicked(false);
   console.log(type);
   console.log(selectType);
-  const onBtnClick = e => {
+  const onBtnClick = (e: MouseEvent) => {
     fetch(`${modalMap[type][selectType].api}`, {
       method: 'POST',
       headers: {
@@ -39,11 +52,7 @@ const DealBidModal = ({
   return (
     <Wrapper>
       <IconBox>
-        <FontAwesomeIcon
-          icon="fa-solid fa-x"
-          size="lg"
-          onClick={onCloseClick}
-        />
+        <FontAwesomeIcon icon={faX} size="lg" onClick={onCloseClick} />
       </IconBox>
 
       <TitleBox>
@@ -106,7 +115,7 @@ const PriceText = styled.span`
   font-weight: 600;
 `;
 
-const Price = styled.span`
+const Price = styled.span<{ type: string }>`
   display: block;
   font-size: 24px;
   font-weight: 700;
@@ -134,7 +143,7 @@ const BtnBox = styled.div`
   padding: 24px 32px 32px;
 `;
 
-const Btn = styled.button`
+const Btn = styled.button<{ type: string }>`
   background-color: ${({ type }) => (type === 'sell' ? '#41b979' : '#ef6253')};
   height: 52px;
   color: #fff;

@@ -1,6 +1,7 @@
-import { React, useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown, faSort, faX } from '@fortawesome/free-solid-svg-icons';
 import { API } from '../../config/config';
 import { flexBox, positionCenter } from '../../styles/mixin';
 import { useParams } from 'react-router-dom';
@@ -11,16 +12,19 @@ const BTN_LIST = [
   { id: 3, list: '구매 입찰', data: 'buyBidDataAll' },
 ];
 
-const MoreModal = ({ setIsMoreClicked }) => {
-  const [isFilterClicked, setIsFilterClicked] = useState(1);
+interface Props {
+  // TODO: 나중에 확인
+  setIsMoreClicked: React.Dispatch<React.SetStateAction<boolean | undefined>>;
+}
+const MoreModal = ({ setIsMoreClicked }: Props) => {
+  const [isFilterClicked, setIsFilterClicked] = useState<number | null>(1);
   const [tableData, setTableData] = useState();
   const [loadData, setLoadData] = useState();
 
   const { productId } = useParams();
 
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-  // TODO : 이해하기
   useEffect(() => {
     const observer = new IntersectionObserver(e => {
       if (e[0].isIntersecting) {
@@ -45,7 +49,7 @@ const MoreModal = ({ setIsMoreClicked }) => {
     document.body.style.overflow = 'scroll';
   };
 
-  const onFilterClick = (id, data) => {
+  const onFilterClick = (id: number, data: string) => {
     if (isFilterClicked === Number(id)) return;
     setIsFilterClicked(isFilterClicked === Number(id) ? null : Number(id));
 
@@ -55,11 +59,7 @@ const MoreModal = ({ setIsMoreClicked }) => {
   return (
     <ModalWrapper>
       <IconBox>
-        <FontAwesomeIcon
-          icon="fa-solid fa-x"
-          size="lg"
-          onClick={onCloseClick}
-        />
+        <FontAwesomeIcon icon={faX} size="lg" onClick={onCloseClick} />
       </IconBox>
       <ModalTitle>시세</ModalTitle>
       <ModalContent>
@@ -78,10 +78,7 @@ const MoreModal = ({ setIsMoreClicked }) => {
               <SizeBtn>
                 <BtnText>모든 사이즈</BtnText>
                 <BtnIcon>
-                  <FontAwesomeIcon
-                    className="icon"
-                    icon="fa-solid fa-caret-down"
-                  />
+                  <FontAwesomeIcon className="icon" icon={faCaretDown} />
                 </BtnIcon>
               </SizeBtn>
             </ItemInfo>
@@ -105,15 +102,15 @@ const MoreModal = ({ setIsMoreClicked }) => {
           <HeaderList>
             <HeaderItem>
               <ItemText>사이즈</ItemText>
-              <FontAwesomeIcon className="icon" icon="fa-solid fa-sort" />
+              <FontAwesomeIcon className="icon" icon={faSort} />
             </HeaderItem>
             <HeaderItem>
               <ItemText>거래가</ItemText>
-              <FontAwesomeIcon className="icon" icon="fa-solid fa-sort" />
+              <FontAwesomeIcon className="icon" icon={faSort} />
             </HeaderItem>
             <HeaderItem>
               <ItemText>거래일</ItemText>
-              <FontAwesomeIcon className="icon" icon="fa-solid fa-sort" />
+              <FontAwesomeIcon className="icon" icon={faSort} />
             </HeaderItem>
           </HeaderList>
 
@@ -260,7 +257,7 @@ const BtnList = styled.ul`
   margin-bottom: 12px;
 `;
 
-const BtnItem = styled.li`
+const BtnItem = styled.li<{ clicked: boolean }>`
   flex: 1;
   margin: 2px;
   font-size: 12px;

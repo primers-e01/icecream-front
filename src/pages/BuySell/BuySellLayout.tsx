@@ -1,4 +1,4 @@
-import { React, useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { API } from '../../config/config';
@@ -9,29 +9,44 @@ import DealBidModal from './DealBidModal';
 const BTN_BUY_ITEM = [{ item: '구매 입찰' }, { item: '즉시 구매' }];
 const BTN_SELL_ITEM = [{ item: '판매 입찰' }, { item: '즉시 판매' }];
 
-const BuySellLayout = ({ type, item }) => {
+interface Props {
+  type: string;
+  item: string;
+}
+
+interface ProductData {
+  thumbnailImageUrl: string;
+  modelNumber: string;
+  enName: string;
+  krName: string;
+  sellNow: number;
+  buyNow: number;
+}
+
+const BuySellLayout = ({ type, item }: Props) => {
   const [selectType, setSelectType] = useState(item);
   const [inputValue, setInputValue] = useState('');
   const [checkInputValue, setCheckInputValue] = useState(true);
   const [isBidClicked, setIsBidClicked] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [productData, setProductData] = useState();
+  const [productData, setProductData] = useState<ProductData>();
 
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
 
   const getQuerySize = searchParams.get('size');
 
   const onDealBtnClick = () => setIsBidClicked(true);
 
-  const onClickTab = item => setSelectType(item);
+  const onClickTab = (item: string) => setSelectType(item);
 
-  const comma = value =>
+  const comma = (value: number | string) =>
     String(value).replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 
-  const uncomma = value => String(value).replace(/[^\d]+/g, '');
+  const uncomma = (value: number | string) =>
+    String(value).replace(/[^\d]+/g, '');
 
-  const onInputChange = ({ target }) => {
+  const onInputChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const value = target.value;
     const checkInputValueOver30000 = Number(uncomma(value)) >= 30000;
     setCheckInputValue(checkInputValueOver30000);
@@ -46,9 +61,7 @@ const BuySellLayout = ({ type, item }) => {
       .then(data => setProductData(data.data));
   }, []);
 
-  console.log(productData);
-
-  if (!productData) return;
+  if (!productData) return <div />;
 
   return (
     <BuyBackGround>
@@ -112,7 +125,7 @@ const BuySellLayout = ({ type, item }) => {
                 ({ item }) => (
                   <BtnItem
                     key={item}
-                    className={selectType === item && 'active'}
+                    className={selectType === item ? 'active' : ''}
                     onClick={() => onClickTab(item)}
                   >
                     {item}
@@ -136,8 +149,8 @@ const BuySellLayout = ({ type, item }) => {
                   placeholder="희망가 입력"
                   onChange={onInputChange}
                   value={inputValue}
-                  required="required"
-                  maxLength="11"
+                  required
+                  maxLength={11}
                   pattern="([0-9]+.{0,1}[0-9]*,{0,1})*[0-9]"
                 />
                 <PriceInputText>원</PriceInputText>
@@ -294,7 +307,7 @@ const BtnSection = styled.section`
   margin-bottom: 27px;
 `;
 
-const BtnList = styled.ul`
+const BtnList = styled.ul<{ type: string }>`
   display: flex;
   background-color: #f4f4f4;
   border-radius: 80px;
@@ -319,7 +332,7 @@ const BtnItem = styled.li`
   cursor: pointer;
 `;
 
-const DealNowSection = styled.section`
+const DealNowSection = styled.section<{ checkInputValue: boolean }>`
   ${flexBox('space-between', '', '')}
   position: relative;
   border-bottom: 2px solid #ebebeb;
@@ -337,7 +350,7 @@ const PriceBind = styled.div`
   color: ${({ theme }) => theme.mainBrandGray05};
 `;
 
-const PriceTitle = styled.div`
+const PriceTitle = styled.div<{ checkInputValue: boolean }>`
   font-size: 14px;
   letter-spacing: -0.21px;
   font-weight: 700;
@@ -394,7 +407,7 @@ const BtnArea = styled.div`
   border-top: ${({ theme }) => theme.globalBoardStyle};
 `;
 
-const BtnBox = styled.div`
+const BtnBox = styled.div<{ type: string }>`
   width: calc(100% - 6px);
   margin: 0 3px;
   display: inline-block;
