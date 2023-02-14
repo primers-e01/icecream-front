@@ -1,5 +1,24 @@
 import { createGlobalStyle } from 'styled-components';
+import { DefaultTheme } from 'styled-components';
 import reset from 'styled-reset';
+
+declare module 'styled-components' {
+  export interface DefaultTheme {
+    mainBrandBlack: string;
+
+    mainBrandGray05: string;
+    mainBrandGray08: string;
+    buttonActive: string;
+    buttonDisabled: string;
+    buttonSell: string;
+    buttonBuy: string;
+    globalBorderStyle: string;
+    globalBoxShadow: string;
+    nav: number;
+    alertModal: number;
+    buySellTitle: number;
+  }
+}
 
 const GlobalStyle = createGlobalStyle`
   ${reset}

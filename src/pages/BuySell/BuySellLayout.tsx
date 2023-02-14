@@ -10,27 +10,19 @@ const BTN_BUY_ITEM = [{ item: '구매 입찰' }, { item: '즉시 구매' }];
 const BTN_SELL_ITEM = [{ item: '판매 입찰' }, { item: '즉시 판매' }];
 
 interface Props {
-  type: string;
+  tradeType: string;
   item: string;
 }
 
-interface ProductData {
-  thumbnailImageUrl: string;
-  modelNumber: string;
-  enName: string;
-  krName: string;
-  sellNow: number;
-  buyNow: number;
-}
-
-const BuySellLayout = ({ type, item }: Props) => {
+const BuySellLayout = ({ tradeType, item }: Props) => {
   const [selectType, setSelectType] = useState(item);
   const [inputValue, setInputValue] = useState('');
   const [checkInputValue, setCheckInputValue] = useState(true);
   const [isBidClicked, setIsBidClicked] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [productData, setProductData] = useState<ProductData>();
+  // TODO: 데이터 수정
+  const [productData, setProductData] = useState<any>();
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -40,11 +32,10 @@ const BuySellLayout = ({ type, item }: Props) => {
 
   const onClickTab = (item: string) => setSelectType(item);
 
-  const comma = (value: number | string) =>
+  const comma = (value: string) =>
     String(value).replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 
-  const uncomma = (value: number | string) =>
-    String(value).replace(/[^\d]+/g, '');
+  const uncomma = (value: string) => String(value).replace(/[^\d]+/g, '');
 
   const onInputChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const value = target.value;
@@ -61,7 +52,7 @@ const BuySellLayout = ({ type, item }: Props) => {
       .then(data => setProductData(data.data));
   }, []);
 
-  if (!productData) return <div />;
+  if (!productData) return <></>;
 
   return (
     <BuyBackGround>
@@ -71,7 +62,7 @@ const BuySellLayout = ({ type, item }: Props) => {
             setIsBidClicked={setIsBidClicked}
             price={comma(uncomma(inputValue))}
             formatPrice={uncomma(inputValue)}
-            type={type}
+            tradeType={tradeType}
             size={getQuerySize}
             selectType={selectType}
             buyNow={productData.buyNow}
@@ -81,7 +72,7 @@ const BuySellLayout = ({ type, item }: Props) => {
       </div>
 
       <Title>
-        {type === 'sell'
+        {tradeType === 'sell'
           ? selectType === '판매 입찰'
             ? '판매 입찰하기'
             : '즉시 판매하기'
@@ -120,8 +111,8 @@ const BuySellLayout = ({ type, item }: Props) => {
           </PriceBox>
 
           <BtnSection>
-            <BtnList type={type}>
-              {(type === 'sell' ? BTN_SELL_ITEM : BTN_BUY_ITEM).map(
+            <BtnList tradeType={tradeType}>
+              {(tradeType === 'sell' ? BTN_SELL_ITEM : BTN_BUY_ITEM).map(
                 ({ item }) => (
                   <BtnItem
                     key={item}
@@ -138,7 +129,7 @@ const BuySellLayout = ({ type, item }: Props) => {
           {selectType === '구매 입찰' || selectType === '판매 입찰' ? (
             <DealNowSection checkInputValue={checkInputValue}>
               <PriceTitle checkInputValue={checkInputValue}>
-                {type === 'sell' ? '판매 희망가' : '구매 희망가'}
+                {tradeType === 'sell' ? '판매 희망가' : '구매 희망가'}
               </PriceTitle>
               <PriceInputBox>
                 {!checkInputValue && (
@@ -161,9 +152,10 @@ const BuySellLayout = ({ type, item }: Props) => {
           )}
 
           {selectType === '즉시 구매' || selectType === '즉시 판매' ? (
-            <DealNowSection>
+            // TODO: checkInputValue 들어가는지 체크
+            <DealNowSection checkInputValue={checkInputValue}>
               <PriceTitle checkInputValue={true}>
-                {type === 'sell' ? '즉시 판매가' : '즉시 구매가'}
+                {tradeType === 'sell' ? '즉시 판매가' : '즉시 구매가'}
               </PriceTitle>
               <PriceText>
                 {Math.floor(productData.sellNow).toLocaleString()}원
@@ -176,11 +168,12 @@ const BuySellLayout = ({ type, item }: Props) => {
           <PriceBind>총 결제금액은 다음 화면에서 계산됩니다.</PriceBind>
 
           <BtnArea>
-            <BtnBox type={type}>
+            {/* TODO: tradeType 들어가는지 체크 */}
+            <BtnBox>
               {selectType === '즉시 구매' || selectType === '즉시 판매' ? (
                 <Btn onClick={onDealBtnClick}>
                   <BtnText>
-                    {type === 'sell' ? '즉시 판매 계속' : '즉시 구매 계속'}
+                    {tradeType === 'sell' ? '즉시 판매 계속' : '즉시 구매 계속'}
                   </BtnText>
                 </Btn>
               ) : (
@@ -189,7 +182,7 @@ const BuySellLayout = ({ type, item }: Props) => {
                   onClick={onDealBtnClick}
                 >
                   <BtnText>
-                    {type === 'sell' ? '판매 입찰 계속' : '구매 입찰 계속'}
+                    {tradeType === 'sell' ? '판매 입찰 계속' : '구매 입찰 계속'}
                   </BtnText>
                 </Btn>
               )}
@@ -274,13 +267,13 @@ const ItemSize = styled.span`
 const PriceBox = styled.div`
   ${flexBox()}
   padding: 28px 0;
-  border-top: ${({ theme }) => theme.globalBoardStyle};
+  border-top: ${({ theme }) => theme.globalBorderStyle};
 `;
 
 const BuyNowPrice = styled.div`
   flex: 1;
   text-align: center;
-  border-right: ${({ theme }) => theme.globalBoardStyle};
+  border-right: ${({ theme }) => theme.globalBorderStyle};
 `;
 
 const SellNowPrice = styled.div`
@@ -307,7 +300,7 @@ const BtnSection = styled.section`
   margin-bottom: 27px;
 `;
 
-const BtnList = styled.ul<{ type: string }>`
+const BtnList = styled.ul<{ tradeType: string }>`
   display: flex;
   background-color: #f4f4f4;
   border-radius: 80px;
@@ -315,8 +308,8 @@ const BtnList = styled.ul<{ type: string }>`
 
   & .active {
     color: white;
-    background-color: ${({ type }) =>
-      type === 'sell' ? '#41b979' : '#ef6253'};
+    background-color: ${({ tradeType }) =>
+      tradeType === 'sell' ? '#41b979' : '#ef6253'};
   }
 `;
 
@@ -404,10 +397,10 @@ const PriceText = styled.div`
 
 const BtnArea = styled.div`
   padding-top: 20px;
-  border-top: ${({ theme }) => theme.globalBoardStyle};
+  border-top: ${({ theme }) => theme.globalBorderStyle};
 `;
 
-const BtnBox = styled.div<{ type: string }>`
+const BtnBox = styled.div`
   width: calc(100% - 6px);
   margin: 0 3px;
   display: inline-block;

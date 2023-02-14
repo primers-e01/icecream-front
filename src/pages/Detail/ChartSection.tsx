@@ -25,7 +25,12 @@ const CHART_DEALLIST = [
   { id: 8, list: '구매 입찰', data: 'buyBidDataLimit' },
 ];
 
-const ChartSection = ({ chartData, tableData }) => {
+interface Props {
+  chartData: any;
+  tableData: any;
+}
+
+const ChartSection = ({ chartData, tableData }: Props) => {
   const [isFilterClicked, setIsFilterClicked] = useState<number | null>(5);
   const [isDealClicked, setIsDealClicked] = useState<number | null>(6);
   const [isMoreOpen, setIsMoreClicked] = useState<boolean | undefined>(false);
@@ -33,10 +38,12 @@ const ChartSection = ({ chartData, tableData }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   // TODO: 로직 리팩토링
-  const onFilterClick = ({ target }: React.MouseEvent) => {
-    if (isFilterClicked === Number(target.id)) return;
+  const onFilterClick = ({ currentTarget }: React.MouseEvent) => {
+    if (isFilterClicked === Number(currentTarget.id)) return;
     setIsFilterClicked(
-      isFilterClicked === Number(target.id) ? null : Number(target.id)
+      isFilterClicked === Number(currentTarget.id)
+        ? null
+        : Number(currentTarget.id)
     );
   };
 
@@ -64,7 +71,7 @@ const ChartSection = ({ chartData, tableData }) => {
           return (
             <ChartBtnItem
               key={id}
-              id={id}
+              id={id.toString()}
               onClick={onFilterClick}
               clicked={isFilterClicked === id}
             >
@@ -81,7 +88,7 @@ const ChartSection = ({ chartData, tableData }) => {
           return (
             <ChartBtnItem
               key={id}
-              id={id}
+              id={id.toString()}
               onClick={() => onDealClick(id, data)}
               clicked={isDealClicked === id}
             >
@@ -158,7 +165,7 @@ const ChartTableWrapper = styled.table`
 
 const ChartTableHead = styled.thead`
   text-align: right;
-  border-bottom: ${({ theme }) => theme.globalBoardStyle};
+  border-bottom: ${({ theme }) => theme.globalBorderStyle};
   font-size: 12px;
 
   & tr {

@@ -135,7 +135,9 @@ const Dropdown = () => {
 
   const onClick = (event: React.MouseEvent) => {
     setIsOpen(
-      isOpen === Number(event.target.id) ? null : Number(event.target.id)
+      isOpen === Number(event.currentTarget.id)
+        ? null
+        : Number(event.currentTarget.id)
     );
   };
 
@@ -148,14 +150,18 @@ const Dropdown = () => {
             <DropdownItem key={id}>
               <TitleBox
                 condition={isOpen === id ? 'opened' : ''}
-                id={id}
+                // TODO: id -> String 변환 확인
+                id={id.toString()}
                 onClick={onClick}
               >
-                <DropdownText condition={isOpen === id && 'opened'} id={id}>
+                <DropdownText
+                  condition={isOpen === id ? 'opened' : ''}
+                  id={id.toString()}
+                >
                   {list}
                 </DropdownText>
                 <FontAwesomeIcon
-                  id={id}
+                  id={id.toString()}
                   icon={isOpen === id ? faChevronUp : faChevronDown}
                   className="icon"
                 />
@@ -190,7 +196,7 @@ const DropdownTitle = styled.h3`
   padding: 40px 0 12px;
   font-size: 18px;
   font-weight: 600;
-  border-bottom: ${({ theme }) => theme.globalBoardStyle};
+  border-bottom: ${({ theme }) => theme.globalBorderStyle};
 `;
 
 const DropdownList = styled.ul``;
@@ -201,20 +207,20 @@ const TitleBox = styled.div<{ condition: string }>`
   ${flexBox('space-between', 'center')}
   position: relative;
   padding: 18px 0;
-  border-bottom: ${({ theme }) => theme.globalBoardStyle};
+  border-bottom: ${({ theme }) => theme.globalBorderStyle};
   border-color: ${props => props.condition && 'black'};
   cursor: pointer;
 `;
-
-const DropdownText = styled.span`
+// TODO: condition 원래 type props였음 확인
+const DropdownText = styled.span<{ condition: string }>`
   font-size: 15px;
   line-height: 24px;
-  font-weight: ${props => props.type && 700};
+  font-weight: ${props => props.condition && 700};
 `;
 
 const ContentBox = styled.div`
   padding-bottom: 20px;
-  border-bottom: ${({ theme }) => theme.globalBoardStyle};
+  border-bottom: ${({ theme }) => theme.globalBorderStyle};
 `;
 
 const ContentList = styled.ul`

@@ -78,7 +78,7 @@ const MainBanner = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 20px;
-    border-bottom: ${({ theme }) => theme.globalBoardStyle};
+    border-bottom: ${({ theme }) => theme.globalBorderStyle};
     color: white;
 
     &:hover {

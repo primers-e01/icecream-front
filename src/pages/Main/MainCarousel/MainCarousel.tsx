@@ -105,7 +105,7 @@ const CarouselSlideItem = styled.div`
     transform: translate(-50%, -50%);
     z-index: 90;
     color: white;
-    border-bottom: ${({ theme }) => theme.globalBoardStyle};
+    border-bottom: ${({ theme }) => theme.globalBorderStyle};
 
     &:hover {
       cursor: pointer;

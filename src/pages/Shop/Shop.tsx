@@ -12,7 +12,8 @@ const INIT_QUERY = {
 };
 
 const Shop = () => {
-  const [queries, setQueries] = useState(INIT_QUERY);
+  // TODO: any확인해보기
+  const [queries, setQueries] = useState<any>(INIT_QUERY);
   const navigate = useNavigate();
   const onClickQuery = (cateKey: string, query: number | string) => {
     setQueries({ ...queries, [cateKey]: query });

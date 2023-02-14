@@ -9,7 +9,7 @@ interface Props {
   setIsBidClicked: React.Dispatch<React.SetStateAction<boolean>>;
   price: string;
   formatPrice: string;
-  type: string;
+  tradeType: string;
   size: string | null;
   selectType: string;
   // TODO: 나중에 타입확인
@@ -17,11 +17,40 @@ interface Props {
   sellNow: any;
 }
 
+interface Example {
+  sell: {
+    '판매 입찰': {
+      text: string;
+      api: string;
+      btn: string;
+    };
+    '즉시 판매': {
+      text: string;
+      api: string;
+      btn: string;
+    };
+  };
+  buy: {
+    '구매 입찰': {
+      text: string;
+      api: string;
+      btn: string;
+    };
+    '즉시 구매': {
+      text: string;
+      api: string;
+      btn: string;
+    };
+  };
+  // TODO: any 확인
+  [key: string]: any;
+}
+
 const DealBidModal = ({
   setIsBidClicked,
   price,
   formatPrice,
-  type,
+  tradeType,
   size,
   selectType,
   buyNow,
@@ -30,15 +59,15 @@ const DealBidModal = ({
   const buyNowPrice = Math.floor(buyNow).toLocaleString();
   const sellNowPrice = Math.floor(sellNow).toLocaleString();
   const onCloseClick = () => setIsBidClicked(false);
-  console.log(type);
-  console.log(selectType);
-  const onBtnClick = (e: MouseEvent) => {
-    fetch(`${modalMap[type][selectType].api}`, {
+
+  const requestHeaders: Headers = new Headers();
+  requestHeaders.set('Content-Type', 'application/json');
+  requestHeaders.set('Authorization', localStorage.getItem('TOKEN') ?? '');
+
+  const onBtnClick = () => {
+    fetch(`${modalMap[tradeType][selectType].api}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem('TOKEN'),
-      },
+      headers: requestHeaders,
       body: JSON.stringify({
         // TODO: 사이즈 선택창 완료 후 수정
         productId: 4,
@@ -59,7 +88,7 @@ const DealBidModal = ({
         <PriceText>총 결제금액</PriceText>
         {/* TODO: 백엔드 데이터 추가 */}
         {/* <Price>
-          {type === 'sell'
+          {tradeType === 'sell'
             ? selectType === '판매 입찰'
               ? { price }
               : { buyNowPrice }
@@ -67,7 +96,7 @@ const DealBidModal = ({
             ? { price }
             : { buyNowPrice }}
         </Price> */}
-        <Price type={type}>{price}원</Price>
+        <Price tradeType={tradeType}>{price}원</Price>
       </TitleBox>
 
       <NoticeBox>
@@ -76,8 +105,8 @@ const DealBidModal = ({
       </NoticeBox>
 
       <BtnBox>
-        <Btn type={type} onClick={onBtnClick}>
-          {modalMap[type][selectType].btn}
+        <Btn tradeType={tradeType} onClick={onBtnClick}>
+          {modalMap[tradeType][selectType].btn}
         </Btn>
       </BtnBox>
     </Wrapper>
@@ -106,7 +135,7 @@ const IconBox = styled.div`
 const TitleBox = styled.div`
   margin: 32px 32px 0;
   padding-bottom: 20px;
-  border-bottom: ${({ theme }) => theme.globalBoardStyle};
+  border-bottom: ${({ theme }) => theme.globalBorderStyle};
 `;
 
 const PriceText = styled.span`
@@ -115,11 +144,11 @@ const PriceText = styled.span`
   font-weight: 600;
 `;
 
-const Price = styled.span<{ type: string }>`
+const Price = styled.span<{ tradeType: string }>`
   display: block;
   font-size: 24px;
   font-weight: 700;
-  color: ${({ type }) => (type === 'sell' ? '#41b979' : '#ef6253')};
+  color: ${({ tradeType }) => (tradeType === 'sell' ? '#41b979' : '#ef6253')};
   margin-top: 3px;
   letter-spacing: -1px;
 `;
@@ -143,8 +172,9 @@ const BtnBox = styled.div`
   padding: 24px 32px 32px;
 `;
 
-const Btn = styled.button<{ type: string }>`
-  background-color: ${({ type }) => (type === 'sell' ? '#41b979' : '#ef6253')};
+const Btn = styled.button<{ tradeType: string }>`
+  background-color: ${({ tradeType }) =>
+    tradeType === 'sell' ? '#41b979' : '#ef6253'};
   height: 52px;
   color: #fff;
   font-weight: 700;
@@ -157,7 +187,7 @@ const Btn = styled.button<{ type: string }>`
 `;
 
 // TODO: 리팩토링
-const modalMap = {
+const modalMap: Example = {
   sell: {
     '판매 입찰': {
       text: '판매 입찰',

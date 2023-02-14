@@ -6,7 +6,7 @@ import { API } from '../../../config/config';
 const ShopProduct = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
-  const [shopProductList, setShopProductList] = useState([]);
+  const [shopProductList, setShopProductList] = useState<string[]>([]);
   const [isScroll, setIsScroll] = useState(false);
   const obsTarget = useRef(null);
 
@@ -64,6 +64,7 @@ const ShopProduct = () => {
       </SortSelectBox>
       <ShopProductList>
         {shopProductList.map(product => {
+          //TODO: any Type 확인
           const {
             id,
             thumbnailImageUrl,
@@ -71,7 +72,7 @@ const ShopProduct = () => {
             krName,
             brandName,
             price: _price,
-          } = product;
+          }: any = product;
           const price = _price
             .substr(0, _price.length - 3)
             .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');

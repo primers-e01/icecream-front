@@ -1,4 +1,4 @@
-export const getQueryString = queryMap => {
+export const getQueryString = (queryMap: string) => {
   return (
     '?' +
     Object.entries(queryMap)

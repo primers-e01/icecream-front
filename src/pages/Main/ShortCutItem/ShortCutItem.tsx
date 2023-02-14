@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ShortCutItem = ({ img, title }) => {
+interface Props {
+  img: string;
+  title: string;
+}
+const ShortCutItem = ({ img, title }: Props) => {
   return (
     <ShortCutItemWrapper>
       <ShortCutItemBox>

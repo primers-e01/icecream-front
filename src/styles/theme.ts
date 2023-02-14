@@ -9,7 +9,7 @@ const colors = {
 };
 
 const styles = {
-  globalBoardStyle: '1px solid #ebebeb',
+  globalBorderStyle: '1px solid #ebebeb',
   globalBoxShadow: '0 2px 6px rgb(0 0 0 / 12%)',
 };
 

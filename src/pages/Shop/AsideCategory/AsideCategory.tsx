@@ -64,7 +64,7 @@ const CategoryListBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: ${({ theme }) => theme.globalBoardStyle};
+  border-bottom: ${({ theme }) => theme.globalBorderStyle};
 `;
 
 const CategoryTitleBox = styled.div`
@@ -90,7 +90,7 @@ const PlusBtn = styled.span`
 `;
 
 const AsideOpenList = styled.ul`
-  border-bottom: ${({ theme }) => theme.globalBoardStyle};
+  border-bottom: ${({ theme }) => theme.globalBorderStyle};
   max-height: 540px;
   overflow: hidden;
   transition: max-height ease-in-out 2s 0s;

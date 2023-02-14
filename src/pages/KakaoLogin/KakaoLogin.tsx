@@ -4,7 +4,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 const KakaoLogin = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const params = new URLSearchParams(document.location.search);
-  const code = params.get('code');
+  // TODO: any 확인
+  const code: any = params.get('code');
   const navigate = useNavigate();
 
   setSearchParams(code);

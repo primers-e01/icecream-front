@@ -108,7 +108,7 @@ const Footer = () => {
 export default Footer;
 
 const FooterWrapper = styled.footer`
-  border-top: ${({ theme }) => theme.globalBoardStyle};
+  border-top: ${({ theme }) => theme.globalBorderStyle};
   padding: 50px 40px;
 `;
 
@@ -116,7 +116,7 @@ const ServiceSection = styled.section`
   display: flex;
   justify-content: space-between;
   padding-bottom: 56px;
-  border-bottom: ${({ theme }) => theme.globalBoardStyle};
+  border-bottom: ${({ theme }) => theme.globalBorderStyle};
 `;
 
 const CustomerServiceBox = styled.div`

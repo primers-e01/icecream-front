@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { API } from '../../../config/config';
 
 const MainProduct = () => {
-  const [mainProductList, setMainProductList] = useState([]);
+  const [mainProductList, setMainProductList] = useState<string[]>([]);
   const navigate = useNavigate();
   const obsTarget = useRef(null);
 
@@ -40,6 +40,7 @@ const MainProduct = () => {
   return (
     <MainProductWrapper>
       {mainProductList.map(product => {
+        //TODO: any 타입 확인
         const {
           id,
           thumbnailImageUrl,
@@ -47,7 +48,7 @@ const MainProduct = () => {
           krName,
           brandName,
           price: _price,
-        } = product;
+        }: any = product;
         const price = _price
           .substr(0, _price.length - 3)
           .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');

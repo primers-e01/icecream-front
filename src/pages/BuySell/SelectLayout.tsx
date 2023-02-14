@@ -13,10 +13,10 @@ const SIZE_BTN = [
 ];
 
 interface Props {
-  type: string;
+  tradeType: string;
 }
 
-const SelectLayout = ({ type }: Props) => {
+const SelectLayout = ({ tradeType }: Props) => {
   const [selectSize, setSelectSize] = useState<number | undefined>();
   const [selectedPrice, setSelectedPrice] = useState<string | undefined>();
 
@@ -29,7 +29,7 @@ const SelectLayout = ({ type }: Props) => {
 
   return (
     <BuyBackGround>
-      <Title>{type === 'sell' ? '판매하기' : '구매하기'}</Title>
+      <Title>{tradeType === 'sell' ? '판매하기' : '구매하기'}</Title>
       <BuyWrapper>
         <BuyBox>
           <ItemInfoBox>
@@ -58,7 +58,7 @@ const SelectLayout = ({ type }: Props) => {
                   >
                     <SizeBtn>
                       <Size>{size}</Size>
-                      <Price type={type}>{price}</Price>
+                      <Price tradeType={tradeType}>{price}</Price>
                     </SizeBtn>
                   </SelectItem>
                 );
@@ -69,8 +69,8 @@ const SelectLayout = ({ type }: Props) => {
           {selectSize && (
             <BtnArea>
               <BtnBox
-                onClick={() => navigate(`/${type}?size=${selectSize}`)}
-                type={type}
+                onClick={() => navigate(`/${tradeType}?size=${selectSize}`)}
+                tradeType={tradeType}
               >
                 <Btn>
                   <BtnPrice>{selectedPrice}</BtnPrice>
@@ -150,7 +150,7 @@ const ItemKoreanName = styled.span`
 
 const ItemSelectBox = styled.div`
   padding: 20px 0;
-  border-top: ${({ theme }) => theme.globalBoardStyle};
+  border-top: ${({ theme }) => theme.globalBorderStyle};
 `;
 
 const SelectList = styled.ul`
@@ -187,9 +187,9 @@ const Size = styled.span`
   font-size: 14px;
 `;
 
-const Price = styled.span<{ type: string }>`
+const Price = styled.span<{ tradeType: string }>`
   display: block;
-  color: ${({ type }) => (type === 'sell' ? '#41b979' : '#ef6253')};
+  color: ${({ tradeType }) => (tradeType === 'sell' ? '#41b979' : '#ef6253')};
   line-height: 14px;
   margin-top: 1px;
   font-size: 12px;
@@ -197,17 +197,18 @@ const Price = styled.span<{ type: string }>`
 
 const BtnArea = styled.div`
   padding-top: 20px;
-  border-top: ${({ theme }) => theme.globalBoardStyle};
+  border-top: ${({ theme }) => theme.globalBorderStyle};
 `;
 
-const BtnBox = styled.div<{ type: string }>`
+const BtnBox = styled.div<{ tradeType: string }>`
   width: calc(100% - 6px);
   margin: 0 3px;
   display: inline-block;
   border: 1px solid #ebebeb;
   height: 60px;
   border-radius: 10px;
-  background-color: ${({ type }) => (type === 'sell' ? '#41b979' : '#ef6253')};
+  background-color: ${({ tradeType }) =>
+    tradeType === 'sell' ? '#41b979' : '#ef6253'};
 `;
 
 const Btn = styled(SizeBtn)``;

@@ -18,8 +18,10 @@ interface Props {
 }
 const MoreModal = ({ setIsMoreClicked }: Props) => {
   const [isFilterClicked, setIsFilterClicked] = useState<number | null>(1);
-  const [tableData, setTableData] = useState();
-  const [loadData, setLoadData] = useState();
+  // TODO: any 타입 확인
+  const [tableData, setTableData] = useState<any>();
+  // TODO: any 타입 확인
+  const [loadData, setLoadData] = useState<any>();
 
   const { productId } = useParams();
 
@@ -88,7 +90,8 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
               return (
                 <BtnItem
                   key={id}
-                  id={id}
+                  // TODO: id -> String 확인필요
+                  id={id.toString()}
                   onClick={() => onFilterClick(id, data)}
                   clicked={isFilterClicked === id}
                 >
@@ -116,8 +119,9 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
 
           <TableWrapper>
             <TableBody>
-              {/* TODO : 초기값 설정 */}
-              {loadData?.map(({ id, size, price, date }) => {
+              {/* TODO: 초기값 설정 */}
+              {/* TODO: any 확인 필요 */}
+              {loadData?.map(({ id, size, price, date }: any) => {
                 const KRPrice = Math.floor(price).toLocaleString('ko-KR');
                 return (
                   <tr key={id}>

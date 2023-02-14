@@ -1,7 +1,11 @@
-import { React, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faChevronRight,
+  faChevronLeft,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { EffectFade, Scrollbar } from 'swiper';
 
@@ -10,10 +14,18 @@ import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-const Carousel = ({ images }) => {
-  const swiperRef = useRef(null);
+interface Props {
+  images: {
+    alt: string;
+    url: string;
+  }[];
+}
 
-  if (!images) return;
+const Carousel = ({ images }: Props) => {
+  // TODO: any 체크
+  const swiperRef = useRef(null) as any;
+
+  if (!images) return <></>;
 
   return (
     <StyledSwiper
@@ -32,18 +44,10 @@ const Carousel = ({ images }) => {
         );
       })}
       <PrevBtn onClick={() => swiperRef.current.swiper.slidePrev()}>
-        <FontAwesomeIcon
-          className="icon"
-          icon="fa-solid fa-chevron-left"
-          size="2x"
-        />
+        <FontAwesomeIcon className="icon" icon={faChevronLeft} size="2x" />
       </PrevBtn>
       <NextBtn onClick={() => swiperRef.current.swiper.slideNext()}>
-        <FontAwesomeIcon
-          className="icon"
-          icon="fa-solid fa-chevron-right"
-          size="2x"
-        />
+        <FontAwesomeIcon className="icon" icon={faChevronRight} size="2x" />
       </NextBtn>
     </StyledSwiper>
   );

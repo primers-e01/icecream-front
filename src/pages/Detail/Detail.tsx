@@ -26,7 +26,8 @@ import { flexBox } from '../../styles/mixin';
 const Detail = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [isFloat, setIsFloat] = useState(false);
-  const [pageData, setPageData] = useState({});
+  // TODO: 데이터타입 체크 필요
+  const [pageData, setPageData] = useState<any>({});
 
   const newProductData = pageData.data;
 
@@ -215,7 +216,7 @@ const ItemAlertBox = styled.div`
   position: relative;
   margin-top: 20px;
   padding: 11px;
-  border: ${({ theme }) => theme.globalBoardStyle};
+  border: ${({ theme }) => theme.globalBorderStyle};
   border-radius: 10px;
   box-shadow: ${({ theme }) => theme.globalBoxShadow};
   background-color: #fafafa;
@@ -300,7 +301,7 @@ const ItemSizeBox = styled.div`
   ${flexBox('space-between', 'center', 'null')}
   padding-top: 19px;
   padding-bottom: 12px;
-  border-bottom: ${({ theme }) => theme.globalBoardStyle};
+  border-bottom: ${({ theme }) => theme.globalBorderStyle};
 `;
 
 const SizePriceText = styled.span`
@@ -355,14 +356,14 @@ const InfoTitle = styled.h3`
 const InfoBox = styled.div`
   display: flex;
   padding: 20px 0;
-  border-top: ${({ theme }) => theme.globalBoardStyle};
-  border-bottom: ${({ theme }) => theme.globalBoardStyle};
+  border-top: ${({ theme }) => theme.globalBorderStyle};
+  border-bottom: ${({ theme }) => theme.globalBorderStyle};
 `;
 
 const DetailInfoBox = styled.div`
   flex: 1;
   padding: 0 12px;
-  border-left: ${({ theme }) => theme.globalBoardStyle};
+  border-left: ${({ theme }) => theme.globalBorderStyle};
 
   &:first-child {
     border: none;
@@ -442,7 +443,7 @@ const NoticeSection = styled.section`
   line-height: 16px;
   font-size: 12px;
   color: ${({ theme }) => theme.mainBrandGray05};
-  border-top: ${({ theme }) => theme.globalBoardStyle};
+  border-top: ${({ theme }) => theme.globalBorderStyle};
   padding-top: 40px;
   margin-top: 20px;
 `;
