@@ -10,8 +10,8 @@ interface Props {
     modelNumber: string;
     enName: string;
     krName: string;
-    sellNow: number;
-    buyNow: number;
+    sellNow: string;
+    buyNow: string;
   };
 }
 

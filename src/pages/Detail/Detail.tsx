@@ -23,29 +23,35 @@ import useOutSideClick from '../../hooks/useOutSideClick';
 import { API } from '../../config/config';
 import { flexBox } from '../../styles/mixin';
 
+import { ProductDataRoot } from './types';
+
 const Detail = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [isFloat, setIsFloat] = useState(false);
   // TODO: 데이터타입 체크 필요
-  const [pageData, setPageData] = useState<any>({});
+  const [pageData, setPageData] = useState<ProductDataRoot>();
 
-  const newProductData = pageData.data;
-
-  const productData = newProductData && newProductData.productData;
-  const tableData = pageData.data?.tradeLimit[0];
+  const productData = pageData && pageData.productData;
+  const tableData = pageData?.tradeLimit[0];
   const { productId } = useParams();
 
   const ref = useRef<HTMLDivElement>(null);
   const dealBtnRef = useRef<HTMLDivElement>(null);
-
   const onAlertClick = () => setIsClicked(true);
 
   useOutSideClick(ref, () => setIsClicked(false));
 
-  useEffect(() => {
+  const fetchProductData = () => {
     fetch(`${API.products}/${productId}`)
       .then(response => response.json())
-      .then(setPageData);
+      .then(result => {
+        console.log('PAGE_DATA : ', result);
+        setPageData(result.data);
+      });
+  };
+
+  useEffect(() => {
+    fetchProductData();
   }, []);
 
   useEffect(() => {
@@ -106,7 +112,10 @@ const Detail = () => {
               <SizePriceText>최근 거래가</SizePriceText>
               <RecentPriceBox>
                 <RecentPrice>
-                  {Math.floor(productData?.recentTradePrice).toLocaleString()}원
+                  {Math.floor(
+                    Number(productData?.recentTradePrice)
+                  ).toLocaleString()}
+                  원
                 </RecentPrice>
                 <RecentPricePercent>16,000원 (-3.6%)</RecentPricePercent>
               </RecentPriceBox>
@@ -140,7 +149,10 @@ const Detail = () => {
             <DetailInfoBox>
               <ModelTitle>발매가</ModelTitle>
               <ModelInfo>
-                {Math.floor(productData?.originalPrice).toLocaleString()}원
+                {Math.floor(
+                  Number(productData?.originalPrice)
+                ).toLocaleString()}
+                원
               </ModelInfo>
             </DetailInfoBox>
           </InfoBox>
@@ -157,11 +169,9 @@ const Detail = () => {
             </DeliveryTextBox>
           </DeliveryBox>
         </DeliverySection>
-
-        <ChartSection
-          chartData={pageData.data?.chartData}
-          tableData={tableData}
-        />
+        {tableData && (
+          <ChartSection chartData={pageData.chartData} tableData={tableData} />
+        )}
 
         <Dropdown />
 

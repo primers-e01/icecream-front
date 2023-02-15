@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "price": "99999.00",
+    "thumbnailImageUrl": "https://images.unsplash.com/photo-1608667508764-33cf0726b13a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+    "brandName": "UGGRO",
+    "enName": "Etiam ac tortor iaculis",
+    "krName": "에티암 에크 토터",
+    "releaseDate": "2022-06-08T15:00:00.000Z"
+  },
+  {
+    "id": 3,
+    "price": "600011.00",
+    "thumbnailImageUrl": "https://me2.kr/Yykjd",
+    "brandName": "UGGRO",
+    "enName": "Curabitur lorem",
+    "krName": "쿠라비투르 로렘",
+    "releaseDate": "2020-01-09T15:00:00.000Z"
+  },
+  {
+    "id": 4,
+    "price": "111111.00",
+    "thumbnailImageUrl": "https://me2.kr/xdRnU",
+    "brandName": "UGGRO",
+    "enName": "Rour faucibus dui et",
+    "krName": "라우어 페시부스 두엣",
+    "releaseDate": "2021-11-10T15:00:00.000Z"
+  },
+  {
+    "id": 5,
+    "price": "2000.00",
+    "thumbnailImageUrl": "https://me2.kr/eTohO",
+    "brandName": "UGGRO",
+    "enName": "Orci varius magnis",
+    "krName": "오르시 베리우스 매그니스",
+    "releaseDate": "2019-06-11T15:00:00.000Z"
+  },
+  {
+    "id": 6,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/Tbhuz",
+    "brandName": "UGGRO",
+    "enName": "Class aptent",
+    "krName": "클래스 엡텐트",
+    "releaseDate": "2020-06-22T15:00:00.000Z"
+  },
+  {
+    "id": 7,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/Chmbp",
+    "brandName": "UGGRO",
+    "enName": "Praesent sit amet",
+    "krName": "프레젠트 싯어멧",
+    "releaseDate": "2022-10-13T15:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "price": "20000.00",
+    "thumbnailImageUrl": "https://me2.kr/HxLXB",
+    "brandName": "JordanRiver",
+    "enName": "eu nisi lacus",
+    "krName": "오 니시 라쿠스",
+    "releaseDate": "2021-12-18T15:00:00.000Z"
+  },
+  {
+    "id": 8,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/uXwzJ",
+    "brandName": "JordanRiver",
+    "enName": "Nulla facilisi x leo",
+    "krName": "눌라 페실시 x 레오",
+    "releaseDate": "2017-03-10T15:00:00.000Z"
+  },
+  {
+    "id": 9,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/LBPAN",
+    "brandName": "JordanRiver",
+    "enName": "Donec mollis eget porta",
+    "krName": "도넥 몰리스 이젯 폴타",
+    "releaseDate": "2021-08-28T15:00:00.000Z"
+  },
+  {
+    "id": 10,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/eRnDq",
+    "brandName": "JordanRiver",
+    "enName": "taciti sociosqu",
+    "krName": "타시티 소셔스크",
+    "releaseDate": "2021-09-16T15:00:00.000Z"
+  },
+  {
+    "id": 11,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/ckJTl",
+    "brandName": "JordanRiver",
+    "enName": "ultricies lacinia",
+    "krName": "울트리시스 라시니아",
+    "releaseDate": "2018-01-01T15:00:00.000Z"
+  },
+  {
+    "id": 17,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/hYyZs",
+    "brandName": "JordanRiver",
+    "enName": "Sed congue quis",
+    "krName": "세드 콩그 퀴즈",
+    "releaseDate": "2022-11-21T15:00:00.000Z"
+  },
+  {
+    "id": 12,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/spEUm",
+    "brandName": "Bior",
+    "enName": "Maecenas viverra",
+    "krName": "메세나스 비베라",
+    "releaseDate": "2019-01-02T15:00:00.000Z"
+  },
+  {
+    "id": 13,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/COddA",
+    "brandName": "Bior",
+    "enName": "sagittis suscipit",
+    "krName": "사기티스 서스시핏",
+    "releaseDate": "2017-12-31T15:00:00.000Z"
+  },
+  {
+    "id": 14,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/JRJhy",
+    "brandName": "Bior",
+    "enName": "Vestibulum erat vel ex",
+    "krName": "베스티불름 에렛 벨 엑스",
+    "releaseDate": "2020-12-01T15:00:00.000Z"
+  },
+  {
+    "id": 15,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/FKcZw",
+    "brandName": "Bior",
+    "enName": "arcu eleifend eu",
+    "krName": "알큐 엘레피드 오",
+    "releaseDate": "2021-06-23T15:00:00.000Z"
+  },
+  {
+    "id": 16,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/tfLxF",
+    "brandName": "Bior",
+    "enName": "Morbi id Imm",
+    "krName": "모르비 이드 임",
+    "releaseDate": "2020-11-24T15:00:00.000Z"
+  },
+  {
+    "id": 18,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/mYrav",
+    "brandName": "Bior",
+    "enName": "platea dictumst. Ut",
+    "krName": "플라티아 딕터스 Ut",
+    "releaseDate": "2022-02-24T15:00:00.000Z"
+  },
+  {
+    "id": 19,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/VlAkp",
+    "brandName": "Louis Baton",
+    "enName": "volutpat Proin",
+    "krName": "볼루펫 프루인",
+    "releaseDate": "2022-06-26T15:00:00.000Z"
+  },
+  {
+    "id": 20,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/mdKyn",
+    "brandName": "Louis Baton",
+    "enName": "Aenean euismod",
+    "krName": "아에닌 이즈모드",
+    "releaseDate": "2021-12-27T15:00:00.000Z"
+  },
+  {
+    "id": 21,
+    "price": "777777.00",
+    "thumbnailImageUrl": "https://me2.kr/UwRsY",
+    "brandName": "Louis Baton",
+    "enName": "Cras et velit turpis",
+    "krName": "크라스 엣 벨릿 툴피스",
+    "releaseDate": "2022-06-28T15:00:00.000Z"
+  },
+  {
+    "id": 22,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/ntKaY",
+    "brandName": "Louis Baton",
+    "enName": "Quisque faucibus diam",
+    "krName": "퀴즈크 포시부스 디엠",
+    "releaseDate": "2021-12-02T15:00:00.000Z"
+  },
+  {
+    "id": 23,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/sOrjO",
+    "brandName": "Louis Baton",
+    "enName": "commodo ipsum (ops)",
+    "krName": "코모도 입섬 (ops)",
+    "releaseDate": "2018-11-03T15:00:00.000Z"
+  },
+  {
+    "id": 24,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/wJyKv",
+    "brandName": "Louis Baton",
+    "enName": "natoque penatibus et",
+    "krName": "나투크 페나티부스 엣",
+    "releaseDate": "2014-08-20T15:00:00.000Z"
+  },
+  {
+    "id": 25,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/XHgGS",
+    "brandName": "BalenciagaNugo",
+    "enName": "nisl pharetra",
+    "krName": "니슬 파에트라",
+    "releaseDate": "2006-12-31T15:00:00.000Z"
+  },
+  {
+    "id": 26,
+    "price": "600011.00",
+    "thumbnailImageUrl": "https://me2.kr/jcyqk",
+    "brandName": "BalenciagaNugo",
+    "enName": "arcu finibus",
+    "krName": "알큐 피니부스",
+    "releaseDate": "2015-08-06T15:00:00.000Z"
+  },
+  {
+    "id": 27,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/rGMes",
+    "brandName": "BalenciagaNugo",
+    "enName": "Vivamus ed Ritora",
+    "krName": "비바무스 에드 리토라",
+    "releaseDate": "2012-05-16T15:00:00.000Z"
+  },
+  {
+    "id": 28,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/ZaaUy",
+    "brandName": "BalenciagaNugo",
+    "enName": "cursus dui",
+    "krName": "쿨서스 듀이",
+    "releaseDate": "2019-05-17T15:00:00.000Z"
+  },
+  {
+    "id": 29,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/vUqCx",
+    "brandName": "BalenciagaNugo",
+    "enName": "Dictum volutpat",
+    "krName": "딕텀 볼루페트",
+    "releaseDate": "2017-09-09T15:00:00.000Z"
+  },
+  {
+    "id": 30,
+    "price": "",
+    "thumbnailImageUrl": "https://me2.kr/wcNSS",
+    "brandName": "BalenciagaNugo",
+    "enName": "vitae nisi aliquet",
+    "krName": "비테 니시 알리켓",
+    "releaseDate": "2022-12-24T15:00:00.000Z"
+  }
+]

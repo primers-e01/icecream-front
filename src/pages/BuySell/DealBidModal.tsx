@@ -12,9 +12,8 @@ interface Props {
   tradeType: string;
   size: string | null;
   selectType: string;
-  // TODO: 나중에 타입확인
-  buyNow: any;
-  sellNow: any;
+  buyNow: string;
+  sellNow: string;
 }
 
 interface Example {
@@ -42,7 +41,6 @@ interface Example {
       btn: string;
     };
   };
-  // TODO: any 확인
   [key: string]: any;
 }
 
@@ -56,8 +54,8 @@ const DealBidModal = ({
   buyNow,
   sellNow,
 }: Props) => {
-  const buyNowPrice = Math.floor(buyNow).toLocaleString();
-  const sellNowPrice = Math.floor(sellNow).toLocaleString();
+  const buyNowPrice = Math.floor(Number(buyNow)).toLocaleString();
+  const sellNowPrice = Math.floor(Number(sellNow)).toLocaleString();
   const onCloseClick = () => setIsBidClicked(false);
 
   const requestHeaders: Headers = new Headers();

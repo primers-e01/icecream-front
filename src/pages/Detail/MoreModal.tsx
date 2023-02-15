@@ -5,6 +5,7 @@ import { faCaretDown, faSort, faX } from '@fortawesome/free-solid-svg-icons';
 import { API } from '../../config/config';
 import { flexBox, positionCenter } from '../../styles/mixin';
 import { useParams } from 'react-router-dom';
+import { TradeHistoryData } from './types';
 
 const BTN_LIST = [
   { id: 1, list: '체결 거래 ', data: 'tradeDataAll' },
@@ -18,10 +19,8 @@ interface Props {
 }
 const MoreModal = ({ setIsMoreClicked }: Props) => {
   const [isFilterClicked, setIsFilterClicked] = useState<number | null>(1);
-  // TODO: any 타입 확인
-  const [tableData, setTableData] = useState<any>();
-  // TODO: any 타입 확인
-  const [loadData, setLoadData] = useState<any>();
+  const [tableData, setTableData] = useState<TradeHistoryData[]>();
+  const [loadData, setLoadData] = useState<TradeHistoryData[]>();
 
   const { productId } = useParams();
 
@@ -35,6 +34,7 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
         })
           .then(response => response.json())
           .then(result => {
+            console.log('TABLE_DATA', result?.data?.tradeAll[0]);
             setTableData(result?.data?.tradeAll[0]);
             setLoadData(result?.data?.tradeAll[0].tradeDataAll);
           });
@@ -55,7 +55,8 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
     if (isFilterClicked === Number(id)) return;
     setIsFilterClicked(isFilterClicked === Number(id) ? null : Number(id));
 
-    setLoadData(tableData[data]);
+    // TODO: index 접근 질문
+    if (tableData) setLoadData(tableData[data]);
   };
 
   return (
@@ -119,10 +120,10 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
 
           <TableWrapper>
             <TableBody>
-              {/* TODO: 초기값 설정 */}
-              {/* TODO: any 확인 필요 */}
-              {loadData?.map(({ id, size, price, date }: any) => {
-                const KRPrice = Math.floor(price).toLocaleString('ko-KR');
+              {loadData?.map(({ id, size, price, date }) => {
+                const KRPrice = Math.floor(Number(price)).toLocaleString(
+                  'ko-KR'
+                );
                 return (
                   <tr key={id}>
                     <td>{size}</td>

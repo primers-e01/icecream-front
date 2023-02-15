@@ -4,11 +4,10 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 const KakaoLogin = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const params = new URLSearchParams(document.location.search);
-  // TODO: any 확인
-  const code: any = params.get('code');
+  const code: string | null = params.get('code');
   const navigate = useNavigate();
 
-  setSearchParams(code);
+  setSearchParams(code || '');
 
   useEffect(() => {
     fetch(`http://10.58.52.168:8000/users/login?${searchParams.toString()}`, {

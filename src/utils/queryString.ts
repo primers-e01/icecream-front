@@ -1,4 +1,6 @@
-export const getQueryString = (queryMap: string) => {
+import { Query } from 'src/pages/Shop/types';
+
+export const getQueryString = (queryMap: Query) => {
   return (
     '?' +
     Object.entries(queryMap)

@@ -4,11 +4,12 @@ import ChartLine from './ChartLine';
 import MoreModal from './MoreModal';
 import useOutSideClick from '../../hooks/useOutSideClick';
 import { flexBox } from '../../styles/mixin';
+import { ChartData, TradeHistoryData, TradeLimit } from './types';
 
 interface LoadData {
-  id: number;
-  size: number;
-  price: number;
+  id: string;
+  size: string;
+  price: string;
   date: string;
 }
 const CHART_FILTERLIST = [
@@ -26,8 +27,8 @@ const CHART_DEALLIST = [
 ];
 
 interface Props {
-  chartData: any;
-  tableData: any;
+  chartData: ChartData[];
+  tableData: TradeLimit;
 }
 
 const ChartSection = ({ chartData, tableData }: Props) => {
@@ -109,7 +110,7 @@ const ChartSection = ({ chartData, tableData }: Props) => {
 
         <ChartTableBody>
           {loadData?.map(({ id, size, price, date }: LoadData) => {
-            const KRPrice = Math.floor(price).toLocaleString();
+            const KRPrice = Math.floor(Number(price)).toLocaleString();
             return (
               <tr key={id}>
                 <td>{size}</td>

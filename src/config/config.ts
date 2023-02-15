@@ -1,4 +1,4 @@
-const BASE_URL = 'http://10.58.52.168:8000';
+const BASE_URL = 'http://10.58.52.142:8000';
 const SUB_URL = 'http://10.58.52.255:3000';
 
 const API = {

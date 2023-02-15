@@ -11,15 +11,15 @@ interface Props {
     modelNumber: string;
     enName: string;
     krName: string;
-    sellNow: number;
-    buyNow: number;
+    sellNow: string;
+    buyNow: string;
   };
 }
 
 const BuyButton = ({ size, productData }: Props) => {
   const navigate = useNavigate();
 
-  const buyNow = Math.floor(productData?.buyNow).toLocaleString();
+  const buyNow = Math.floor(Number(productData?.buyNow)).toLocaleString();
 
   const onBuyClick = () => {
     navigate('/buy/select');

@@ -1,100 +1,558 @@
 {
-  "data": [
+  "productData": {
+    "id": 1,
+    "brandName": "UGGRO",
+    "enName": "Etiam ac tortor iaculis",
+    "krName": "에티암 에크 토터",
+    "thumbnailImageUrl": "https://images.unsplash.com/photo-1608667508764-33cf0726b13a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+    "recentTradePrice": "120000.00",
+    "modelNumber": "AA001",
+    "categoryId": 1,
+    "releaseDate": "22/06/09",
+    "color": "Deep Sky Blue",
+    "originalPrice": "100000.00",
+    "buyNow": "99999.00",
+    "sellNow": "100033.00",
+    "images": [
+      {
+        "alt": "alt",
+        "url": "https://images.unsplash.com/photo-1608667508764-33cf0726b13a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+      },
+      {
+        "alt": "alt",
+        "url": "https://images.unsplash.com/photo-1608666634759-4376010f863d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+      }
+    ]
+  },
+  "tradeAll": [
+    {
+      "tradeDataAll": [
+        {
+          "id": "7",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111111.00"
+        },
+        {
+          "id": "8",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111112.00"
+        },
+        {
+          "id": "9",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111113.00"
+        },
+        {
+          "id": "10",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111114.00"
+        },
+        {
+          "id": "11",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111115.00"
+        },
+        {
+          "id": "12",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111113.00"
+        },
+        {
+          "id": "13",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111112.00"
+        },
+        {
+          "id": "14",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111113.00"
+        },
+        {
+          "id": "15",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111114.00"
+        },
+        {
+          "id": "16",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111115.00"
+        },
+        {
+          "id": "17",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111116.00"
+        },
+        {
+          "id": "18",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111117.00"
+        },
+        {
+          "id": "19",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111118.00"
+        },
+        {
+          "id": "20",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111119.00"
+        },
+        {
+          "id": "21",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111120.00"
+        },
+        {
+          "id": "22",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111121.00"
+        },
+        {
+          "id": "23",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111122.00"
+        },
+        {
+          "id": "24",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111123.00"
+        },
+        {
+          "id": "6",
+          "size": "230",
+          "date": "2023/01/04",
+          "price": "333333.00"
+        },
+        {
+          "id": "29",
+          "size": "240",
+          "date": "2023/01/04",
+          "price": "444444.00"
+        },
+        {
+          "id": "26",
+          "size": "230",
+          "date": "2023/01/01",
+          "price": "1111111.00"
+        },
+        {
+          "id": "25",
+          "size": "230",
+          "date": "2022/06/15",
+          "price": "9111111.00"
+        },
+        {
+          "id": "27",
+          "size": "230",
+          "date": "2021/06/15",
+          "price": "111113.00"
+        },
+        {
+          "id": "28",
+          "size": "230",
+          "date": "2020/06/15",
+          "price": "9999999.00"
+        }
+      ],
+      "buyBidDataAll": [
+        {
+          "id": "1",
+          "size": "250",
+          "date": "2023/01/04",
+          "price": "100033.00"
+        },
+        {
+          "id": "2",
+          "size": "250",
+          "date": "2023/01/04",
+          "price": "100033.00"
+        },
+        {
+          "id": "3",
+          "size": "230",
+          "date": "2022/12/30",
+          "price": "1000.00"
+        },
+        {
+          "id": "4",
+          "size": "230",
+          "date": "2022/12/29",
+          "price": "1000.00"
+        },
+        {
+          "id": "5",
+          "size": "230",
+          "date": "2022/12/29",
+          "price": "1000.00"
+        }
+      ],
+      "sellBidDataAll": [
+        {
+          "id": "30",
+          "size": "240",
+          "date": "2023/01/02",
+          "price": "99999.00"
+        },
+        {
+          "id": "31",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111111.00"
+        },
+        {
+          "id": "32",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111112.00"
+        },
+        {
+          "id": "33",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111113.00"
+        },
+        {
+          "id": "34",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111113.00"
+        },
+        {
+          "id": "35",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111114.00"
+        },
+        {
+          "id": "36",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111115.00"
+        },
+        {
+          "id": "37",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111116.00"
+        },
+        {
+          "id": "38",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111117.00"
+        },
+        {
+          "id": "39",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111118.00"
+        },
+        {
+          "id": "40",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111119.00"
+        },
+        {
+          "id": "41",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111120.00"
+        },
+        {
+          "id": "42",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111121.00"
+        },
+        {
+          "id": "43",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111122.00"
+        },
+        {
+          "id": "44",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111123.00"
+        },
+        {
+          "id": "45",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111373.00"
+        },
+        {
+          "id": "46",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "132373.00"
+        },
+        {
+          "id": "47",
+          "size": "250",
+          "date": "2023/01/04",
+          "price": "222222.00"
+        },
+        {
+          "id": "48",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "222373.00"
+        },
+        {
+          "id": "49",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "322133.00"
+        },
+        {
+          "id": "50",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "322333.00"
+        },
+        {
+          "id": "51",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "323133.00"
+        },
+        {
+          "id": "52",
+          "size": "230",
+          "date": "2023/01/04",
+          "price": "333333.00"
+        },
+        {
+          "id": "53",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "337373.00"
+        },
+        {
+          "id": "54",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "422133.00"
+        },
+        {
+          "id": "55",
+          "size": "240",
+          "date": "2023/01/04",
+          "price": "444444.00"
+        },
+        {
+          "id": "56",
+          "size": "250",
+          "date": "2023/01/04",
+          "price": "555555.00"
+        },
+        {
+          "id": "57",
+          "size": "260",
+          "date": "2023/01/04",
+          "price": "555555.00"
+        },
+        {
+          "id": "58",
+          "size": "260",
+          "date": "2023/01/04",
+          "price": "666666.00"
+        },
+        {
+          "id": "59",
+          "size": "270",
+          "date": "2023/01/04",
+          "price": "777777.00"
+        },
+        {
+          "id": "60",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "797979.00"
+        },
+        {
+          "id": "61",
+          "size": "280",
+          "date": "2023/01/04",
+          "price": "888888.00"
+        },
+        {
+          "id": "62",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "999999.00"
+        },
+        {
+          "id": "63",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "1111111.00"
+        },
+        {
+          "id": "64",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "3233333.00"
+        },
+        {
+          "id": "65",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "9111111.00"
+        }
+      ]
+    }
+  ],
+  "tradeLimit": [
+    {
+      "tradeDataLimit": [
+        {
+          "id": "7",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111111.00"
+        },
+        {
+          "id": "8",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111112.00"
+        },
+        {
+          "id": "9",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111113.00"
+        },
+        {
+          "id": "10",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111114.00"
+        },
+        {
+          "id": "11",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111115.00"
+        }
+      ],
+      "buyBidDataLimit": [
+        {
+          "id": "1",
+          "size": "250",
+          "date": "2023/01/04",
+          "price": "100033.00"
+        },
+        {
+          "id": "2",
+          "size": "250",
+          "date": "2023/01/04",
+          "price": "100033.00"
+        },
+        {
+          "id": "3",
+          "size": "230",
+          "date": "2022/12/30",
+          "price": "1000.00"
+        },
+        {
+          "id": "4",
+          "size": "230",
+          "date": "2022/12/29",
+          "price": "1000.00"
+        },
+        {
+          "id": "5",
+          "size": "230",
+          "date": "2022/12/29",
+          "price": "1000.00"
+        }
+      ],
+      "sellBidDataLimit": [
+        {
+          "id": "30",
+          "size": "240",
+          "date": "2023/01/02",
+          "price": "99999.00"
+        },
+        {
+          "id": "31",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111111.00"
+        },
+        {
+          "id": "32",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111112.00"
+        },
+        {
+          "id": "33",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111113.00"
+        },
+        {
+          "id": "34",
+          "size": "230",
+          "date": "2023/01/05",
+          "price": "111113.00"
+        }
+      ]
+    }
+  ],
+  "chartData": [
     {
       "id": 1,
-      "thumbnailImageUrl": "https://images.unsplash.com/photo-1512374382149-233c42b6a83b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-      "brandName": "Nike",
-      "enName": "Dunk Low Wolf Grey Rosewood",
-      "krName": "덩크 로우 울프 그레이 로즈우드",
-      "price": ""
-    },
-    {
-      "id": 2,
-      "thumbnailImageUrl": "https://images.unsplash.com/photo-1597045566677-8cf032ed6634?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      "brandName": "Jordan",
-      "enName": "Jordan 1 x Travis Scott Retro Low OG SP Black Phantom",
-      "krName": "덩크 로우 울프 그레이 로즈우드",
-      "price": "990000.00"
-    },
-    {
-      "id": 3,
-      "thumbnailImageUrl": "https://images.unsplash.com/photo-1511405946472-a37e3b5ccd47?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      "brandName": "IAB",
-      "enName": "IAB Studio Pigment Sweatshirt & Mini Bag Black",
-      "krName": "덩크 로우 울프 그레이 로즈우드",
-      "price": ""
-    },
-    {
-      "id": 4,
-      "thumbnailImageUrl": "https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=8",
-      "brandName": "The North Face",
-      "enName": "The North Face 1996 Eco Nuptse Jacket Black",
-      "krName": "덩크 로우 울프 그레이 로즈우드",
-      "price": ""
-    },
-    {
-      "id": 5,
-      "thumbnailImageUrl": "https://images.unsplash.com/photo-1512374382149-233c42b6a83b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-      "brandName": "Nike",
-      "enName": "Dunk Low Wolf Grey Rosewood",
-      "krName": "덩크 로우 울프 그레이 로즈우드",
-      "price": "140000.00"
-    },
-    {
-      "id": 6,
-      "thumbnailImageUrl": "https://images.unsplash.com/photo-1597045566677-8cf032ed6634?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      "brandName": "Jordan",
-      "enName": "Jordan 1 x Travis Scott Retro Low OG SP Black Phantom",
-      "krName": "덩크 로우 울프 그레이 로즈우드",
-      "price": "990000.00"
-    },
-    {
-      "id": 7,
-      "thumbnailImageUrl": "https://images.unsplash.com/photo-1511405946472-a37e3b5ccd47?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      "brandName": "IAB",
-      "enName": "IAB Studio Pigment Sweatshirt & Mini Bag Black",
-      "krName": "덩크 로우 울프 그레이 로즈우드",
-      "price": ""
-    },
-    {
-      "id": 8,
-      "thumbnailImageUrl": "https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=8",
-      "brandName": "The North Face",
-      "enName": "The North Face 1996 Eco Nuptse Jacket Black",
-      "krName": "덩크 로우 울프 그레이 로즈우드",
-      "price": "275000.00"
-    },
-    {
-      "id": 9,
-      "thumbnailImageUrl": "https://images.unsplash.com/photo-1512374382149-233c42b6a83b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-      "brandName": "Nike",
-      "enName": "Dunk Low Wolf Grey Rosewood",
-      "krName": "덩크 로우 울프 그레이 로즈우드",
-      "price": ""
-    },
-    {
-      "id": 10,
-      "thumbnailImageUrl": "https://images.unsplash.com/photo-1597045566677-8cf032ed6634?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      "brandName": "Jordan",
-      "enName": "Jordan 1 x Travis Scott Retro Low OG SP Black Phantom",
-      "krName": "덩크 로우 울프 그레이 로즈우드",
-      "price": "990000.00"
-    },
-    {
-      "id": 11,
-      "thumbnailImageUrl": "https://images.unsplash.com/photo-1511405946472-a37e3b5ccd47?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      "brandName": "IAB",
-      "enName": "IAB Studio Pigment Sweatshirt & Mini Bag Black",
-      "krName": "덩크 로우 울프 그레이 로즈우드",
-      "price": "139000.00"
-    },
-    {
-      "id": 12,
-      "thumbnailImageUrl": "https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=8",
-      "brandName": "The North Face",
-      "enName": "The North Face 1996 Eco Nuptse Jacket Black",
-      "krName": "덩크 로우 울프 그레이 로즈우드",
-      "price": "275000.00"
+      "data": [
+        {
+          "y": "111116.000000",
+          "x": "2023/01/05"
+        },
+        {
+          "y": "388888.500000",
+          "x": "2023/01/04"
+        },
+        {
+          "y": "1111111.000000",
+          "x": "2023/01/01"
+        },
+        {
+          "y": "9111111.000000",
+          "x": "2022/06/15"
+        },
+        {
+          "y": "111113.000000",
+          "x": "2021/06/15"
+        },
+        {
+          "y": "9999999.000000",
+          "x": "2020/06/15"
+        }
+      ]
     }
   ]
 }

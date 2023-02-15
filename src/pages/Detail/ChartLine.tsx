@@ -2,8 +2,13 @@ import React from 'react';
 import { ResponsiveLine } from '@nivo/line';
 // import chartData from './chartData';
 import styled from 'styled-components';
+import { ChartData } from './types';
 
-const ChartLine = ({ chartData }) => (
+interface Props {
+  chartData: ChartData[];
+}
+
+const ChartLine = ({ chartData }: Props) => (
   <div style={{ width: '100%', height: '200px', margin: '0 auto' }}>
     <ResponsiveLine
       data={chartData || []}
@@ -16,7 +21,7 @@ const ChartLine = ({ chartData }) => (
       }}
       yScale={{
         type: 'linear',
-        min: '0',
+        min: 0,
         max: 'auto',
         stacked: true,
         reverse: false,
@@ -25,7 +30,8 @@ const ChartLine = ({ chartData }) => (
       yFormat=" >-.2f"
       axisTop={null}
       axisRight={{
-        orient: 'right',
+        // TODO: 에러확인
+        // orient: 'right',
         tickSize: 0,
         tickPadding: 10,
         tickRotation: 0,
@@ -45,7 +51,9 @@ const ChartLine = ({ chartData }) => (
       enablePointLabel={true}
       pointLabelYOffset={-24}
       tooltip={({ point }) => {
-        const price = Math.ceil(point.data.yFormatted).toLocaleString('ko-KR');
+        const price = Math.ceil(Number(point.data.yFormatted)).toLocaleString(
+          'ko-KR'
+        );
         const date = point.data.xFormatted;
         return (
           <TooltipWrapper>

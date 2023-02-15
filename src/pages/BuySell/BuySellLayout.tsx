@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { API } from '../../config/config';
 import useOutSideClick from '../../hooks/useOutSideClick';
 import { flexBox } from '../../styles/mixin';
+import { ProductData } from '../Detail/types';
 import DealBidModal from './DealBidModal';
 
 const BTN_BUY_ITEM = [{ item: '구매 입찰' }, { item: '즉시 구매' }];
@@ -22,7 +23,7 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   // TODO: 데이터 수정
-  const [productData, setProductData] = useState<any>();
+  const [productData, setProductData] = useState<ProductData>();
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -100,12 +101,14 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
           <PriceBox>
             <BuyNowPrice>
               <Text>즉시 구매가</Text>
-              <Price>{Math.floor(productData.buyNow).toLocaleString()}원</Price>
+              <Price>
+                {Math.floor(Number(productData.buyNow)).toLocaleString()}원
+              </Price>
             </BuyNowPrice>
             <SellNowPrice>
               <Text>즉시 판매가</Text>
               <Price>
-                {Math.floor(productData.sellNow).toLocaleString()}원
+                {Math.floor(Number(productData.sellNow)).toLocaleString()}원
               </Price>
             </SellNowPrice>
           </PriceBox>
@@ -158,7 +161,7 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
                 {tradeType === 'sell' ? '즉시 판매가' : '즉시 구매가'}
               </PriceTitle>
               <PriceText>
-                {Math.floor(productData.sellNow).toLocaleString()}원
+                {Math.floor(Number(productData.sellNow)).toLocaleString()}원
               </PriceText>
             </DealNowSection>
           ) : (

@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { ProductData } from 'src/pages/Detail/types';
 import styled from 'styled-components';
 import { API } from '../../../config/config';
+import { ShopData } from '../types';
 
 const ShopProduct = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
-  const [shopProductList, setShopProductList] = useState<string[]>([]);
+  const [shopProductList, setShopProductList] = useState<ShopData[]>([]);
   const [isScroll, setIsScroll] = useState(false);
   const obsTarget = useRef(null);
 
@@ -31,11 +33,14 @@ const ShopProduct = () => {
   useEffect(() => {
     fetch(`${API.products}` + search)
       .then(res => res.json())
-      .then(data => setShopProductList(data.data));
+      .then(data => {
+        console.log('SHOP_DATA', data.data);
+        setShopProductList(data.data);
+      });
   }, [search]);
 
   useEffect(() => {
-    const io = new IntersectionObserver(([{ isIntersecting }]) => {
+    const observer = new IntersectionObserver(([{ isIntersecting }]) => {
       if (isIntersecting) {
         fetch(`${API.products}`)
           .then(res => res.json())
@@ -46,11 +51,11 @@ const ShopProduct = () => {
     });
 
     if (obsTarget.current) {
-      io.observe(obsTarget.current);
+      observer.observe(obsTarget.current);
     }
 
     return () => {
-      io.disconnect();
+      observer.disconnect();
     };
   }, []);
 
@@ -63,41 +68,42 @@ const ShopProduct = () => {
         </SortSelect>
       </SortSelectBox>
       <ShopProductList>
-        {shopProductList.map(product => {
-          //TODO: any Type 확인
-          const {
+        {shopProductList.map(
+          ({
             id,
             thumbnailImageUrl,
             enName,
             krName,
             brandName,
             price: _price,
-          }: any = product;
-          const price = _price
-            .substr(0, _price.length - 3)
-            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+          }) => {
+            // TODO: 무슨 로직인지 파악 => 콤마 찍는거면 메서드활용으로 수정
+            const price = _price
+              .substr(0, _price.length - 3)
+              .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
-          return (
-            <ShopProductBox key={id}>
-              <ShopProductThumb>
-                <img
-                  src={thumbnailImageUrl}
-                  alt={enName}
-                  onClick={() => goToDetail(id)}
-                />
-              </ShopProductThumb>
-              <ShopProductBrandTitle>{brandName}</ShopProductBrandTitle>
-              <ShopProductTitle>
-                <h3>{enName}</h3>
-                <h4>{krName}</h4>
-              </ShopProductTitle>
-              <ShopProductPrice>
-                {!_price ? '-' : price + '원'}
-              </ShopProductPrice>
-              <ShopProductCurrentPrice>즉시 구매가</ShopProductCurrentPrice>
-            </ShopProductBox>
-          );
-        })}
+            return (
+              <ShopProductBox key={id}>
+                <ShopProductThumb>
+                  <img
+                    src={thumbnailImageUrl}
+                    alt={enName}
+                    onClick={() => goToDetail(id)}
+                  />
+                </ShopProductThumb>
+                <ShopProductBrandTitle>{brandName}</ShopProductBrandTitle>
+                <ShopProductTitle>
+                  <h3>{enName}</h3>
+                  <h4>{krName}</h4>
+                </ShopProductTitle>
+                <ShopProductPrice>
+                  {!_price ? '-' : price + '원'}
+                </ShopProductPrice>
+                <ShopProductCurrentPrice>즉시 구매가</ShopProductCurrentPrice>
+              </ShopProductBox>
+            );
+          }
+        )}
       </ShopProductList>
       {isScroll && <AtTheTop onClick={onClickGoToTop}>&#8593;</AtTheTop>}
       <ProductObserverTarget ref={obsTarget} />

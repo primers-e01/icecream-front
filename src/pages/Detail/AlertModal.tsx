@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { positionCenter } from '../../styles/mixin';
+import { ProductData } from './types';
 
 const IMAGE_LIST = [
   { id: 1, img: 'http://placeimg.com/640/640/nature' },
@@ -12,8 +13,7 @@ const IMAGE_LIST = [
 ];
 interface Props {
   setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  //TODO 데이터 형식 확인해서 바꿀 것.
-  productData: any;
+  productData: ProductData;
 }
 
 const AlertModal = ({ setIsClicked, productData }: Props) => {

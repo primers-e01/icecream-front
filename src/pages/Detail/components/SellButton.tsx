@@ -5,14 +5,14 @@ import { flexBox } from '../../../styles/mixin';
 
 interface Props {
   size: number;
-  //TODO: 데이터 확인 후 타입 수정
+  //TODO: 데이터 확인   후 타입 수정
   productData: {
     thumbnailImageUrl: string;
     modelNumber: string;
     enName: string;
     krName: string;
-    sellNow: number;
-    buyNow: number;
+    sellNow: string;
+    buyNow: string;
   };
 }
 
@@ -28,7 +28,7 @@ const SellButton = ({ size, productData }: Props) => {
       <BtnTitle size={size}>판매</BtnTitle>
       <BtnText>
         <BtnPrice>
-          {Math.floor(productData?.sellNow).toLocaleString()}원
+          {Math.floor(Number(productData?.sellNow)).toLocaleString()}원
         </BtnPrice>
         <BtnType>즉시 판매가</BtnType>
       </BtnText>

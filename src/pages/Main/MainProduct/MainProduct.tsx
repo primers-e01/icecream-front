@@ -3,8 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { API } from '../../../config/config';
 
+interface mainProductList {
+  id: string;
+  thumbnailImageUrl: string;
+  enName: string;
+  krName: string;
+  brandName: string;
+  price: string;
+}
+
 const MainProduct = () => {
-  const [mainProductList, setMainProductList] = useState<string[]>([]);
+  const [mainProductList, setMainProductList] = useState<mainProductList[]>([]);
   const navigate = useNavigate();
   const obsTarget = useRef(null);
 
@@ -15,11 +24,14 @@ const MainProduct = () => {
   useEffect(() => {
     fetch(`${API.products}`)
       .then(res => res.json())
-      .then(data => setMainProductList(data.data));
+      .then(data => {
+        console.log('MAIN_DATA : ', data.data);
+        setMainProductList(data.data);
+      });
   }, []);
 
   useEffect(() => {
-    const io = new IntersectionObserver(([{ isIntersecting }]) => {
+    const observer = new IntersectionObserver(([{ isIntersecting }]) => {
       if (isIntersecting) {
         fetch(`${API.products}`)
           .then(res => res.json())
@@ -30,17 +42,17 @@ const MainProduct = () => {
     });
 
     if (obsTarget.current) {
-      io.observe(obsTarget.current);
+      observer.observe(obsTarget.current);
     }
     return () => {
-      io.disconnect();
+      observer.disconnect();
     };
   }, []);
+  console.log('MAIN', mainProductList);
 
   return (
     <MainProductWrapper>
       {mainProductList.map(product => {
-        //TODO: any 타입 확인
         const {
           id,
           thumbnailImageUrl,
@@ -48,7 +60,7 @@ const MainProduct = () => {
           krName,
           brandName,
           price: _price,
-        }: any = product;
+        } = product;
         const price = _price
           .substr(0, _price.length - 3)
           .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');

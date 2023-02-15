@@ -4,6 +4,7 @@ import ShopProduct from './ShopProduct/ShopProduct';
 import styled from 'styled-components';
 import { getQueryString } from '../../utils/queryString';
 import { useNavigate } from 'react-router-dom';
+import { Query } from './types';
 
 const INIT_QUERY = {
   categoryId: '',
@@ -12,11 +13,10 @@ const INIT_QUERY = {
 };
 
 const Shop = () => {
-  // TODO: any확인해보기
-  const [queries, setQueries] = useState<any>(INIT_QUERY);
+  const [queries, setQueries] = useState<Query>(INIT_QUERY);
   const navigate = useNavigate();
-  const onClickQuery = (cateKey: string, query: number | string) => {
-    setQueries({ ...queries, [cateKey]: query });
+  const onClickQuery = (categoryKey: string, query: number | string) => {
+    setQueries({ ...queries, [categoryKey]: query });
     navigate(`/products${getQueryString(queries)}`);
   };
 
@@ -28,7 +28,7 @@ const Shop = () => {
             return (
               <AsideCategory
                 key={key}
-                cateKey={key}
+                categoryKey={key}
                 title={title}
                 subTitle={subTitle}
                 subCategory={subCategory}

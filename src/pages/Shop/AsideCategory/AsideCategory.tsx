@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  cateKey: string;
+  categoryKey: string;
   title: string;
   subTitle: string;
   subCategory: {
@@ -10,7 +10,7 @@ interface Props {
     query: number | string;
     text: number | string;
   }[];
-  onClickQuery: (cateKey: string, query: number | string) => void;
+  onClickQuery: (categoryKey: string, query: number | string) => void;
 }
 
 interface Element {
@@ -19,7 +19,7 @@ interface Element {
 }
 
 const AsideCategory = ({
-  cateKey,
+  categoryKey,
   title,
   subTitle,
   subCategory,
@@ -33,19 +33,19 @@ const AsideCategory = ({
 
   return (
     <AsideCategoryWrapper>
-      <CategoryListBox key={cateKey}>
+      <CategoryListBox key={categoryKey}>
         <CategoryTitleBox>
           <CategoryTitle>{title}</CategoryTitle>
           <CategorySubTitle>{subTitle}</CategorySubTitle>
         </CategoryTitleBox>
         <PlusBtn onClick={onClickCate}>+</PlusBtn>
       </CategoryListBox>
-      <AsideOpenList key={cateKey} className={isOpen ? '' : 'open'}>
+      <AsideOpenList key={categoryKey} className={isOpen ? '' : 'open'}>
         {subCategory &&
           subCategory.map(({ query, text }: Element) => {
             return (
               <AsideOpenItem key={query}>
-                <AsideOpenBtn onClick={() => onClickQuery(cateKey, query)}>
+                <AsideOpenBtn onClick={() => onClickQuery(categoryKey, query)}>
                   {text}
                 </AsideOpenBtn>
               </AsideOpenItem>
