@@ -34,7 +34,6 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
         })
           .then(response => response.json())
           .then(result => {
-            console.log('TABLE_DATA', result?.data?.tradeAll[0]);
             setTableData(result?.data?.tradeAll[0]);
             setLoadData(result?.data?.tradeAll[0].tradeDataAll);
           });

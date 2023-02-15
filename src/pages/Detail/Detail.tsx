@@ -45,7 +45,6 @@ const Detail = () => {
     fetch(`${API.products}/${productId}`)
       .then(response => response.json())
       .then(result => {
-        console.log('PAGE_DATA : ', result);
         setPageData(result.data);
       });
   };

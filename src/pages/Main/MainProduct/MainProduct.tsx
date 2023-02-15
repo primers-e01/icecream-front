@@ -25,7 +25,6 @@ const MainProduct = () => {
     fetch(`${API.products}`)
       .then(res => res.json())
       .then(data => {
-        console.log('MAIN_DATA : ', data.data);
         setMainProductList(data.data);
       });
   }, []);
@@ -48,7 +47,6 @@ const MainProduct = () => {
       observer.disconnect();
     };
   }, []);
-  console.log('MAIN', mainProductList);
 
   return (
     <MainProductWrapper>

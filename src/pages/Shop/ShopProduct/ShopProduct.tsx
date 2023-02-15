@@ -34,7 +34,6 @@ const ShopProduct = () => {
     fetch(`${API.products}` + search)
       .then(res => res.json())
       .then(data => {
-        console.log('SHOP_DATA', data.data);
         setShopProductList(data.data);
       });
   }, [search]);
