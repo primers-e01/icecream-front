@@ -41,7 +41,7 @@ const Wrapper = styled.div`
   right: 0;
   padding: 0 40px 15px;
   background-color: #fff;
-  z-index: 100;
+  z-index: ${({ theme }) => theme.floatingPrice};
   box-shadow: 0 4px 4px 0px rgb(0 0 0 / 10%);
 `;
 

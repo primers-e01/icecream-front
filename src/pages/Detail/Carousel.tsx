@@ -60,7 +60,7 @@ const PrevBtn = styled.div`
   left: 10px;
   bottom: 50%;
   transform: translateY(50%);
-  z-index: 10;
+  z-index: ${({ theme }) => theme.carousel};
   cursor: pointer;
 
   & .icon * {
@@ -73,7 +73,7 @@ const NextBtn = styled.div`
   right: 10px;
   bottom: 50%;
   transform: translateY(50%);
-  z-index: 10;
+  z-index: ${({ theme }) => theme.carousel};
   cursor: pointer;
 
   & .icon * {

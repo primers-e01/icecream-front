@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { API } from '../../config/config';
 import StyleCard from './StyleCard';
 
 const StyleDetail = () => {
   const [loading, setLoading] = useState(true);
-  const [postPage, setPostPage] = useState([]);
-  const params = useParams();
 
   const location = useLocation();
 
+  // TODO: 왜 post메서드 사용한거? 넘겨주는값 없음
   useEffect(() => {
     fetch(`${API.styleDetail}`, {
       method: 'POST',
@@ -18,7 +17,7 @@ const StyleDetail = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({}),
-    }).then();
+    });
   }, []);
 
   if (loading) return <h1>로딩중입니다.</h1>;

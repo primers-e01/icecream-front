@@ -310,7 +310,7 @@ const BtnList = styled.ul<{ tradeType: string }>`
   border: 1px solid #ebebeb;
 
   & .active {
-    color: white;
+    color: #fff;
     background-color: ${({ tradeType }) =>
       tradeType === 'sell' ? '#41b979' : '#ef6253'};
   }

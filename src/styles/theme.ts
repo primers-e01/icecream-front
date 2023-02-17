@@ -14,9 +14,14 @@ const styles = {
 };
 
 const levels = {
+  carousel: 10,
+  goToTop: 10,
+  mainCarousel: 90,
   nav: 100,
+  floatingPrice: 100,
   alertModal: 110,
   buySellTitle: 101,
+  mainBanner: 999,
 };
 
 const theme = { ...colors, ...levels, ...styles };

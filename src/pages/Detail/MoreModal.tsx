@@ -59,7 +59,7 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
   };
 
   return (
-    <ModalWrapper>
+    <Wrapper>
       <IconBox>
         <FontAwesomeIcon icon={faX} size="lg" onClick={onCloseClick} />
       </IconBox>
@@ -91,7 +91,7 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
                 <BtnItem
                   key={id}
                   // TODO: id -> String 확인필요
-                  id={id.toString()}
+                  id={String(id)}
                   onClick={() => onFilterClick(id, data)}
                   clicked={isFilterClicked === id}
                 >
@@ -136,13 +136,13 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
           <div ref={ref} />
         </ListBox>
       </ModalContent>
-    </ModalWrapper>
+    </Wrapper>
   );
 };
 
 export default MoreModal;
 
-const ModalWrapper = styled.div`
+const Wrapper = styled.div`
   ${positionCenter('fixed')}
   width: 480px;
   background-color: #fff;
@@ -270,7 +270,7 @@ const BtnItem = styled.li<{ clicked: boolean }>`
   text-align: center;
   line-height: 16px;
   box-shadow: inset 0 0 0 0.5px #ebebeb;
-  background-color: ${props => (props.clicked ? 'white' : 'transparent')};
+  background-color: ${props => (props.clicked ? '#fff' : 'transparent')};
   cursor: pointer;
 `;
 
@@ -309,6 +309,7 @@ const TableBody = styled.tbody`
   text-align: right;
   font-size: 14px;
   line-height: 17px;
+
   & tr {
     display: flex;
   }

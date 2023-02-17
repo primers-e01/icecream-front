@@ -15,7 +15,6 @@ interface Props {
   likes: number;
   nickname: string;
   original_price: number;
-  product_id: number;
   profile_image_url: string;
   thumbnail_image_url: string;
 }
@@ -27,7 +26,6 @@ const StyleCard = ({
   likes,
   nickname,
   original_price,
-  product_id,
   profile_image_url,
   thumbnail_image_url,
 }: Props) => {
@@ -121,17 +119,17 @@ const UserId = styled.span`
   margin-left: 10px;
   padding-bottom: 10px;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
 `;
 
 const FollowButton = styled.button`
   width: 100px;
   height: 35px;
-  color: white;
+  color: #fff;
   border-radius: 10px;
   font-size: 15px;
-  font-weight: bold;
+  font-weight: 700;
   background-color: black;
   cursor: pointer;
 `;
@@ -161,7 +159,7 @@ const ProductTitleText = styled.span`
 `;
 
 const TextStrong = styled.span`
-  font-weight: bold;
+  font-weight: 700;
 `;
 
 const ProductList = styled.div`
@@ -191,7 +189,7 @@ const ProductName = styled.p`
 const ProductPrice = styled.p`
   margin-bottom: 15px;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 700;
 `;
 
 const SocialContent = styled.div`
@@ -207,8 +205,9 @@ const SocialLikeBox = styled.div`
 const SocialLikedButton = styled.button`
   padding: 0;
   border: none;
-  background-color: white;
+  background-color: #fff;
   cursor: pointer;
+
   & .like * {
     color: red;
   }
@@ -224,7 +223,7 @@ const SocialLikeButtonText = styled.span`
 
 const ShareButton = styled.button`
   border: none;
-  background-color: white;
+  background-color: #fff;
   cursor: pointer;
   & .share * {
     color: #5a5959;

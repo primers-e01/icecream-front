@@ -10,7 +10,7 @@ const KakaoLogin = () => {
   setSearchParams(code || '');
 
   useEffect(() => {
-    fetch(`http://10.58.52.168:8000/users/login?${searchParams.toString()}`, {
+    fetch(`http://10.58.52.168:8000/users/login?${String(searchParams)}`, {
       method: 'POST',
       headers: { Accept: 'application / json' },
     })

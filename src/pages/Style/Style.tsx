@@ -22,9 +22,9 @@ const Style = () => {
   const [clickedFilter, setClickedFilter] = useState('trend');
 
   useEffect(() => {
-    fetch(`${API.style}?${searchParams.toString()}`)
+    fetch(`${API.style}?${String(searchParams)}`)
       .then(response => response.json())
-      .then(result => setFeedList(result.posts));
+      .then(data => setFeedList(data.posts));
   }, [searchParams]);
 
   const onClickTrend = () => {
@@ -80,8 +80,8 @@ const ItemTab = styled.button<{ active: boolean }>`
   font-weight: 700;
   border: none;
   border-radius: 22px;
-  background-color: ${props => (props.active ? 'black' : 'white')};
-  color: ${props => (props.active ? 'white' : 'black')};
+  background-color: ${props => (props.active ? '#000' : '#fff')};
+  color: ${props => (props.active ? '#fff' : '#000')};
   cursor: pointer;
 `;
 

@@ -58,7 +58,7 @@ const ShopProduct = () => {
   }, []);
 
   return (
-    <ShopProductWrapper>
+    <Wrapper>
       <SortSelectBox>
         <SortSelect>
           <SortSelectBtn>프리미엄순</SortSelectBtn>
@@ -105,13 +105,13 @@ const ShopProduct = () => {
       </ShopProductList>
       {isScroll && <AtTheTop onClick={onClickGoToTop}>&#8593;</AtTheTop>}
       <ProductObserverTarget ref={obsTarget} />
-    </ShopProductWrapper>
+    </Wrapper>
   );
 };
 
 export default ShopProduct;
 
-const ShopProductWrapper = styled.div``;
+const Wrapper = styled.div``;
 
 const SortSelectBox = styled.div`
   width: 100%;
@@ -135,7 +135,7 @@ const SortSelectBtn = styled.button`
 
   &:hover {
     background-color: ${({ theme }) => theme.buttonActive};
-    color: white;
+    color: #fff;
   }
 `;
 
@@ -176,7 +176,7 @@ const ShopProductBrandTitle = styled.h3`
   margin: 10px 8px;
   display: inline-block;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 700;
   color: ${({ theme }) => theme.mainBrandBlack};
   border-bottom: 2px solid ${({ theme }) => theme.mainBrandBlack};
 `;
@@ -200,7 +200,7 @@ const ShopProductTitle = styled.div`
 const ShopProductPrice = styled.p`
   margin: 12px 0px 0px 8px;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 700;
 `;
 
 const ShopProductCurrentPrice = styled.p`
@@ -224,7 +224,7 @@ const AtTheTop = styled.div`
 
   &:hover {
     background-color: ${({ theme }) => theme.mainBrandBlack};
-    color: white;
+    color: #fff;
   }
 `;
 

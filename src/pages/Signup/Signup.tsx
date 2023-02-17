@@ -12,7 +12,7 @@ const handleLogin = () => {
 
 const Signup = () => {
   return (
-    <ContainerBackground>
+    <BackGround>
       <Container>
         <SignupBox>
           <Title
@@ -26,7 +26,9 @@ const Signup = () => {
             />
             <KakaoButtonText>카카오로 계속하기</KakaoButtonText>
           </KakaoButton>
+
           <AuthButtons>
+            {/* TODO: map 돌릴수있을듯 */}
             <AuthButton>
               <FacebookImg
                 src="https://media.discordapp.net/attachments/1060384508286877719/1060384682279190598/facebookIcon.png"
@@ -34,6 +36,7 @@ const Signup = () => {
               />
               <AuthText>페이스북</AuthText>
             </AuthButton>
+
             <AuthButton>
               <NaverImg
                 src="https://cdn.discordapp.com/attachments/1060384508286877719/1060384683151605871/naverIcon.png"
@@ -41,6 +44,7 @@ const Signup = () => {
               />
               <AuthText>네이버</AuthText>
             </AuthButton>
+
             <AuthButton>
               <GoogleImg
                 src="https://cdn.discordapp.com/attachments/1060384508286877719/1060384682736361522/googleIcon.png"
@@ -51,13 +55,13 @@ const Signup = () => {
           </AuthButtons>
         </SignupBox>
       </Container>
-    </ContainerBackground>
+    </BackGround>
   );
 };
 
 export default Signup;
 
-const ContainerBackground = styled.div`
+const BackGround = styled.div`
   width: 100%;
   height: 100%;
   background-color: #fafafa;
@@ -79,7 +83,7 @@ const SignupBox = styled.div`
   border: 1px solid #ececec;
   border-radius: 10px;
   box-shadow: 0 4px 10px 0 rgb(0 0 0 / 10%);
-  background-color: white;
+  background-color: #fff;
 `;
 
 const Title = styled.img`
@@ -101,7 +105,7 @@ const KakaoButton = styled.a`
 const KakaoButtonText = styled.span`
   margin-left: 5px;
   font-size: 15px;
-  font-weight: bold;
+  font-weight: 700;
 `;
 
 const AuthButtons = styled.div`
@@ -114,7 +118,7 @@ const AuthButton = styled.button`
   ${flexBox('', 'center', '')}
   border: none;
   margin: 0 10px;
-  background-color: white;
+  background-color: #fff;
   cursor: pointer;
 `;
 
@@ -134,6 +138,6 @@ const AuthText = styled.span`
   margin-left: 5px;
   padding: 10px 0;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 700;
   color: #b6b6b6;
 `;

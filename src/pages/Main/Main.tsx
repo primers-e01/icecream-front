@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MainCarousel from './MainCarousel/MainCarousel';
 import ShortCutItem from './ShortCutItem/ShortCutItem';
 import MainReuse from './MainReuse/MainReuse';
 import styled from 'styled-components';
 
 const Main = () => {
+  const [isScroll, setIsScroll] = useState(false);
+
+  const onClickGoToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const isTop = window.scrollY < 800;
+      setIsScroll(!isTop);
+    });
+  }, []);
+
   return (
-    <MainWrapper>
+    <Wrapper>
       <MainCarousel />
       <MainBox>
         <ShortCutList>
@@ -16,13 +32,15 @@ const Main = () => {
         </ShortCutList>
         <MainReuse />
       </MainBox>
-    </MainWrapper>
+      {/* TODO: GoToTop 컴포넌트화 가능할듯 */}
+      {isScroll && <GoToTop onClick={onClickGoToTop}>&#8593;</GoToTop>}
+    </Wrapper>
   );
 };
 
 export default Main;
 
-const MainWrapper = styled.div`
+const Wrapper = styled.div`
   padding-top: 101px;
 `;
 
@@ -36,6 +54,28 @@ const ShortCutList = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+`;
+
+const GoToTop = styled.div`
+  position: fixed;
+  z-index: ${({ theme }) => theme.goToTop};
+  width: 45px;
+  height: 45px;
+  right: 80px;
+  bottom: 50px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+  box-shadow: ${({ theme }) => theme.globalBoxShadow};
+  border: ${({ theme }) => theme.globalBorderStyle};
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.mainBrandBlack};
+    color: #fff;
+  }
 `;
 
 const MAIN_SHORTCUT = [

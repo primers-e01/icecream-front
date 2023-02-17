@@ -21,7 +21,7 @@ const Shop = () => {
   };
 
   return (
-    <ShopWrapper>
+    <Wrapper>
       <ShopAsideBox>
         {Object.entries(SHOP_CATEGORY).map(
           ([key, { title, subTitle, subCategory }]) => {
@@ -39,13 +39,13 @@ const Shop = () => {
         )}
       </ShopAsideBox>
       <ShopProduct />
-    </ShopWrapper>
+    </Wrapper>
   );
 };
 
 export default Shop;
 
-const ShopWrapper = styled.div`
+const Wrapper = styled.div`
   width: 80%;
   display: flex;
   justify-content: center;

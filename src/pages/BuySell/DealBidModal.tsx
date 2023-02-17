@@ -41,6 +41,7 @@ interface Example {
       btn: string;
     };
   };
+  // TODO: index any 확인 필요
   [key: string]: any;
 }
 

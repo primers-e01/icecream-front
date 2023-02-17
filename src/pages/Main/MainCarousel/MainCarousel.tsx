@@ -19,7 +19,7 @@ const MainCarousel = () => {
   };
 
   return (
-    <CarouselWrapper>
+    <Wrapper>
       <CarouselPrevBtn onClick={() => onClickSlideBtn(-1)}>
         &#12296;
       </CarouselPrevBtn>
@@ -38,13 +38,13 @@ const MainCarousel = () => {
           </CarouselSlideItem>
         ))}
       </CarouselSliderList>
-    </CarouselWrapper>
+    </Wrapper>
   );
 };
 
 export default MainCarousel;
 
-const CarouselWrapper = styled.div`
+const Wrapper = styled.div`
   width: 100%;
   overflow: hidden;
   position: relative;
@@ -54,7 +54,7 @@ const CarouselPrevBtn = styled.div`
   position: absolute;
   top: 45%;
   left: 80px;
-  z-index: 90;
+  z-index: ${({ theme }) => theme.mainCarousel};
   font-size: 40px;
   color: rgba(255, 255, 255, 0.5);
   border-radius: 15px;
@@ -71,7 +71,7 @@ const CarouselNextBtn = styled.div`
   top: 45%;
   right: 80px;
   font-size: 40px;
-  z-index: 90;
+  z-index: ${({ theme }) => theme.mainCarousel};
   color: rgba(255, 255, 255, 0.5);
   border-radius: 15px;
   cursor: pointer;
@@ -103,8 +103,8 @@ const CarouselSlideItem = styled.div`
     bottom: 100px;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 90;
-    color: white;
+    z-index: ${({ theme }) => theme.mainCarousel};
+    color: #fff;
     border-bottom: ${({ theme }) => theme.globalBorderStyle};
 
     &:hover {
@@ -124,10 +124,10 @@ const CarouselTitle = styled.h1`
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 90;
+  z-index: ${({ theme }) => theme.mainCarousel};
   font-size: 46px;
-  font-weight: Bold;
-  color: white;
+  font-weight: 700;
+  color: #fff;
 `;
 
 const CarouselSubTitle = styled.h2`
@@ -137,7 +137,7 @@ const CarouselSubTitle = styled.h2`
   transform: translate(-50%, -50%);
   font-size: 22px;
   color: ${({ theme }) => theme.buttonBuy};
-  z-index: 90;
+  z-index: ${({ theme }) => theme.mainCarousel};
 `;
 
 const SLIDE = [

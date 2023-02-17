@@ -17,10 +17,6 @@ const MainProduct = () => {
   const navigate = useNavigate();
   const obsTarget = useRef(null);
 
-  const goToShop = () => {
-    navigate('/products');
-  };
-
   useEffect(() => {
     fetch(`${API.products}`)
       .then(res => res.json())
@@ -49,43 +45,51 @@ const MainProduct = () => {
   }, []);
 
   return (
-    <MainProductWrapper>
-      {mainProductList.map(product => {
-        const {
+    <Wrapper>
+      {mainProductList.map(
+        ({
           id,
           thumbnailImageUrl,
           enName,
           krName,
           brandName,
           price: _price,
-        } = product;
-        const price = _price
-          .substr(0, _price.length - 3)
-          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+        }) => {
+          // TODO: 콤마찍는 로직 수정 -> toLocaleString
+          const price = _price
+            .substr(0, _price.length - 3)
+            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
-        return (
-          <MainProductBox key={id}>
-            <MainProductThumb>
-              <img src={thumbnailImageUrl} alt={enName} onClick={goToShop} />
-            </MainProductThumb>
-            <MainProductBrandTitle>{brandName}</MainProductBrandTitle>
-            <MainProductTitle>
-              <h3>{enName}</h3>
-              <h4>{krName}</h4>
-            </MainProductTitle>
-            <MainProductPrice>{!_price ? '-' : price + '원'}</MainProductPrice>
-            <MainProductCurrentPrice>즉시 구매가</MainProductCurrentPrice>
-          </MainProductBox>
-        );
-      })}
+          return (
+            <MainProductBox key={id}>
+              <MainProductThumb>
+                <img
+                  src={thumbnailImageUrl}
+                  alt={enName}
+                  onClick={() => navigate('/products')}
+                />
+              </MainProductThumb>
+              <MainProductBrandTitle>{brandName}</MainProductBrandTitle>
+              <MainProductTitle>
+                <h3>{enName}</h3>
+                <h4>{krName}</h4>
+              </MainProductTitle>
+              <MainProductPrice>
+                {!_price ? '-' : price + '원'}
+              </MainProductPrice>
+              <MainProductCurrentPrice>즉시 구매가</MainProductCurrentPrice>
+            </MainProductBox>
+          );
+        }
+      )}
       <ProductObserverTarget ref={obsTarget} />
-    </MainProductWrapper>
+    </Wrapper>
   );
 };
 
 export default MainProduct;
 
-const MainProductWrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -120,7 +124,7 @@ const MainProductBrandTitle = styled.div`
   margin: 10px 8px;
   display: inline-block;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 700;
   color: ${({ theme }) => theme.mainBrandBlack};
   border-bottom: 2px solid ${({ theme }) => theme.mainBrandBlack};
 `;
@@ -143,7 +147,7 @@ const MainProductTitle = styled.div`
 const MainProductPrice = styled.p`
   margin: 12px 0px 0px 8px;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 700;
 `;
 
 const MainProductCurrentPrice = styled.p`

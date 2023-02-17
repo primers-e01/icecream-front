@@ -7,18 +7,18 @@ interface Props {
 }
 const ShortCutItem = ({ img, title }: Props) => {
   return (
-    <ShortCutItemWrapper>
+    <Wrapper>
       <ShortCutItemBox>
         <img src={img} alt={title} />
       </ShortCutItemBox>
       <ShortCutItemTitle>{title}</ShortCutItemTitle>
-    </ShortCutItemWrapper>
+    </Wrapper>
   );
 };
 
 export default ShortCutItem;
 
-const ShortCutItemWrapper = styled.div`
+const Wrapper = styled.div`
   text-align: center;
 `;
 

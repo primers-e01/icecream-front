@@ -1,28 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import MainProduct from '../MainProduct/MainProduct';
 import styled from 'styled-components';
 import { positionCenter } from '../../../styles/mixin';
 
 const MainReuse = () => {
-  const [isScroll, setIsScroll] = useState(false);
-
-  const onClickGoToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      const isTop = window.scrollY < 800;
-      setIsScroll(!isTop);
-    });
-  }, []);
-
   return (
-    <MainReuseWrapper>
+    <Wrapper>
       {MAIN_BANNER.map(
         ({ id, title, subTitle, img, categoryTitle, categorySubTitle }) => {
           return (
@@ -44,25 +28,24 @@ const MainReuse = () => {
           );
         }
       )}
-      {isScroll && <AtTheTop onClick={onClickGoToTop}>&#8593;</AtTheTop>}
-    </MainReuseWrapper>
+    </Wrapper>
   );
 };
 
 export default MainReuse;
 
-const MainReuseWrapper = styled.div`
+const Wrapper = styled.div`
   position: relative;
 `;
 const MainReuseBox = styled.div``;
 
 const MainBanner = styled.div`
+  position: relative;
+  overflow: hidden;
   width: 100%;
   height: 400px;
   margin-top: 45px;
-  position: relative;
   background-color: ${({ theme }) => theme.mainBrandBlack};
-  overflow: hidden;
 
   img {
     width: 100%;
@@ -79,7 +62,7 @@ const MainBanner = styled.div`
     transform: translate(-50%, -50%);
     font-size: 20px;
     border-bottom: ${({ theme }) => theme.globalBorderStyle};
-    color: white;
+    color: #fff;
 
     &:hover {
       cursor: pointer;
@@ -90,16 +73,16 @@ const MainBanner = styled.div`
 const MainBannerTitle = styled.h1`
   ${positionCenter('absolute')}
   top: 30%;
-  z-index: 999;
+  z-index: ${({ theme }) => theme.mainBanner};
   font-size: 50px;
-  font-weight: bold;
-  color: white;
+  font-weight: 700;
+  color: #fff;
 `;
 
 const MainBannerSubTitle = styled.h2`
   ${positionCenter('absolute')}
   top: 42%;
-  z-index: 999;
+  z-index: ${({ theme }) => theme.mainBanner};
   font-size: 22px;
   color: rgba(255, 255, 255, 0.7);
 `;
@@ -113,32 +96,13 @@ const MainCategoryTitle = styled.h3`
   margin-top: 50px;
   color: ${({ theme }) => theme.mainBrandBlack};
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 700;
 `;
 
 const MainCategorySubTitle = styled.h4`
   margin: 5px 0px;
   color: ${({ theme }) => theme.mainBrandGray05};
   font-size: 14px;
-`;
-
-const AtTheTop = styled.div`
-  width: 45px;
-  height: 45px;
-  position: fixed;
-  right: 80px;
-  bottom: 50px;
-  font-size: 20px;
-  text-align: center;
-  line-height: 40px;
-  box-shadow: ${({ theme }) => theme.globalBoxShadow};
-  border: ${({ theme }) => theme.globalBorderStyle};
-  border-radius: 50%;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.mainBrandBlack};
-    color: white;
-  }
 `;
 
 const MAIN_BANNER = [

@@ -32,7 +32,7 @@ const AsideCategory = ({
   };
 
   return (
-    <AsideCategoryWrapper>
+    <Wrapper>
       <CategoryListBox key={categoryKey}>
         <CategoryTitleBox>
           <CategoryTitle>{title}</CategoryTitle>
@@ -52,13 +52,13 @@ const AsideCategory = ({
             );
           })}
       </AsideOpenList>
-    </AsideCategoryWrapper>
+    </Wrapper>
   );
 };
 
 export default AsideCategory;
 
-const AsideCategoryWrapper = styled.div``;
+const Wrapper = styled.div``;
 
 const CategoryListBox = styled.div`
   display: flex;
@@ -73,7 +73,7 @@ const CategoryTitleBox = styled.div`
 
 const CategoryTitle = styled.h2`
   font-size: 13px;
-  font-weight: bold;
+  font-weight: 700;
   margin-bottom: 8px;
 `;
 
@@ -93,7 +93,7 @@ const AsideOpenList = styled.ul`
   border-bottom: ${({ theme }) => theme.globalBorderStyle};
   max-height: 540px;
   overflow: hidden;
-  transition: max-height ease-in-out 2s 0s;
+  transition: max-height ease-in-out 0.8s 0s;
 
   &.open {
     max-height: 0px;
@@ -113,6 +113,6 @@ const AsideOpenBtn = styled.button`
 
   &.active {
     background-color: ${({ theme }) => theme.buttonActive};
-    color: white;
+    color: #fff;
   }
 `;

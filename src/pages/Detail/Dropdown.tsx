@@ -151,17 +151,17 @@ const Dropdown = () => {
               <TitleBox
                 condition={isOpen === id ? 'opened' : ''}
                 // TODO: id -> String 변환 확인
-                id={id.toString()}
+                id={String(id)}
                 onClick={onClick}
               >
                 <DropdownText
                   condition={isOpen === id ? 'opened' : ''}
-                  id={id.toString()}
+                  id={String(id)}
                 >
                   {list}
                 </DropdownText>
                 <FontAwesomeIcon
-                  id={id.toString()}
+                  id={String(id)}
                   icon={isOpen === id ? faChevronUp : faChevronDown}
                   className="icon"
                 />

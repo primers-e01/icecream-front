@@ -72,7 +72,7 @@ const ChartSection = ({ chartData, tableData }: Props) => {
           return (
             <ChartBtnItem
               key={id}
-              id={id.toString()}
+              id={String(id)}
               onClick={onFilterClick}
               clicked={isFilterClicked === id}
             >
@@ -89,7 +89,7 @@ const ChartSection = ({ chartData, tableData }: Props) => {
           return (
             <ChartBtnItem
               key={id}
-              id={id.toString()}
+              id={String(id)}
               onClick={() => onDealClick(id, data)}
               clicked={isDealClicked === id}
             >
@@ -152,7 +152,7 @@ const ChartBtnItem = styled.li<{ clicked: boolean }>`
   font-size: 13px;
   border-radius: 8px;
   color: ${({ theme }) => theme.mainBrandGray08};
-  background-color: ${props => (props.clicked ? 'white' : 'transparent')};
+  background-color: ${props => (props.clicked ? '#fff' : 'transparent')};
   text-align: center;
   line-height: 16px;
   box-shadow: inset 0 0 0 0.5px #ebebeb;
