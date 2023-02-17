@@ -18,7 +18,7 @@ const StyleDetail = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({}),
-    });
+    }).then();
   }, []);
 
   if (loading) return <h1>로딩중입니다.</h1>;
