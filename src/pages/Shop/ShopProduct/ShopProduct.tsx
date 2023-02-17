@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ProductData } from 'src/pages/Detail/types';
 import styled from 'styled-components';
 import { API } from '../../../config/config';
 import { ShopData } from '../types';

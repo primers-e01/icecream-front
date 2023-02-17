@@ -4,7 +4,7 @@ import ChartLine from './ChartLine';
 import MoreModal from './MoreModal';
 import useOutSideClick from '../../hooks/useOutSideClick';
 import { flexBox } from '../../styles/mixin';
-import { ChartData, TradeHistoryData, TradeLimit } from './types';
+import { ChartData, TradeLimit } from './types';
 
 interface LoadData {
   id: string;
