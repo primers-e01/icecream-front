@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { flexBox } from 'src/styles/mixin';
 import styled from 'styled-components';
 
 interface Props {
@@ -13,11 +14,6 @@ interface Props {
   onClickQuery: (categoryKey: string, query: number | string) => void;
 }
 
-interface Element {
-  query: number | string;
-  text: number | string;
-}
-
 const AsideCategory = ({
   categoryKey,
   title,
@@ -27,22 +23,22 @@ const AsideCategory = ({
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const onClickCate = () => {
+  const onClickCategory = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <Wrapper>
-      <CategoryListBox key={categoryKey}>
+    <Wrapper key={categoryKey}>
+      <CategoryListBox onClick={onClickCategory}>
         <CategoryTitleBox>
           <CategoryTitle>{title}</CategoryTitle>
           <CategorySubTitle>{subTitle}</CategorySubTitle>
         </CategoryTitleBox>
-        <PlusBtn onClick={onClickCate}>+</PlusBtn>
+        <PlusBtn>+</PlusBtn>
       </CategoryListBox>
-      <AsideOpenList key={categoryKey} className={isOpen ? '' : 'open'}>
+      <AsideOpenList className={isOpen ? '' : 'open'}>
         {subCategory &&
-          subCategory.map(({ query, text }: Element) => {
+          subCategory.map(({ query, text }) => {
             return (
               <AsideOpenItem key={query}>
                 <AsideOpenBtn onClick={() => onClickQuery(categoryKey, query)}>
@@ -61,10 +57,8 @@ export default AsideCategory;
 const Wrapper = styled.div``;
 
 const CategoryListBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: ${({ theme }) => theme.globalBorderStyle};
+  ${flexBox('space-between')}
+  cursor: pointer;
 `;
 
 const CategoryTitleBox = styled.div`
@@ -84,15 +78,15 @@ const CategorySubTitle = styled.h3`
 
 const PlusBtn = styled.span`
   font-size: 25px;
-  font-weight: lighter;
   cursor: pointer;
   color: ${({ theme }) => theme.mainBrandGray05};
 `;
 
 const AsideOpenList = styled.ul`
-  border-bottom: ${({ theme }) => theme.globalBorderStyle};
   max-height: 540px;
   overflow: hidden;
+  margin-bottom: 10px;
+  border-bottom: ${({ theme }) => theme.globalBorderStyle};
   transition: max-height ease-in-out 0.8s 0s;
 
   &.open {

@@ -30,14 +30,6 @@ const ShopProduct = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`${API.products}` + search)
-      .then(res => res.json())
-      .then(data => {
-        setShopProductList(data.data);
-      });
-  }, [search]);
-
-  useEffect(() => {
     const observer = new IntersectionObserver(([{ isIntersecting }]) => {
       if (isIntersecting) {
         fetch(`${API.products}`)
@@ -57,47 +49,44 @@ const ShopProduct = () => {
     };
   }, []);
 
+  useEffect(() => {
+    fetch(`${API.products}` + search)
+      .then(res => res.json())
+      .then(data => {
+        setShopProductList(data.data);
+      });
+  }, [search]);
+
   return (
     <Wrapper>
       <SortSelectBox>
-        <SortSelect>
-          <SortSelectBtn>프리미엄순</SortSelectBtn>
-          <SortSelectBtn>발매일순</SortSelectBtn>
-        </SortSelect>
+        <SortSelectBtn>프리미엄순</SortSelectBtn>
+        <SortSelectBtn>발매일순</SortSelectBtn>
       </SortSelectBox>
       <ShopProductList>
         {shopProductList.map(
-          ({
-            id,
-            thumbnailImageUrl,
-            enName,
-            krName,
-            brandName,
-            price: _price,
-          }) => {
-            // TODO: 무슨 로직인지 파악 => 콤마 찍는거면 메서드활용으로 수정
-            const price = _price
-              .substr(0, _price.length - 3)
-              .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
-
+          ({ id, thumbnailImageUrl, enName, krName, brandName, price }) => {
             return (
               <ShopProductBox key={id}>
-                <ShopProductThumb>
+                <ThumbnailImg>
                   <img
                     src={thumbnailImageUrl}
                     alt={enName}
                     onClick={() => goToDetail(id)}
                   />
-                </ShopProductThumb>
-                <ShopProductBrandTitle>{brandName}</ShopProductBrandTitle>
-                <ShopProductTitle>
-                  <h3>{enName}</h3>
-                  <h4>{krName}</h4>
-                </ShopProductTitle>
-                <ShopProductPrice>
-                  {!_price ? '-' : price + '원'}
-                </ShopProductPrice>
-                <ShopProductCurrentPrice>즉시 구매가</ShopProductCurrentPrice>
+                </ThumbnailImg>
+
+                <ProductDetailBox>
+                  <BrandName>{brandName}</BrandName>
+                  <ModelName>
+                    <h3>{enName}</h3>
+                    <h4>{krName}</h4>
+                  </ModelName>
+                  <Price>
+                    {price ? Number(price).toLocaleString('ko-KR') + '원' : '-'}
+                  </Price>
+                  <CurrentPrice>즉시 구매가</CurrentPrice>
+                </ProductDetailBox>
               </ShopProductBox>
             );
           }
@@ -114,15 +103,8 @@ export default ShopProduct;
 const Wrapper = styled.div``;
 
 const SortSelectBox = styled.div`
-  width: 100%;
-  position: relative;
-`;
-
-const SortSelect = styled.div`
-  width: 170px;
   display: flex;
-  justify-content: space-between;
-  position: absolute;
+  gap: 6px;
 `;
 
 const SortSelectBtn = styled.button`
@@ -130,8 +112,10 @@ const SortSelectBtn = styled.button`
   padding: 10px 12px;
   font-size: 14px;
   text-align: center;
-  background-color: ${({ theme }) => theme.buttonDisabled};
+  background-color: transparent;
+  border: ${({ theme }) => theme.globalBorderStyle};
   border-radius: 30px;
+  cursor: pointer;
 
   &:hover {
     background-color: ${({ theme }) => theme.buttonActive};
@@ -140,12 +124,11 @@ const SortSelectBtn = styled.button`
 `;
 
 const ShopProductList = styled.div`
-  /* width: 900px; */
-  padding-top: 50px;
   display: flex;
-  gap: 10px;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 50px;
 `;
 
 const ShopProductBox = styled.div`
@@ -153,7 +136,7 @@ const ShopProductBox = styled.div`
   margin-bottom: 20px;
 `;
 
-const ShopProductThumb = styled.div`
+const ThumbnailImg = styled.div`
   width: 250px;
   height: 250px;
   border-radius: 10px;
@@ -172,17 +155,19 @@ const ShopProductThumb = styled.div`
   }
 `;
 
-const ShopProductBrandTitle = styled.h3`
+const ProductDetailBox = styled.div`
   margin: 10px 8px;
+`;
+
+const BrandName = styled.h3`
   display: inline-block;
+  margin: 10px 0px;
   font-size: 14px;
   font-weight: 700;
   color: ${({ theme }) => theme.mainBrandBlack};
-  border-bottom: 2px solid ${({ theme }) => theme.mainBrandBlack};
 `;
 
-const ShopProductTitle = styled.div`
-  margin: 0px 8px;
+const ModelName = styled.div`
   color: ${({ theme }) => theme.mainBrandGray08};
   font-size: 14px;
   line-height: 17px;
@@ -197,22 +182,22 @@ const ShopProductTitle = styled.div`
   }
 `;
 
-const ShopProductPrice = styled.p`
-  margin: 12px 0px 0px 8px;
+const Price = styled.p`
+  margin: 12px 0px 8px;
   font-size: 16px;
   font-weight: 700;
 `;
 
-const ShopProductCurrentPrice = styled.p`
-  margin: 5px 8px;
+const CurrentPrice = styled.p`
+  margin: 5px 0px;
   font-size: 12px;
   color: ${({ theme }) => theme.mainBrandGray05};
 `;
 
 const AtTheTop = styled.div`
+  position: fixed;
   width: 45px;
   height: 45px;
-  position: fixed;
   right: 80px;
   bottom: 50px;
   font-size: 20px;

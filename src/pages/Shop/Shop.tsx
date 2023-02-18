@@ -46,11 +46,9 @@ const Shop = () => {
 export default Shop;
 
 const Wrapper = styled.div`
-  width: 80%;
   display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 131px 40px 80px;
+  margin: 100px auto 0;
+  padding: 30px 40px 120px;
 `;
 
 const ShopAsideBox = styled.div`
