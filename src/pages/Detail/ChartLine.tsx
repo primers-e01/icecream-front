@@ -30,8 +30,6 @@ const ChartLine = ({ chartData }: Props) => (
       yFormat=" >-.2f"
       axisTop={null}
       axisRight={{
-        // TODO: 에러확인
-        // orient: 'right',
         tickSize: 0,
         tickPadding: 10,
         tickRotation: 0,

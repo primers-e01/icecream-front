@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
-// TODO: globalstyle 타입 이렇게 쓰는게 맞는지 질문
 declare module 'styled-components' {
   export interface DefaultTheme {
     mainBrandBlack: string;

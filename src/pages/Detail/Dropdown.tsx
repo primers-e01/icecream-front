@@ -210,7 +210,7 @@ const TitleBox = styled.div<{ condition: string }>`
   border-color: ${props => props.condition && 'black'};
   cursor: pointer;
 `;
-// TODO: condition 원래 type props였음 확인
+
 const DropdownText = styled.span<{ condition: string }>`
   font-size: 15px;
   line-height: 24px;

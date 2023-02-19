@@ -26,26 +26,6 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
 
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(e => {
-      if (e[0].isIntersecting) {
-        // fetch(`${API.products}/${productId}`, {
-        fetch('/data/productData.json', {
-          method: 'GET',
-        })
-          .then(response => response.json())
-          .then(result => {
-            setTableData(result?.tradeAll[0]);
-            setLoadData(result?.tradeAll[0].tradeDataAll);
-          });
-      }
-    });
-
-    if (ref.current) observer.observe(ref.current);
-
-    return () => observer.disconnect();
-  }, []);
-
   const onCloseClick = () => {
     setIsMoreClicked(false);
     document.body.style.overflow = 'scroll';
@@ -58,6 +38,24 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
     // TODO: index 접근 질문
     if (tableData) setLoadData(tableData[data]);
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(e => {
+      if (e[0].isIntersecting) {
+        // fetch(`${API.products}/${productId}`, {
+        fetch('/data/productData.json')
+          .then(response => response.json())
+          .then(result => {
+            setTableData(result?.tradeAll[0]);
+            setLoadData(result?.tradeAll[0].tradeDataAll);
+          });
+      }
+    });
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <Wrapper>
@@ -91,7 +89,6 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
               return (
                 <BtnItem
                   key={id}
-                  // TODO: id -> String 확인필요
                   id={String(id)}
                   onClick={() => onFilterClick(id, data)}
                   clicked={isFilterClicked === id}

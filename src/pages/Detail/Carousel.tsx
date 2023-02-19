@@ -22,7 +22,6 @@ interface Props {
 }
 
 const Carousel = ({ images }: Props) => {
-  // TODO: any 체크
   const swiperRef = useRef<SwiperRef>(null);
 
   if (!images) return <></>;
