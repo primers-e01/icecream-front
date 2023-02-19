@@ -1,4 +1,4 @@
-const BASE_URL = 'http://10.58.52.142:8000';
+const BASE_URL = 'http://127.0.0.1:8000';
 
 const API = {
   products: `${BASE_URL}/products`,

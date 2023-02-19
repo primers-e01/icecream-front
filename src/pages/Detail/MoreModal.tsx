@@ -42,12 +42,13 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
   useEffect(() => {
     const observer = new IntersectionObserver(e => {
       if (e[0].isIntersecting) {
-        // fetch(`${API.products}/${productId}`, {
-        fetch('/data/productData.json')
+        fetch(`${API.products}/${productId}`)
+          // , {
+          // fetch('/data/productData.json')
           .then(response => response.json())
           .then(result => {
-            setTableData(result?.tradeAll[0]);
-            setLoadData(result?.tradeAll[0].tradeDataAll);
+            setTableData(result.data.tradeAll[0]);
+            setLoadData(result.data.tradeAll[0].tradeDataAll);
           });
       }
     });

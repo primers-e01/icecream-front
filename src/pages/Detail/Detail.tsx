@@ -42,12 +42,12 @@ const Detail = () => {
   useOutSideClick(ref, () => setIsClicked(false));
 
   const fetchProductData = () => {
-    // fetch(`${API.products}/${productId}`)
-    fetch(`/data/productData.json`)
+    fetch(`${API.products}/${productId}`)
+      // fetch
       .then(response => response.json())
       .then(result => {
-        // setPageData(result.data);
-        setPageData(result);
+        setPageData(result.data);
+        // setPageData(result);
       });
   };
 
