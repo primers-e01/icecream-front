@@ -34,11 +34,11 @@ const Style = () => {
   };
 
   useEffect(() => {
-    // fetch(`${API.style}?${String(searchParams)}`)
-    fetch(`/data/StyleData.json`)
+    fetch(`${API.style}?${String(searchParams)}`)
+      // fetch(`/data/StyleData.json`)
       .then(response => response.json())
-      // .then(data => setFeedList(data.posts));
-      .then(data => setFeedList(data));
+      .then(data => setFeedList(data.posts));
+    // .then(data => setFeedList(data));
   }, [searchParams]);
 
   return (
