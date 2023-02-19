@@ -130,13 +130,11 @@ const FollowButton = styled.button`
   border-radius: 10px;
   font-size: 15px;
   font-weight: 700;
-  background-color: black;
+  background-color: #000;
   cursor: pointer;
 `;
 
-const PostImage = styled.div`
-  width: 100%;
-`;
+const PostImage = styled.div``;
 
 const UserPostImage = styled.img`
   margin-top: 20px;
@@ -144,12 +142,10 @@ const UserPostImage = styled.img`
 `;
 
 const SocialProduct = styled.div`
-  width: 100%;
   height: auto;
 `;
 
 const ProductTitle = styled.div`
-  width: 100%;
   height: auto;
   margin: 12px 0;
 `;
@@ -164,7 +160,6 @@ const TextStrong = styled.span`
 
 const ProductList = styled.div`
   margin-bottom: 10px;
-  width: 100%;
 `;
 
 const ProductItem = styled.div`

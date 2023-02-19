@@ -48,9 +48,11 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
   useOutSideClick(ref, () => setIsBidClicked(false));
 
   useEffect(() => {
-    fetch(`${API.products}/next/1`)
+    fetch(`/data/productData.json`)
+      // fetch(`${API.products}/next/1`)
       .then(res => res.json())
-      .then(data => setProductData(data.data));
+      // .then(data => setProductData(data.data));
+      .then(data => setProductData(data));
   }, []);
 
   if (!productData) return <></>;

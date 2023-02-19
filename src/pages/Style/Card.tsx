@@ -31,6 +31,7 @@ const Card = ({
   const navigate = useNavigate();
 
   const isLiked = () => setIsToggle(!isToggle);
+
   const onImageClick = () => {
     fetch(`${API.styleDetail}`, {
       method: 'POST',

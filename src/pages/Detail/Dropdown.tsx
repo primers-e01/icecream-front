@@ -150,7 +150,6 @@ const Dropdown = () => {
             <DropdownItem key={id}>
               <TitleBox
                 condition={isOpen === id ? 'opened' : ''}
-                // TODO: id -> String 변환 확인
                 id={String(id)}
                 onClick={onClick}
               >

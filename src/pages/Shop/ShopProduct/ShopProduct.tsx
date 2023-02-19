@@ -50,10 +50,12 @@ const ShopProduct = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`${API.products}` + search)
+    // fetch(`${API.products}` + search)
+    fetch('/data/shopData.json')
       .then(res => res.json())
       .then(data => {
-        setShopProductList(data.data);
+        // setShopProductList(data.data);
+        setShopProductList(data);
       });
   }, [search]);
 

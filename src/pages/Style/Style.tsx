@@ -21,12 +21,6 @@ const Style = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [clickedFilter, setClickedFilter] = useState('trend');
 
-  useEffect(() => {
-    fetch(`${API.style}?${String(searchParams)}`)
-      .then(response => response.json())
-      .then(data => setFeedList(data.posts));
-  }, [searchParams]);
-
   const onClickTrend = () => {
     searchParams.set('filterBy', 'trending');
     setSearchParams(searchParams);
@@ -38,6 +32,14 @@ const Style = () => {
     setSearchParams(searchParams);
     setClickedFilter('newest');
   };
+
+  useEffect(() => {
+    // fetch(`${API.style}?${String(searchParams)}`)
+    fetch(`/data/StyleData.json`)
+      .then(response => response.json())
+      // .then(data => setFeedList(data.posts));
+      .then(data => setFeedList(data));
+  }, [searchParams]);
 
   return (
     <SocialHeader>
@@ -62,7 +64,6 @@ const Style = () => {
 
 const SocialHeader = styled.div`
   ${flexBox('', '', 'column')}
-  width: 100%;
 `;
 
 const StyleTab = styled.div`
@@ -80,8 +81,8 @@ const ItemTab = styled.button<{ active: boolean }>`
   font-weight: 700;
   border: none;
   border-radius: 22px;
-  background-color: ${props => (props.active ? '#000' : '#fff')};
-  color: ${props => (props.active ? '#fff' : '#000')};
+  background-color: ${({ active }) => (active ? '#000' : '#fff')};
+  color: ${({ active }) => (active ? '#fff' : '#000')};
   cursor: pointer;
 `;
 

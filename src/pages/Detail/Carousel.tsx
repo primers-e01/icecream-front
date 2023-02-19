@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -23,7 +23,7 @@ interface Props {
 
 const Carousel = ({ images }: Props) => {
   // TODO: any 체크
-  const swiperRef = useRef(null) as any;
+  const swiperRef = useRef<SwiperRef>(null);
 
   if (!images) return <></>;
 
@@ -43,10 +43,10 @@ const Carousel = ({ images }: Props) => {
           </SwiperSlide>
         );
       })}
-      <PrevBtn onClick={() => swiperRef.current.swiper.slidePrev()}>
+      <PrevBtn onClick={() => swiperRef.current?.swiper.slidePrev()}>
         <FontAwesomeIcon className="icon" icon={faChevronLeft} size="2x" />
       </PrevBtn>
-      <NextBtn onClick={() => swiperRef.current.swiper.slideNext()}>
+      <NextBtn onClick={() => swiperRef.current?.swiper.slideNext()}>
         <FontAwesomeIcon className="icon" icon={faChevronRight} size="2x" />
       </NextBtn>
     </StyledSwiper>

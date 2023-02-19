@@ -19,8 +19,8 @@ interface Props {
 }
 const MoreModal = ({ setIsMoreClicked }: Props) => {
   const [isFilterClicked, setIsFilterClicked] = useState<number | null>(1);
-  const [tableData, setTableData] = useState<TradeHistoryData[]>();
-  const [loadData, setLoadData] = useState<TradeHistoryData[]>();
+  const [tableData, setTableData] = useState<any>();
+  const [loadData, setLoadData] = useState<any>();
 
   const { productId } = useParams();
 
@@ -29,13 +29,14 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
   useEffect(() => {
     const observer = new IntersectionObserver(e => {
       if (e[0].isIntersecting) {
-        fetch(`${API.products}/${productId}`, {
+        // fetch(`${API.products}/${productId}`, {
+        fetch('/data/productData.json', {
           method: 'GET',
         })
           .then(response => response.json())
           .then(result => {
-            setTableData(result?.data?.tradeAll[0]);
-            setLoadData(result?.data?.tradeAll[0].tradeDataAll);
+            setTableData(result?.tradeAll[0]);
+            setLoadData(result?.tradeAll[0].tradeDataAll);
           });
       }
     });
@@ -119,7 +120,7 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
 
           <TableWrapper>
             <TableBody>
-              {loadData?.map(({ id, size, price, date }) => {
+              {loadData?.map(({ id, size, price, date }: any) => {
                 const KRPrice = Math.floor(Number(price)).toLocaleString(
                   'ko-KR'
                 );
