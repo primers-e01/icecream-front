@@ -101,20 +101,15 @@ const DealCheckModal = ({
 
       <TitleBox>
         <PriceText>총 결제금액</PriceText>
-        {/* TODO: 백엔드 데이터 추가 */}
 
-        {/* <Price tradeType={tradeType}>
-          {buyNow}원
-        </Price> */}
-
-        <Price>
+        <Price tradeType={tradeType}>
           {tradeType === 'sell'
-            ? selectType === '판매 입찰'
-              ? { price }
-              : { buyNow }
-            : selectType === '구매 입찰'
-            ? { price }
-            : { buyNow }}
+            ? selectType === 'sellBid'
+              ? price + '원'
+              : sellNow + '원'
+            : selectType === 'buyBid'
+            ? price + '원'
+            : buyNow + '원'}
         </Price>
       </TitleBox>
 
