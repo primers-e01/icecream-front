@@ -43,8 +43,6 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
     const observer = new IntersectionObserver(e => {
       if (e[0].isIntersecting) {
         fetch(`${API.products}/${productId}`)
-          // , {
-          // fetch('/data/productData.json')
           .then(response => response.json())
           .then(result => {
             setTableData(result.data.tradeAll[0]);
