@@ -5,7 +5,7 @@ import { API } from '../../config/config';
 import useOutSideClick from '../../hooks/useOutSideClick';
 import { flexBox } from '../../styles/mixin';
 import { ProductData } from '../Detail/types';
-import DealBidModal from './DealBidModal';
+import DealBidModal from './DealCheckModal';
 
 const BTN_BUY_ITEM = [
   { item: 'buyBid', text: '구매 입찰하기' },
@@ -28,7 +28,6 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
   const [isBidClicked, setIsBidClicked] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // TODO: 데이터 수정
   const [productData, setProductData] = useState<ProductData>();
 
   const ref = useRef<HTMLDivElement>(null);
@@ -54,10 +53,8 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
   useOutSideClick(ref, () => setIsBidClicked(false));
 
   useEffect(() => {
-    // fetch(`/data/productData.json`)
     fetch(`${API.products}/1`)
       .then(res => res.json())
-      // .then(data => setProductData(data.data));
       .then(data => {
         setProductData(data.data.productData);
       });
@@ -76,8 +73,8 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
             tradeType={tradeType}
             size={getQuerySize}
             selectType={selectType}
-            buyNow={productData.buyNow}
-            sellNow={productData.sellNow}
+            buyNow={Math.floor(Number(productData.buyNow)).toLocaleString()}
+            sellNow={Math.floor(Number(productData.sellNow)).toLocaleString()}
           />
         )}
       </div>
@@ -171,7 +168,13 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
                 {tradeType === 'sell' ? '즉시 판매가' : '즉시 구매가'}
               </PriceTitle>
               <PriceText>
-                {Math.floor(Number(productData.sellNow)).toLocaleString()}원
+                {tradeType === 'sell'
+                  ? `${Math.floor(
+                      Number(productData.sellNow)
+                    ).toLocaleString()}원`
+                  : `${Math.floor(
+                      Number(productData.buyNow)
+                    ).toLocaleString()}원`}
               </PriceText>
             </DealNowSection>
           ) : (
