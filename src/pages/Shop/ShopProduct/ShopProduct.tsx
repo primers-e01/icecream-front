@@ -29,25 +29,25 @@ const ShopProduct = () => {
     });
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(([{ isIntersecting }]) => {
-      if (isIntersecting) {
-        fetch(`${API.products}`)
-          .then(res => res.json())
-          .then(result => {
-            setShopProductList(prev => [...prev, ...result.data]);
-          });
-      }
-    });
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(([{ isIntersecting }]) => {
+  //     if (isIntersecting) {
+  //       fetch(`${API.products}`)
+  //         .then(res => res.json())
+  //         .then(result => {
+  //           setShopProductList(prev => [...prev, ...result.data]);
+  //         });
+  //     }
+  //   });
 
-    if (obsTarget.current) {
-      observer.observe(obsTarget.current);
-    }
+  //   if (obsTarget.current) {
+  //     observer.observe(obsTarget.current);
+  //   }
 
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+  //   return () => {
+  //     observer.disconnect();
+  //   };
+  // }, []);
 
   useEffect(() => {
     fetch(`${API.products}` + search)

@@ -16,16 +16,12 @@ interface Props {
   sellNow: string;
 }
 
+interface ModalMapMap {
+  [key: string]: ModalMapType;
+}
+
 interface ModalMap {
-  [key: string]: any;
-  sell: {
-    sellBid: ModalMapType;
-    sellNow: ModalMapType;
-  };
-  buy: {
-    buyBid: ModalMapType;
-    buyNow: ModalMapType;
-  };
+  [key: string]: ModalMapMap;
 }
 
 type ModalMapType = {

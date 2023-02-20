@@ -5,7 +5,7 @@ import { faCaretDown, faSort, faX } from '@fortawesome/free-solid-svg-icons';
 import { API } from '../../config/config';
 import { flexBox, positionCenter } from '../../styles/mixin';
 import { useParams } from 'react-router-dom';
-import { TradeHistoryData } from './types';
+import { TradeAll, TradeHistoryData, TradeLimit } from './types';
 
 const BTN_LIST = [
   { id: 1, list: '체결 거래 ', data: 'tradeDataAll' },
@@ -18,8 +18,8 @@ interface Props {
 }
 const MoreModal = ({ setIsMoreClicked }: Props) => {
   const [isFilterClicked, setIsFilterClicked] = useState<number | null>(1);
-  const [tableData, setTableData] = useState<any>();
-  const [loadData, setLoadData] = useState<any>();
+  const [tableData, setTableData] = useState<TradeAll>();
+  const [loadData, setLoadData] = useState<TradeHistoryData[]>();
 
   const { productId } = useParams();
 

@@ -31,6 +31,7 @@ export type TradeAll = {
   tradeDataAll: TradeHistoryData[];
   buyBidDataAll: TradeHistoryData[];
   sellBidDataAll: TradeHistoryData[];
+  [data: string]: TradeHistoryData[];
 };
 
 export type TradeLimit = {
