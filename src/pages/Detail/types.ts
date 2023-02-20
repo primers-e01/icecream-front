@@ -34,11 +34,7 @@ export type TradeAll = {
 };
 
 export type TradeLimit = {
-  // TODO: 인덱스 접근 질문
   [data: string]: TradeHistoryData[];
-  tradeDataLimit: TradeHistoryData[];
-  buyBidDataLimit: TradeHistoryData[];
-  sellBidDataLimit: TradeHistoryData[];
 };
 
 export type TradeHistoryData = {

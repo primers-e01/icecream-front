@@ -100,7 +100,9 @@ const DealCheckModal = ({
       </IconBox>
 
       <TitleBox>
-        <PriceText>총 결제금액</PriceText>
+        <PriceText>
+          {tradeType === 'sell' ? '총 정산금액' : '총 결제금액'}
+        </PriceText>
 
         <Price tradeType={tradeType}>
           {tradeType === 'sell'

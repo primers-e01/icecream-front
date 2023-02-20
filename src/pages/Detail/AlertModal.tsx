@@ -29,7 +29,7 @@ const AlertModal = ({ setIsClicked, productData }: Props) => {
       <AlertContent>
         <ItemArea>
           <ItemImg
-            src="http://placeimg.com/640/640/people"
+            src={productData.thumbnailImageUrl}
             alt="제품 이미지"
             width="80px"
           />
