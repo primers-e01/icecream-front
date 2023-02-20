@@ -17,33 +17,24 @@ interface Props {
 }
 
 interface ModalMap {
+  [key: string]: any;
   sell: {
-    sellBid: {
-      text: string;
-      api: string;
-      btn: string;
-    };
-    sellNow: {
-      text: string;
-      api: string;
-      btn: string;
-    };
+    sellBid: ModalMapType;
+    sellNow: ModalMapType;
   };
   buy: {
-    buyBid: {
-      text: string;
-      api: string;
-      btn: string;
-    };
-    buyNow: {
-      text: string;
-      api: string;
-      btn: string;
-    };
+    buyBid: ModalMapType;
+    buyNow: ModalMapType;
   };
 }
 
-const modalMap: ModalMap = {
+type ModalMapType = {
+  text: string;
+  api: string;
+  btn: string;
+};
+
+const MODAL_MAP: ModalMap = {
   sell: {
     sellBid: {
       text: '판매 입찰',
@@ -57,7 +48,6 @@ const modalMap: ModalMap = {
       btn: '즉시판매 완료',
     },
   },
-
   buy: {
     buyBid: {
       text: '구매 입찰',
@@ -73,7 +63,7 @@ const modalMap: ModalMap = {
   },
 };
 
-const DealBidModal = ({
+const DealCheckModal = ({
   setIsBidClicked,
   price,
   formatPrice,
@@ -83,8 +73,6 @@ const DealBidModal = ({
   buyNow,
   sellNow,
 }: Props) => {
-  const buyNowPrice = Math.floor(Number(buyNow)).toLocaleString();
-  const sellNowPrice = Math.floor(Number(sellNow)).toLocaleString();
   const onCloseClick = () => setIsBidClicked(false);
 
   const requestHeaders: Headers = new Headers();
@@ -92,7 +80,7 @@ const DealBidModal = ({
   requestHeaders.set('Authorization', localStorage.getItem('TOKEN') ?? '');
 
   const onBtnClick = () => {
-    fetch(`${modalMap.tradeType?.selectType.api}`, {
+    fetch(`${MODAL_MAP[tradeType][selectType].api}`, {
       method: 'POST',
       headers: requestHeaders,
       body: JSON.stringify({
@@ -114,16 +102,20 @@ const DealBidModal = ({
       <TitleBox>
         <PriceText>총 결제금액</PriceText>
         {/* TODO: 백엔드 데이터 추가 */}
-        {/* <Price>
+
+        {/* <Price tradeType={tradeType}>
+          {buyNow}원
+        </Price> */}
+
+        <Price>
           {tradeType === 'sell'
             ? selectType === '판매 입찰'
               ? { price }
-              : { buyNowPrice }
+              : { buyNow }
             : selectType === '구매 입찰'
             ? { price }
-            : { buyNowPrice }}
-        </Price> */}
-        <Price tradeType={tradeType}>{price}원</Price>
+            : { buyNow }}
+        </Price>
       </TitleBox>
 
       <NoticeBox>
@@ -133,14 +125,14 @@ const DealBidModal = ({
 
       <BtnBox>
         <Btn tradeType={tradeType} onClick={onBtnClick}>
-          {modalMap.tradeType?.selectType.btn}
+          {MODAL_MAP[tradeType][selectType].btn}
         </Btn>
       </BtnBox>
     </Wrapper>
   );
 };
 
-export default DealBidModal;
+export default DealCheckModal;
 
 const Wrapper = styled.div`
   ${positionCenter('fixed')}
@@ -171,7 +163,7 @@ const PriceText = styled.span`
   font-weight: 600;
 `;
 
-const Price = styled.span<{ tradeType: string }>`
+const Price = styled.span<{ tradeType?: string }>`
   display: block;
   font-size: 24px;
   font-weight: 700;
