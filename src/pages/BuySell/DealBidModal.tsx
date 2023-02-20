@@ -16,34 +16,62 @@ interface Props {
   sellNow: string;
 }
 
-interface Example {
+interface ModalMap {
   sell: {
-    '판매 입찰': {
+    sellBid: {
       text: string;
       api: string;
       btn: string;
     };
-    '즉시 판매': {
+    sellNow: {
       text: string;
       api: string;
       btn: string;
     };
   };
   buy: {
-    '구매 입찰': {
+    buyBid: {
       text: string;
       api: string;
       btn: string;
     };
-    '즉시 구매': {
+    buyNow: {
       text: string;
       api: string;
       btn: string;
     };
   };
-  // TODO: index any 확인 필요
-  [key: string]: any;
 }
+
+const modalMap: ModalMap = {
+  sell: {
+    sellBid: {
+      text: '판매 입찰',
+      api: API.sellBid,
+      btn: '판매입찰 완료',
+    },
+
+    sellNow: {
+      text: '즉시 판매',
+      api: API.sellNow,
+      btn: '즉시판매 완료',
+    },
+  },
+
+  buy: {
+    buyBid: {
+      text: '구매 입찰',
+      api: API.buyBid,
+      btn: '구매입찰 완료',
+    },
+
+    buyNow: {
+      text: '즉시 구매',
+      api: API.buyNow,
+      btn: '즉시구매 완료',
+    },
+  },
+};
 
 const DealBidModal = ({
   setIsBidClicked,
@@ -64,7 +92,7 @@ const DealBidModal = ({
   requestHeaders.set('Authorization', localStorage.getItem('TOKEN') ?? '');
 
   const onBtnClick = () => {
-    fetch(`${modalMap[tradeType][selectType].api}`, {
+    fetch(`${modalMap.tradeType?.selectType.api}`, {
       method: 'POST',
       headers: requestHeaders,
       body: JSON.stringify({
@@ -105,7 +133,7 @@ const DealBidModal = ({
 
       <BtnBox>
         <Btn tradeType={tradeType} onClick={onBtnClick}>
-          {modalMap[tradeType][selectType].btn}
+          {modalMap.tradeType?.selectType.btn}
         </Btn>
       </BtnBox>
     </Wrapper>
@@ -184,34 +212,3 @@ const Btn = styled.button<{ tradeType: string }>`
   border-radius: 14px;
   cursor: pointer;
 `;
-
-// TODO: 리팩토링
-const modalMap: Example = {
-  sell: {
-    '판매 입찰': {
-      text: '판매 입찰',
-      api: API.sellBid,
-      btn: '판매입찰 완료',
-    },
-
-    '즉시 판매': {
-      text: '즉시 판매',
-      api: API.sellNow,
-      btn: '즉시판매 완료',
-    },
-  },
-
-  buy: {
-    '구매 입찰': {
-      text: '구매 입찰',
-      api: API.buyBid,
-      btn: '구매입찰 완료',
-    },
-
-    '즉시 구매': {
-      text: '즉시 구매',
-      api: API.buyNow,
-      btn: '즉시구매 완료',
-    },
-  },
-};

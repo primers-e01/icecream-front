@@ -7,8 +7,14 @@ import { flexBox } from '../../styles/mixin';
 import { ProductData } from '../Detail/types';
 import DealBidModal from './DealBidModal';
 
-const BTN_BUY_ITEM = [{ item: '구매 입찰' }, { item: '즉시 구매' }];
-const BTN_SELL_ITEM = [{ item: '판매 입찰' }, { item: '즉시 판매' }];
+const BTN_BUY_ITEM = [
+  { item: 'buyBid', text: '구매 입찰하기' },
+  { item: 'buyNow', text: '즉시 구매하기' },
+];
+const BTN_SELL_ITEM = [
+  { item: 'sellBid', text: '판매 입찰하기' },
+  { item: 'sellNow', text: '즉시 판매하기' },
+];
 
 interface Props {
   tradeType: string;
@@ -49,7 +55,7 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
 
   useEffect(() => {
     // fetch(`/data/productData.json`)
-    fetch(`${API.products}`)
+    fetch(`${API.products}/1`)
       .then(res => res.json())
       // .then(data => setProductData(data.data));
       .then(data => {
@@ -78,10 +84,10 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
 
       <Title>
         {tradeType === 'sell'
-          ? selectType === '판매 입찰'
+          ? selectType === 'sellBid'
             ? '판매 입찰하기'
             : '즉시 판매하기'
-          : selectType === '구매 입찰'
+          : selectType === 'buyBid'
           ? '구매 입찰하기'
           : '즉시 구매하기'}
       </Title>
@@ -120,20 +126,20 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
           <BtnSection>
             <BtnList tradeType={tradeType}>
               {(tradeType === 'sell' ? BTN_SELL_ITEM : BTN_BUY_ITEM).map(
-                ({ item }) => (
+                ({ item, text }) => (
                   <BtnItem
                     key={item}
                     className={selectType === item ? 'active' : ''}
                     onClick={() => onClickTab(item)}
                   >
-                    {item}
+                    {text}
                   </BtnItem>
                 )
               )}
             </BtnList>
           </BtnSection>
 
-          {selectType === '구매 입찰' || selectType === '판매 입찰' ? (
+          {selectType === 'buyBid' || selectType === 'sellBid' ? (
             <DealNowSection checkInputValue={checkInputValue}>
               <PriceTitle checkInputValue={checkInputValue}>
                 {tradeType === 'sell' ? '판매 희망가' : '구매 희망가'}
@@ -158,7 +164,7 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
             ''
           )}
 
-          {selectType === '즉시 구매' || selectType === '즉시 판매' ? (
+          {selectType === 'buyNow' || selectType === 'sellNow' ? (
             // TODO: checkInputValue 들어가는지 체크
             <DealNowSection checkInputValue={checkInputValue}>
               <PriceTitle checkInputValue={true}>
@@ -177,7 +183,7 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
           <BtnArea>
             {/* TODO: tradeType 들어가는지 체크 */}
             <BtnBox>
-              {selectType === '즉시 구매' || selectType === '즉시 판매' ? (
+              {selectType === 'buyNow' || selectType === 'sellNow' ? (
                 <Btn onClick={onDealBtnClick}>
                   <BtnText>
                     {tradeType === 'sell' ? '즉시 판매 계속' : '즉시 구매 계속'}
