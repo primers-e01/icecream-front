@@ -33,6 +33,8 @@ const Style = () => {
     setClickedFilter('newest');
   };
 
+  console.log(`${API.style}?${String(searchParams)}`);
+
   useEffect(() => {
     fetch(`${API.style}?${String(searchParams)}`)
       // fetch(`/data/StyleData.json`)

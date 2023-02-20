@@ -14,7 +14,6 @@ const BTN_LIST = [
 ];
 
 interface Props {
-  // TODO: 나중에 확인
   setIsMoreClicked: React.Dispatch<React.SetStateAction<boolean | undefined>>;
 }
 const MoreModal = ({ setIsMoreClicked }: Props) => {
@@ -35,7 +34,6 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
     if (isFilterClicked === Number(id)) return;
     setIsFilterClicked(isFilterClicked === Number(id) ? null : Number(id));
 
-    // TODO: index 접근 질문
     if (tableData) setLoadData(tableData[data]);
   };
 

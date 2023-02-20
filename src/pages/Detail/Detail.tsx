@@ -28,7 +28,6 @@ import { ProductDataRoot } from './types';
 const Detail = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [isFloat, setIsFloat] = useState(false);
-  // TODO: 데이터타입 체크 필요
   const [pageData, setPageData] = useState<ProductDataRoot>();
 
   const productData = pageData && pageData.productData;
@@ -43,11 +42,9 @@ const Detail = () => {
 
   const fetchProductData = () => {
     fetch(`${API.products}/${productId}`)
-      // fetch
       .then(response => response.json())
       .then(result => {
         setPageData(result.data);
-        // setPageData(result);
       });
   };
 
