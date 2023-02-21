@@ -71,7 +71,7 @@ const Footer = () => {
           })}
         </CorporationIconList>
         <CororationInfo>
-          아이스크림 주식회사 · 대표 임다슬
+          아이스크림 주식회사 · 대표 김나희
           <Blank />
           사업자등록번호 : 123-45-67890
           <Blank />
