@@ -2,10 +2,10 @@ name: S3 deploy with cloud front
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   run:
@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build
+        run: CI='' npm run build
 
       - name: Deploy
         uses: lbertenasco/s3-deploy@v1
