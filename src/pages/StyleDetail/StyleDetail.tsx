@@ -19,7 +19,7 @@ const StyleDetail = () => {
       body: JSON.stringify({}),
     })
       .then(result => result.json())
-      .then(setLoading(false));
+      .then(() => setLoading(false));
   }, []);
 
   if (loading) return <h1>로딩중입니다.</h1>;
