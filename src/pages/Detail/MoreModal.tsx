@@ -5,7 +5,7 @@ import { faCaretDown, faSort, faX } from '@fortawesome/free-solid-svg-icons';
 import { API } from '../../config/config';
 import { flexBox, positionCenter } from '../../styles/mixin';
 import { useParams } from 'react-router-dom';
-import { TradeAll, TradeHistoryData, TradeLimit } from './types';
+import { TradeAll, TradeHistoryData } from './types';
 
 const BTN_LIST = [
   { id: 1, list: '체결 거래 ', data: 'tradeDataAll' },

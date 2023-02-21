@@ -5,7 +5,7 @@ import { API } from '../../config/config';
 import StyleCard from './StyleCard';
 
 const StyleDetail = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const location = useLocation();
 
@@ -17,7 +17,9 @@ const StyleDetail = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({}),
-    });
+    })
+      .then(result => result.json())
+      .then(setLoading(false));
   }, []);
 
   if (loading) return <h1>로딩중입니다.</h1>;
