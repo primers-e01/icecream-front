@@ -62,7 +62,7 @@ const Detail = () => {
     return () => observer.disconnect();
   }, [dealBtnRef, productData]);
 
-  if (!productData) return;
+  if (!productData) return <div />;
 
   return (
     <DetailWrapper>
