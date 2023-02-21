@@ -26,7 +26,7 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
   const [inputValue, setInputValue] = useState('');
   const [checkInputValue, setCheckInputValue] = useState(true);
   const [isBidClicked, setIsBidClicked] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const [productData, setProductData] = useState<ProductData>();
 
@@ -60,7 +60,7 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
       });
   }, []);
 
-  if (!productData) return <></>;
+  if (!productData) return <div />;
 
   return (
     <BuyBackGround>
