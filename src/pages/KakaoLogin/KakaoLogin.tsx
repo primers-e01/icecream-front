@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { API } from 'src/config/config';
 
 const KakaoLogin = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -10,7 +11,7 @@ const KakaoLogin = () => {
   setSearchParams(code || '');
 
   useEffect(() => {
-    fetch(`http://10.58.52.168:8000/users/login?${String(searchParams)}`, {
+    fetch(`${API.kakaoLogin}?${String(searchParams)}`, {
       method: 'POST',
       headers: { Accept: 'application / json' },
     })

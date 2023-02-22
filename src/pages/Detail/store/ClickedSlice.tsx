@@ -1,19 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface ClickedSlice {
+interface ClickedSliceType {
   isClicked: boolean;
 }
 
 const initialState = {
   isClicked: false,
-} as ClickedSlice;
+} as ClickedSliceType;
 
 const ClickedSlice = createSlice({
   name: 'ClickedSlice',
   initialState,
   reducers: {
     toggle: state => {
-      state.isClicked = !state.isClicked;
+      state.isClicked = true;
     },
   },
 });

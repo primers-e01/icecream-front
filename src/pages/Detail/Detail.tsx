@@ -22,14 +22,27 @@ import SellButton from './components/SellButton';
 import useOutSideClick from '../../hooks/useOutSideClick';
 import { API } from '../../config/config';
 import { flexBox } from '../../styles/mixin';
-
 import { ProductDataRoot } from './types';
+import { ClickedSliceActions } from './store/ClickedSlice';
+import { useAppDispatch, useAppSelector } from './store/Store';
+import { api } from './store/api';
+import { useGetCounterQuery } from './store/api';
 
 const Detail = () => {
+  const dispatch = useAppDispatch();
+  const isClicked1 = useAppSelector(state => state.ClickedSlice.isClicked);
+  const product = useAppSelector(state => state.product);
   const [isClicked, setIsClicked] = useState(false);
   const [isFloat, setIsFloat] = useState(false);
   const [pageData, setPageData] = useState<ProductDataRoot>();
+  console.log(product);
+  console.log(pageData);
 
+  const query = api.endpoints;
+  console.log(query);
+  const toggle = () => {
+    dispatch(ClickedSliceActions.toggle());
+  };
   const productData = pageData && pageData.productData;
   const tableData = pageData?.tradeLimit[0];
   const { productId } = useParams();
@@ -39,6 +52,7 @@ const Detail = () => {
   const onAlertClick = () => setIsClicked(true);
 
   useOutSideClick(ref, () => setIsClicked(false));
+  // useOutSideClick(ref, () => toggle());
 
   const fetchProductData = () => {
     fetch(`${API.products}/${productId}`)
@@ -52,15 +66,15 @@ const Detail = () => {
     fetchProductData();
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(([{ isIntersecting }]) =>
-      setIsFloat(!isIntersecting)
-    );
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(([{ isIntersecting }]) =>
+  //     setIsFloat(!isIntersecting)
+  //   );
 
-    if (dealBtnRef.current) observer.observe(dealBtnRef.current);
+  //   if (dealBtnRef.current) observer.observe(dealBtnRef.current);
 
-    return () => observer.disconnect();
-  }, [dealBtnRef, productData]);
+  //   return () => observer.disconnect();
+  // }, [dealBtnRef, productData]);
 
   if (!productData) return <div />;
 
@@ -75,7 +89,7 @@ const Detail = () => {
 
       <ImageColumn>
         <ItemImgBox>
-          <Carousel images={productData?.images} />
+          <Carousel images={productData.images} />
 
           <ItemAlertBox onClick={onAlertClick}>
             <AlertTitleBox>
@@ -94,9 +108,9 @@ const Detail = () => {
 
       <DescriptionColumn>
         <TitleSection>
-          <BrandTitle>{productData?.brandName}</BrandTitle>
-          <ItemEnglishName>{productData?.enName}</ItemEnglishName>
-          <ItemKoreanName>{productData?.krName}</ItemKoreanName>
+          <BrandTitle>{productData.brandName}</BrandTitle>
+          <ItemEnglishName>{productData.enName}</ItemEnglishName>
+          <ItemKoreanName>{productData.krName}</ItemKoreanName>
           <ItemFigureBox>
             <ItemSizeBox>
               <SizePriceText>사이즈</SizePriceText>
@@ -111,7 +125,7 @@ const Detail = () => {
               <RecentPriceBox>
                 <RecentPrice>
                   {Math.floor(
-                    Number(productData?.recentTradePrice)
+                    Number(productData.recentTradePrice)
                   ).toLocaleString()}
                   원
                 </RecentPrice>
@@ -131,25 +145,23 @@ const Detail = () => {
           <InfoBox>
             <DetailInfoBox>
               <ModelTitle>모델번호</ModelTitle>
-              <ModelInfo>{productData?.modelNumber}</ModelInfo>
+              <ModelInfo>{productData.modelNumber}</ModelInfo>
             </DetailInfoBox>
 
             <DetailInfoBox>
               <ModelTitle>출시일</ModelTitle>
-              <ModelInfo>{productData?.releaseDate}</ModelInfo>
+              <ModelInfo>{productData.releaseDate}</ModelInfo>
             </DetailInfoBox>
 
             <DetailInfoBox>
               <ModelTitle>컬러</ModelTitle>
-              <ModelInfo>{productData?.color}</ModelInfo>
+              <ModelInfo>{productData.color}</ModelInfo>
             </DetailInfoBox>
 
             <DetailInfoBox>
               <ModelTitle>발매가</ModelTitle>
               <ModelInfo>
-                {Math.floor(
-                  Number(productData?.originalPrice)
-                ).toLocaleString()}
+                {Math.floor(Number(productData.originalPrice)).toLocaleString()}
                 원
               </ModelInfo>
             </DetailInfoBox>
@@ -194,6 +206,7 @@ const Detail = () => {
           상품은 개별판매자가 등록한 상품으로 상품, 상품정보, 거래에 관한 의무와
           책임은 각 판매자에게 있습니다. 단, 거래과정에서 검수하고 보증하는
           내용에 대한 책임은 아이스크림(주)에 있습니다.
+          {/* <button onClick={toggle} /> */}
         </NoticeSection>
       </DescriptionColumn>
     </DetailWrapper>

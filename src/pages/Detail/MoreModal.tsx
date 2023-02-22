@@ -114,7 +114,7 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
 
           <TableWrapper>
             <TableBody>
-              {loadData?.map(({ id, size, price, date }: any) => {
+              {loadData?.map(({ id, size, price, date }) => {
                 const KRPrice = Math.floor(Number(price)).toLocaleString(
                   'ko-KR'
                 );
