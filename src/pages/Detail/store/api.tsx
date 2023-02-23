@@ -14,4 +14,4 @@ export const api = createApi({
 });
 // fetch(`${API.products}/${productId}`);
 
-export const { useGetCounterQuery }: any = api;
+export const { useGetApiQuery }: any = api;
