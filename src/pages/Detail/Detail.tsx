@@ -40,6 +40,8 @@ const Detail = () => {
 
   useOutSideClick(ref, () => setIsClicked(false));
 
+  console.log(pageData?.tradeAll[0]);
+
   const fetchProductData = () => {
     fetch(`${API.products}/${productId}`)
       .then(response => response.json())

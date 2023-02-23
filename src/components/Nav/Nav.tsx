@@ -32,7 +32,7 @@ const Nav = () => {
 
   const logOutClick = () => {
     localStorage.removeItem('accessToken');
-    navigate('/products/main');
+    navigate('/');
   };
 
   return (
@@ -58,7 +58,7 @@ const Nav = () => {
 
       <NavMainBox>
         <NavLogoBox>
-          <Link to="/products/main">
+          <Link to="/">
             <LogoImg
               src="https://cdn.discordapp.com/attachments/1060384508286877719/1060410692068450385/052f177d26f60b77.png"
               alt="Logo"
