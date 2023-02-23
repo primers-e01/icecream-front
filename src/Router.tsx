@@ -22,7 +22,7 @@ const Router = () => {
       <ScrollToTop />
       <Nav />
       <Routes>
-        <Route path="/products/main" element={<Main />} />
+        <Route path="/" element={<Main />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/products" element={<Shop />} />
         <Route path="/detail/:productId" element={<Detail />} />
