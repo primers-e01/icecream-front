@@ -8,14 +8,18 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/theme';
+import { Provider } from 'react-redux';
+import Store from './pages/Detail/store/Store';
 library.add(fab, far, fas);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <Router />
-  </ThemeProvider>
+  <Provider store={Store}>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Router />
+    </ThemeProvider>
+  </Provider>
 );

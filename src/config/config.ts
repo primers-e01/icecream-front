@@ -9,6 +9,7 @@ const API = {
   login: `${BASE_URL}/users/login`,
   style: `${BASE_URL}/posts/main`,
   styleDetail: `${BASE_URL}/posts/details`,
+  kakaoLogin: `${BASE_URL}/users/login`,
 };
 
 export { API };

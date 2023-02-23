@@ -22,13 +22,14 @@ import SellButton from './components/SellButton';
 import useOutSideClick from '../../hooks/useOutSideClick';
 import { API } from '../../config/config';
 import { flexBox } from '../../styles/mixin';
-
 import { ProductDataRoot } from './types';
 
 const Detail = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [isFloat, setIsFloat] = useState(false);
   const [pageData, setPageData] = useState<ProductDataRoot>();
+
+  // const product;
 
   const productData = pageData && pageData.productData;
   const tableData = pageData?.tradeLimit[0];
@@ -77,7 +78,7 @@ const Detail = () => {
 
       <ImageColumn>
         <ItemImgBox>
-          <Carousel images={productData?.images} />
+          <Carousel images={productData.images} />
 
           <ItemAlertBox onClick={onAlertClick}>
             <AlertTitleBox>
@@ -96,9 +97,9 @@ const Detail = () => {
 
       <DescriptionColumn>
         <TitleSection>
-          <BrandTitle>{productData?.brandName}</BrandTitle>
-          <ItemEnglishName>{productData?.enName}</ItemEnglishName>
-          <ItemKoreanName>{productData?.krName}</ItemKoreanName>
+          <BrandTitle>{productData.brandName}</BrandTitle>
+          <ItemEnglishName>{productData.enName}</ItemEnglishName>
+          <ItemKoreanName>{productData.krName}</ItemKoreanName>
           <ItemFigureBox>
             <ItemSizeBox>
               <SizePriceText>사이즈</SizePriceText>
@@ -113,7 +114,7 @@ const Detail = () => {
               <RecentPriceBox>
                 <RecentPrice>
                   {Math.floor(
-                    Number(productData?.recentTradePrice)
+                    Number(productData.recentTradePrice)
                   ).toLocaleString()}
                   원
                 </RecentPrice>
@@ -133,25 +134,23 @@ const Detail = () => {
           <InfoBox>
             <DetailInfoBox>
               <ModelTitle>모델번호</ModelTitle>
-              <ModelInfo>{productData?.modelNumber}</ModelInfo>
+              <ModelInfo>{productData.modelNumber}</ModelInfo>
             </DetailInfoBox>
 
             <DetailInfoBox>
               <ModelTitle>출시일</ModelTitle>
-              <ModelInfo>{productData?.releaseDate}</ModelInfo>
+              <ModelInfo>{productData.releaseDate}</ModelInfo>
             </DetailInfoBox>
 
             <DetailInfoBox>
               <ModelTitle>컬러</ModelTitle>
-              <ModelInfo>{productData?.color}</ModelInfo>
+              <ModelInfo>{productData.color}</ModelInfo>
             </DetailInfoBox>
 
             <DetailInfoBox>
               <ModelTitle>발매가</ModelTitle>
               <ModelInfo>
-                {Math.floor(
-                  Number(productData?.originalPrice)
-                ).toLocaleString()}
+                {Math.floor(Number(productData.originalPrice)).toLocaleString()}
                 원
               </ModelInfo>
             </DetailInfoBox>
@@ -196,6 +195,7 @@ const Detail = () => {
           상품은 개별판매자가 등록한 상품으로 상품, 상품정보, 거래에 관한 의무와
           책임은 각 판매자에게 있습니다. 단, 거래과정에서 검수하고 보증하는
           내용에 대한 책임은 아이스크림(주)에 있습니다.
+          {/* <button onClick={toggle} /> */}
         </NoticeSection>
       </DescriptionColumn>
     </DetailWrapper>
