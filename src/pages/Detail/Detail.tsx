@@ -23,13 +23,18 @@ import useOutSideClick from '../../hooks/useOutSideClick';
 import { API } from '../../config/config';
 import { flexBox } from '../../styles/mixin';
 import { ProductDataRoot } from './types';
+import { useAppDispatch, useAppSelector } from './store/Store';
+
+interface GroupedSellBidData {
+  [size: string]: number;
+}
 
 const Detail = () => {
+  const dispatch = useAppDispatch();
+  const ProductSlice = useAppSelector(state => state.ProductSlice);
   const [isClicked, setIsClicked] = useState(false);
   const [isFloat, setIsFloat] = useState(false);
   const [pageData, setPageData] = useState<ProductDataRoot>();
-
-  // const product;
 
   const productData = pageData && pageData.productData;
   const tableData = pageData?.tradeLimit[0];
@@ -41,8 +46,6 @@ const Detail = () => {
 
   useOutSideClick(ref, () => setIsClicked(false));
 
-  console.log(pageData?.tradeAll[0]);
-
   const fetchProductData = () => {
     fetch(`${API.products}/${productId}`)
       .then(response => response.json())
@@ -50,6 +53,19 @@ const Detail = () => {
         setPageData(result.data);
       });
   };
+
+  const sellBidDataAll = pageData?.tradeAll[0].sellBidDataAll;
+
+  const groupedSellBidData = sellBidDataAll?.reduce<GroupedSellBidData>(
+    (acc, { size, price }) => {
+      const numberPrice = Number(price);
+      if (acc[size] === undefined || acc[size] > numberPrice) {
+        acc[size] = numberPrice;
+      }
+      return acc;
+    },
+    {}
+  );
 
   useEffect(() => {
     fetchProductData();
