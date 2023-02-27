@@ -38,7 +38,7 @@ const Carousel = ({ images }: Props) => {
       {images.map(({ alt, url }) => {
         return (
           <SwiperSlide key={url}>
-            <img src={url} alt={alt} width="400px" height="auto" />
+            <img src={url} alt={alt} width="100%" height="auto" />
           </SwiperSlide>
         );
       })}

@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { flexBox } from '../../styles/mixin';
-
-const SIZE_BTN = [
-  { size: 230, price: '100,000' },
-  { size: 240, price: '200,000' },
-  { size: 250, price: '300,000' },
-  { size: 260, price: '400,000' },
-  { size: 270, price: '500,000' },
-  { size: 280, price: '600,000' },
-];
+import { useAppSelector } from '../Detail/store/Store';
+interface GroupedSellBidData {
+  [size: string]: number;
+}
 
 interface Props {
   tradeType: string;
@@ -18,14 +13,94 @@ interface Props {
 
 const SelectLayout = ({ tradeType }: Props) => {
   const [selectSize, setSelectSize] = useState<number | undefined>();
-  const [selectedPrice, setSelectedPrice] = useState<string | undefined>();
+  const [selectedPrice, setSelectedPrice] = useState<number | undefined>();
+  const ProductSlice = useAppSelector(state => state.ProductSlice);
+  console.log('ProductSlice : ', ProductSlice);
+  const sellBidDataAll = ProductSlice.tradeAll[0]?.sellBidDataAll;
+  const buyBidDataAll = ProductSlice.tradeAll[0]?.buyBidDataAll;
+
+  const groupedSellBidData = sellBidDataAll?.reduce<GroupedSellBidData>(
+    (acc, { size, price }) => {
+      const numberPrice = Number(price);
+      if (acc[size] === undefined || acc[size] > numberPrice) {
+        acc[size] = numberPrice;
+      }
+      return acc;
+    },
+    {}
+  );
+
+  const groupedBuyBidData = buyBidDataAll?.reduce<GroupedSellBidData>(
+    (acc, { size, price }) => {
+      const numberPrice = Number(price);
+      if (acc[size] === undefined || acc[size] < numberPrice) {
+        acc[size] = numberPrice;
+      }
+      return acc;
+    },
+    {}
+  );
+
+  const SIZE_BTN = [
+    {
+      size: 230,
+      price:
+        tradeType === 'sell'
+          ? groupedSellBidData?.[230]
+          : groupedBuyBidData?.[230],
+    },
+    {
+      size: 240,
+      price:
+        tradeType === 'sell'
+          ? groupedSellBidData?.[240]
+          : groupedBuyBidData?.[240],
+    },
+    {
+      size: 250,
+      price:
+        tradeType === 'sell'
+          ? groupedSellBidData?.[250]
+          : groupedBuyBidData?.[250],
+    },
+    {
+      size: 260,
+      price:
+        tradeType === 'sell'
+          ? groupedSellBidData?.[260]
+          : groupedBuyBidData?.[260],
+    },
+    {
+      size: 270,
+      price:
+        tradeType === 'sell'
+          ? groupedSellBidData?.[270]
+          : groupedBuyBidData?.[270],
+    },
+    {
+      size: 280,
+      price:
+        tradeType === 'sell'
+          ? groupedSellBidData?.[280]
+          : groupedBuyBidData?.[280],
+    },
+  ];
+
+  console.log('sell : ', groupedSellBidData);
+  console.log('buy : ', groupedBuyBidData);
 
   const navigate = useNavigate();
 
-  const onSizeClick = (size: number, price: string) => {
+  const onSizeClick = (size: number, price: number) => {
     setSelectSize(size);
     setSelectedPrice(price);
   };
+
+  useEffect(() => {
+    if (!ProductSlice.productData) {
+      navigate('/products');
+    }
+  }, []);
 
   return (
     <BuyBackGround>
@@ -35,15 +110,20 @@ const SelectLayout = ({ tradeType }: Props) => {
           <ItemInfoBox>
             <ItemImg
               // TODO: 백 데이터로 수정
-              src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1608667508764-33cf0726b13a%3Fixlib%3Drb-4.0.3%26ixid%3DMnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8%26auto%3Dformat%26fit%3Dcrop%26w%3D880%26q%3D80"
+              src={ProductSlice.productData?.thumbnailImageUrl}
               alt="제품 이미지"
               width="80px"
+              height="80px"
             />
             <ItemInfo>
               {/* TODO: 백 데이터로 수정 */}
-              <ItemCode>AA001</ItemCode>
-              <ItemEnglishName>Etiam ac tortor iaculis</ItemEnglishName>
-              <ItemKoreanName>에티암 에크 토터</ItemKoreanName>
+              <ItemCode>{ProductSlice.productData?.modelNumber}</ItemCode>
+              <ItemEnglishName>
+                {ProductSlice.productData?.enName}
+              </ItemEnglishName>
+              <ItemKoreanName>
+                {ProductSlice.productData?.krName}
+              </ItemKoreanName>
             </ItemInfo>
           </ItemInfoBox>
 
@@ -58,7 +138,9 @@ const SelectLayout = ({ tradeType }: Props) => {
                   >
                     <SizeBtn>
                       <Size>{size}</Size>
-                      <Price tradeType={tradeType}>{price}</Price>
+                      <Price tradeType={tradeType}>
+                        {price ? price.toLocaleString() : '-'}
+                      </Price>
                     </SizeBtn>
                   </SelectItem>
                 );
@@ -73,7 +155,11 @@ const SelectLayout = ({ tradeType }: Props) => {
                 tradeType={tradeType}
               >
                 <Btn>
-                  <BtnPrice>{selectedPrice}</BtnPrice>
+                  <BtnPrice>
+                    {selectedPrice
+                      ? selectedPrice.toLocaleString()
+                      : '입찰하기'}
+                  </BtnPrice>
                   <BtnText>일반배송(5-7일소요)</BtnText>
                 </Btn>
               </BtnBox>

@@ -1,5 +1,5 @@
 export type ProductDataRoot = {
-  productData: ProductData;
+  productData?: ProductData;
   tradeAll: TradeAll[];
   tradeLimit: TradeLimit[];
   chartData: ChartData[];
@@ -43,7 +43,6 @@ export type TradeHistoryData = {
   size: string;
   date: string;
   price: string;
-  // [key: number]: any;
 };
 
 export type ChartData = {

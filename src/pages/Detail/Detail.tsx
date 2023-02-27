@@ -23,15 +23,10 @@ import useOutSideClick from '../../hooks/useOutSideClick';
 import { API } from '../../config/config';
 import { flexBox } from '../../styles/mixin';
 import { ProductDataRoot } from './types';
-import { useAppDispatch, useAppSelector } from './store/Store';
-
-interface GroupedSellBidData {
-  [size: string]: number;
-}
+import { useAppDispatch } from './store/Store';
+import { saveProductData } from './store/ProductSlice';
 
 const Detail = () => {
-  const dispatch = useAppDispatch();
-  const ProductSlice = useAppSelector(state => state.ProductSlice);
   const [isClicked, setIsClicked] = useState(false);
   const [isFloat, setIsFloat] = useState(false);
   const [pageData, setPageData] = useState<ProductDataRoot>();
@@ -39,9 +34,11 @@ const Detail = () => {
   const productData = pageData && pageData.productData;
   const tableData = pageData?.tradeLimit[0];
   const { productId } = useParams();
+  const dispatch = useAppDispatch();
 
   const ref = useRef<HTMLDivElement>(null);
   const dealBtnRef = useRef<HTMLDivElement>(null);
+
   const onAlertClick = () => setIsClicked(true);
 
   useOutSideClick(ref, () => setIsClicked(false));
@@ -51,21 +48,9 @@ const Detail = () => {
       .then(response => response.json())
       .then(result => {
         setPageData(result.data);
+        dispatch(saveProductData(result.data));
       });
   };
-
-  const sellBidDataAll = pageData?.tradeAll[0].sellBidDataAll;
-
-  const groupedSellBidData = sellBidDataAll?.reduce<GroupedSellBidData>(
-    (acc, { size, price }) => {
-      const numberPrice = Number(price);
-      if (acc[size] === undefined || acc[size] > numberPrice) {
-        acc[size] = numberPrice;
-      }
-      return acc;
-    },
-    {}
-  );
 
   useEffect(() => {
     fetchProductData();
@@ -75,9 +60,7 @@ const Detail = () => {
     const observer = new IntersectionObserver(([{ isIntersecting }]) =>
       setIsFloat(!isIntersecting)
     );
-
     if (dealBtnRef.current) observer.observe(dealBtnRef.current);
-
     return () => observer.disconnect();
   }, [dealBtnRef, productData]);
 

@@ -246,9 +246,9 @@ const NoticeSection = styled.section`
   justify-content: space-between;
   margin-top: 12px;
   font-size: 12px;
-  color: ${({ theme }) => theme.mainBrandGray05};
 `;
 
 const NoticeParagraph = styled.p`
   max-width: 625px;
+  color: ${({ theme }) => theme.mainBrandGray05};
 `;

@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
 
   * {
   box-sizing: border-box;
-  color : ${props => props.theme.mainBrandBlack};
+  color : ${({ theme }) => theme.mainBrandBlack};
   }
 
   body {
