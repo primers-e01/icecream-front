@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { flexBox } from '../../styles/mixin';
+import { useAppSelector } from '../Detail/store/Store';
 
 const SIZE_BTN = [
   { size: 230, price: '100,000' },
@@ -12,6 +13,10 @@ const SIZE_BTN = [
   { size: 280, price: '600,000' },
 ];
 
+interface GroupedSellBidData {
+  [size: string]: number;
+}
+
 interface Props {
   tradeType: string;
 }
@@ -19,6 +24,35 @@ interface Props {
 const SelectLayout = ({ tradeType }: Props) => {
   const [selectSize, setSelectSize] = useState<number | undefined>();
   const [selectedPrice, setSelectedPrice] = useState<string | undefined>();
+  const ProductSlice = useAppSelector(state => state.ProductSlice);
+  console.log('ProductSlice : ', ProductSlice);
+  const sellBidDataAll = ProductSlice.tradeAll[0]?.sellBidDataAll;
+  const buyBidDataAll = ProductSlice.tradeAll[0]?.buyBidDataAll;
+
+  const groupedSellBidData = sellBidDataAll?.reduce<GroupedSellBidData>(
+    (acc, { size, price }) => {
+      const numberPrice = Number(price);
+      if (acc[size] === undefined || acc[size] > numberPrice) {
+        acc[size] = numberPrice;
+      }
+      return acc;
+    },
+    {}
+  );
+
+  const groupedBuyBidData = buyBidDataAll?.reduce<GroupedSellBidData>(
+    (acc, { size, price }) => {
+      const numberPrice = Number(price);
+      if (acc[size] === undefined || acc[size] < numberPrice) {
+        acc[size] = numberPrice;
+      }
+      return acc;
+    },
+    {}
+  );
+
+  console.log('sell : ', groupedSellBidData);
+  console.log('buy : ', groupedBuyBidData);
 
   const navigate = useNavigate();
 
@@ -26,6 +60,12 @@ const SelectLayout = ({ tradeType }: Props) => {
     setSelectSize(size);
     setSelectedPrice(price);
   };
+
+  useEffect(() => {
+    if (!ProductSlice.productData) {
+      navigate('/products');
+    }
+  }, []);
 
   return (
     <BuyBackGround>
@@ -35,15 +75,20 @@ const SelectLayout = ({ tradeType }: Props) => {
           <ItemInfoBox>
             <ItemImg
               // TODO: 백 데이터로 수정
-              src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1608667508764-33cf0726b13a%3Fixlib%3Drb-4.0.3%26ixid%3DMnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8%26auto%3Dformat%26fit%3Dcrop%26w%3D880%26q%3D80"
+              src={ProductSlice.productData?.thumbnailImageUrl}
               alt="제품 이미지"
               width="80px"
+              height="80px"
             />
             <ItemInfo>
               {/* TODO: 백 데이터로 수정 */}
-              <ItemCode>AA001</ItemCode>
-              <ItemEnglishName>Etiam ac tortor iaculis</ItemEnglishName>
-              <ItemKoreanName>에티암 에크 토터</ItemKoreanName>
+              <ItemCode>{ProductSlice.productData?.modelNumber}</ItemCode>
+              <ItemEnglishName>
+                {ProductSlice.productData?.enName}
+              </ItemEnglishName>
+              <ItemKoreanName>
+                {ProductSlice.productData?.krName}
+              </ItemKoreanName>
             </ItemInfo>
           </ItemInfoBox>
 

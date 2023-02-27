@@ -1,25 +1,24 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { addSyntheticLeadingComment } from 'typescript';
+import { ProductDataRoot } from '../types';
 
-const initialState = {
-  value: {
-    '230': '-',
-    '240': '-',
-    '250': '-',
-    '260': '-',
-    '270': '-',
-    '280': '-',
-  },
+const initialState: ProductDataRoot = {
+  productData: undefined,
+  tradeAll: [],
+  tradeLimit: [],
+  chartData: [],
 };
 
 const ProductSlice = createSlice({
   name: 'ProductSlice',
   initialState,
   reducers: {
-    productSave: (state, action) => {
-      state.value = action.payload;
+    saveProductData: (state, action: PayloadAction<ProductDataRoot>) => {
+      Object.assign(state, action.payload);
+      // return action.payload;
     },
   },
 });
 
 export default ProductSlice.reducer;
-export const ProductAction = ProductSlice.actions;
+export const { saveProductData } = ProductSlice.actions;

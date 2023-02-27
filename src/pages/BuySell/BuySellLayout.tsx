@@ -1,10 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { API } from '../../config/config';
 import useOutSideClick from '../../hooks/useOutSideClick';
 import { flexBox } from '../../styles/mixin';
-import { ProductData } from '../Detail/types';
+import { useAppSelector } from '../Detail/store/Store';
 import DealBidModal from './DealCheckModal';
 
 const BTN_BUY_ITEM = [
@@ -28,8 +27,9 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
   const [isBidClicked, setIsBidClicked] = useState(false);
   const [searchParams] = useSearchParams();
 
-  const [productData, setProductData] = useState<ProductData>();
+  const ProductSlice = useAppSelector(state => state.ProductSlice);
 
+  const navigate = useNavigate();
   const ref = useRef<HTMLDivElement>(null);
 
   const getQuerySize = searchParams.get('size');
@@ -53,14 +53,12 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
   useOutSideClick(ref, () => setIsBidClicked(false));
 
   useEffect(() => {
-    fetch(`${API.products}/1`)
-      .then(res => res.json())
-      .then(data => {
-        setProductData(data.data.productData);
-      });
+    if (!ProductSlice.productData) {
+      navigate('/products');
+    }
   }, []);
 
-  if (!productData) return <div />;
+  if (!ProductSlice.productData) return <div />;
 
   return (
     <BuyBackGround>
@@ -73,8 +71,12 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
             tradeType={tradeType}
             size={getQuerySize}
             selectType={selectType}
-            buyNow={Math.floor(Number(productData.buyNow)).toLocaleString()}
-            sellNow={Math.floor(Number(productData.sellNow)).toLocaleString()}
+            buyNow={Math.floor(
+              Number(ProductSlice.productData?.buyNow)
+            ).toLocaleString()}
+            sellNow={Math.floor(
+              Number(ProductSlice.productData?.sellNow)
+            ).toLocaleString()}
           />
         )}
       </div>
@@ -93,14 +95,18 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
         <BuyBox>
           <ItemInfoBox>
             <ItemImg
-              src={productData.thumbnailImageUrl}
+              src={ProductSlice.productData?.thumbnailImageUrl}
               alt="제품 이미지"
               width="80px"
             />
             <ItemInfo>
-              <ItemCode>{productData.modelNumber}</ItemCode>
-              <ItemEnglishName>{productData.enName}</ItemEnglishName>
-              <ItemKoreanName>{productData.krName}</ItemKoreanName>
+              <ItemCode>{ProductSlice.productData?.modelNumber}</ItemCode>
+              <ItemEnglishName>
+                {ProductSlice.productData?.enName}
+              </ItemEnglishName>
+              <ItemKoreanName>
+                {ProductSlice.productData?.krName}
+              </ItemKoreanName>
               <ItemSize>{getQuerySize}</ItemSize>
             </ItemInfo>
           </ItemInfoBox>
@@ -109,13 +115,19 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
             <BuyNowPrice>
               <Text>즉시 구매가</Text>
               <Price>
-                {Math.floor(Number(productData.buyNow)).toLocaleString()}원
+                {Math.floor(
+                  Number(ProductSlice.productData?.buyNow)
+                ).toLocaleString()}
+                원
               </Price>
             </BuyNowPrice>
             <SellNowPrice>
               <Text>즉시 판매가</Text>
               <Price>
-                {Math.floor(Number(productData.sellNow)).toLocaleString()}원
+                {Math.floor(
+                  Number(ProductSlice.productData?.sellNow)
+                ).toLocaleString()}
+                원
               </Price>
             </SellNowPrice>
           </PriceBox>
@@ -170,10 +182,10 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
               <PriceText>
                 {tradeType === 'sell'
                   ? `${Math.floor(
-                      Number(productData.sellNow)
+                      Number(ProductSlice.productData?.sellNow)
                     ).toLocaleString()}원`
                   : `${Math.floor(
-                      Number(productData.buyNow)
+                      Number(ProductSlice.productData?.buyNow)
                     ).toLocaleString()}원`}
               </PriceText>
             </DealNowSection>

@@ -6,6 +6,7 @@ import { API } from '../../config/config';
 import { flexBox, positionCenter } from '../../styles/mixin';
 import { useParams } from 'react-router-dom';
 import { TradeAll, TradeHistoryData } from './types';
+import { useAppSelector } from './store/Store';
 
 const BTN_LIST = [
   { id: 1, list: '체결 거래 ', data: 'tradeDataAll' },
@@ -20,6 +21,8 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
   const [isFilterClicked, setIsFilterClicked] = useState<number | null>(1);
   const [tableData, setTableData] = useState<TradeAll>();
   const [loadData, setLoadData] = useState<TradeHistoryData[]>();
+
+  const ProductSlice = useAppSelector(state => state.ProductSlice);
 
   const { productId } = useParams();
 
@@ -65,14 +68,18 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
           <ItemInfoBox>
             <ImgBox>
               <ItemImg
-                src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1608667508764-33cf0726b13a%3Fixlib%3Drb-4.0.3%26ixid%3DMnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8%26auto%3Dformat%26fit%3Dcrop%26w%3D880%26q%3D80"
+                src={ProductSlice.productData?.thumbnailImageUrl}
                 alt="제품 이미지"
               />
             </ImgBox>
 
             <ItemInfo>
-              <ItemEnglishName>Etiam ac tortor iaculis</ItemEnglishName>
-              <ItemKoreanName>에티암 에크 토터</ItemKoreanName>
+              <ItemEnglishName>
+                {ProductSlice.productData?.enName}
+              </ItemEnglishName>
+              <ItemKoreanName>
+                {ProductSlice.productData?.krName}
+              </ItemKoreanName>
               <SizeBtn>
                 <BtnText>모든 사이즈</BtnText>
                 <BtnIcon>
