@@ -23,12 +23,8 @@ import useOutSideClick from '../../hooks/useOutSideClick';
 import { API } from '../../config/config';
 import { flexBox } from '../../styles/mixin';
 import { ProductDataRoot } from './types';
-import { useAppDispatch, useAppSelector } from './store/Store';
+import { useAppDispatch } from './store/Store';
 import { saveProductData } from './store/ProductSlice';
-
-interface GroupedSellBidData {
-  [size: string]: number;
-}
 
 const Detail = () => {
   const [isClicked, setIsClicked] = useState(false);
