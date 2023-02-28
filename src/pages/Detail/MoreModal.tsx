@@ -41,21 +41,31 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(e => {
-      if (e[0].isIntersecting) {
-        fetch(`${API.products}/${productId}`)
-          .then(response => response.json())
-          .then(result => {
-            setTableData(result.data.tradeAll[0]);
-            setLoadData(result.data.tradeAll[0].tradeDataAll);
-          });
-      }
-    });
-
-    if (ref.current) observer.observe(ref.current);
-
-    return () => observer.disconnect();
+    fetch(`${API.products}/${productId}`)
+      .then(response => response.json())
+      .then(result => {
+        setTableData(result.data.tradeAll[0]);
+        setLoadData(result.data.tradeAll[0].tradeDataAll);
+      });
   }, []);
+
+  // TODO: 무한스크롤 API 완성되면 수정
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(e => {
+  //     if (e[0].isIntersecting) {
+  //       fetch(`${API.products}/${productId}`)
+  //         .then(response => response.json())
+  //         .then(result => {
+  //           setTableData(result.data.tradeAll[0]);
+  //           setLoadData(result.data.tradeAll[0].tradeDataAll);
+  //         });
+  //     }
+  //   });
+
+  //   if (ref.current) observer.observe(ref.current);
+
+  //   return () => observer.disconnect();
+  // }, []);
 
   return (
     <Wrapper>
@@ -178,15 +188,11 @@ const IconBox = styled.div`
 const ModalContent = styled.div`
   background-color: transparent;
   height: 465px;
-  /* padding: 0 32px 32px; */
   display: flex;
   flex-direction: column;
-  /* overflow-y: auto; */
 `;
 
 const ItemBox = styled.div`
-  /* display: flex; */
-  /* overflow-y: auto; */
   padding: 0 32px;
 `;
 

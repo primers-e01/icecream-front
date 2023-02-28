@@ -26,23 +26,31 @@ const MainProduct = () => {
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([{ isIntersecting }]) => {
-      if (isIntersecting) {
-        fetch(`${API.products}`)
-          .then(res => res.json())
-          .then(result => {
-            setMainProductList(prev => [...prev, ...result.data]);
-          });
-      }
-    });
-
-    if (obsTarget.current) {
-      observer.observe(obsTarget.current);
-    }
-    return () => {
-      observer.disconnect();
-    };
+    fetch(`${API.products}`)
+      .then(res => res.json())
+      .then(result => {
+        setMainProductList(prev => [...prev, ...result.data]);
+      });
   }, []);
+
+  // TODO: 무한스크롤 API 추가후 수정
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(([{ isIntersecting }]) => {
+  //     if (isIntersecting) {
+  //       fetch(`${API.products}`)
+  //         .then(res => res.json())
+  //         .then(result => {
+  //           setMainProductList(prev => [...prev, ...result.data]);
+  //         });
+  //     }
+  //   });
+  //   if (obsTarget.current) {
+  //     observer.observe(obsTarget.current);
+  //   }
+  //   return () => {
+  //     observer.disconnect();
+  //   };
+  // }, []);
 
   return (
     <Wrapper>

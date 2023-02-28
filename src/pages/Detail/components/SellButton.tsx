@@ -5,7 +5,6 @@ import { flexBox } from '../../../styles/mixin';
 
 interface Props {
   size: number;
-  //TODO: 데이터 확인   후 타입 수정
   productData: {
     thumbnailImageUrl: string;
     modelNumber: string;
