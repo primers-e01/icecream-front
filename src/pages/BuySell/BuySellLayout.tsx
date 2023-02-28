@@ -58,8 +58,6 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
     }
   }, []);
 
-  if (!ProductSlice.productData) return <div />;
-
   return (
     <BuyBackGround>
       <div ref={ref}>
@@ -111,6 +109,7 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
             </ItemInfo>
           </ItemInfoBox>
 
+          {/* TODO: 선택한 사이즈의 가격으로 수정 */}
           <PriceBox>
             <BuyNowPrice>
               <Text>즉시 구매가</Text>
@@ -155,7 +154,7 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
               </PriceTitle>
               <PriceInputBox>
                 {!checkInputValue && (
-                  <PriceWarning>3만원 부터 천원단위로 입력하세요.</PriceWarning>
+                  <PriceWarning>3만원 이상 입력하세요.</PriceWarning>
                 )}
                 <PriceInput
                   type="text"

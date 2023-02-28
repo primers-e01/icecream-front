@@ -15,7 +15,7 @@ const SelectLayout = ({ tradeType }: Props) => {
   const [selectSize, setSelectSize] = useState<number | undefined>();
   const [selectedPrice, setSelectedPrice] = useState<number | undefined>();
   const ProductSlice = useAppSelector(state => state.ProductSlice);
-  console.log('ProductSlice : ', ProductSlice);
+
   const sellBidDataAll = ProductSlice.tradeAll[0]?.sellBidDataAll;
   const buyBidDataAll = ProductSlice.tradeAll[0]?.buyBidDataAll;
 
@@ -46,43 +46,43 @@ const SelectLayout = ({ tradeType }: Props) => {
       size: 230,
       price:
         tradeType === 'sell'
-          ? groupedSellBidData?.[230]
-          : groupedBuyBidData?.[230],
+          ? groupedBuyBidData?.[230]
+          : groupedSellBidData?.[230],
     },
     {
       size: 240,
       price:
         tradeType === 'sell'
-          ? groupedSellBidData?.[240]
-          : groupedBuyBidData?.[240],
+          ? groupedBuyBidData?.[240]
+          : groupedSellBidData?.[240],
     },
     {
       size: 250,
       price:
         tradeType === 'sell'
-          ? groupedSellBidData?.[250]
-          : groupedBuyBidData?.[250],
+          ? groupedBuyBidData?.[250]
+          : groupedSellBidData?.[250],
     },
     {
       size: 260,
       price:
         tradeType === 'sell'
-          ? groupedSellBidData?.[260]
-          : groupedBuyBidData?.[260],
+          ? groupedBuyBidData?.[260]
+          : groupedSellBidData?.[260],
     },
     {
       size: 270,
       price:
         tradeType === 'sell'
-          ? groupedSellBidData?.[270]
-          : groupedBuyBidData?.[270],
+          ? groupedBuyBidData?.[270]
+          : groupedSellBidData?.[270],
     },
     {
       size: 280,
       price:
         tradeType === 'sell'
-          ? groupedSellBidData?.[280]
-          : groupedBuyBidData?.[280],
+          ? groupedBuyBidData?.[280]
+          : groupedSellBidData?.[280],
     },
   ];
 
