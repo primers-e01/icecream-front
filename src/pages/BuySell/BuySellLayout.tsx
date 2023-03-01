@@ -135,13 +135,13 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
             <BtnList tradeType={tradeType}>
               {(tradeType === 'sell' ? BTN_SELL_ITEM : BTN_BUY_ITEM).map(
                 ({ item, text }) => (
-                  <BtnItem
+                  <TabBtn
                     key={item}
                     className={selectType === item ? 'active' : ''}
                     onClick={() => onClickTab(item)}
                   >
                     {text}
-                  </BtnItem>
+                  </TabBtn>
                 )
               )}
             </BtnList>
@@ -340,7 +340,7 @@ const BtnList = styled.ul<{ tradeType: string }>`
   }
 `;
 
-const BtnItem = styled.li`
+const TabBtn = styled.button`
   flex: 1;
   text-align: center;
   font-size: 14px;
@@ -349,6 +349,7 @@ const BtnItem = styled.li`
   padding: 14px 0;
   margin: 3px;
   border-radius: 80px;
+  border: none;
   cursor: pointer;
 `;
 
