@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { comma } from 'src/utils/comma';
+import { uncomma } from 'src/utils/uncomma';
 import styled from 'styled-components';
 import useOutSideClick from '../../hooks/useOutSideClick';
 import { flexBox } from '../../styles/mixin';
@@ -37,11 +39,6 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
   const onDealBtnClick = () => setIsBidClicked(true);
 
   const onClickTab = (item: string) => setSelectType(item);
-
-  const comma = (value: string) =>
-    String(value).replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-
-  const uncomma = (value: string) => String(value).replace(/[^\d]+/g, '');
 
   const onInputChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const value = target.value;

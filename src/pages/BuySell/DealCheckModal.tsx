@@ -4,6 +4,8 @@ import { positionCenter } from '../../styles/mixin';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { API } from '../../config/config';
+import { onClickPayment } from './payment/Payment';
+import { uncomma } from 'src/utils/uncomma';
 
 interface Props {
   setIsBidClicked: React.Dispatch<React.SetStateAction<boolean>>;
@@ -71,22 +73,32 @@ const DealCheckModal = ({
 }: Props) => {
   const onCloseClick = () => setIsBidClicked(false);
 
+  const finalPrice =
+    tradeType === 'sell'
+      ? selectType === 'sellBid'
+        ? price
+        : sellNow
+      : selectType === 'buyBid'
+      ? price
+      : buyNow;
+
   const requestHeaders: Headers = new Headers();
   requestHeaders.set('Content-Type', 'application/json');
   requestHeaders.set('Authorization', localStorage.getItem('TOKEN') ?? '');
 
   const onBtnClick = () => {
-    fetch(`${MODAL_MAP[tradeType][selectType].api}`, {
-      method: 'POST',
-      headers: requestHeaders,
-      body: JSON.stringify({
-        // TODO: 사이즈 선택창 완료 후 수정
-        productId: 4,
-        size: size,
-        price: formatPrice,
-      }),
-    });
-    alert('입찰완료');
+    // fetch(`${MODAL_MAP[tradeType][selectType].api}`, {
+    //   method: 'POST',
+    //   headers: requestHeaders,
+    //   body: JSON.stringify({
+    //     // TODO: 사이즈 선택창 완료 후 수정
+    //     productId: 4,
+    //     size: size,
+    //     price: formatPrice,
+    //   }),
+    // });
+    // alert('입찰완료');
+    onClickPayment(Number(uncomma(finalPrice)));
   };
 
   return (
@@ -100,15 +112,7 @@ const DealCheckModal = ({
           {tradeType === 'sell' ? '총 정산금액' : '총 결제금액'}
         </PriceText>
 
-        <Price tradeType={tradeType}>
-          {tradeType === 'sell'
-            ? selectType === 'sellBid'
-              ? price + '원'
-              : sellNow + '원'
-            : selectType === 'buyBid'
-            ? price + '원'
-            : buyNow + '원'}
-        </Price>
+        <Price tradeType={tradeType}>{finalPrice}원</Price>
       </TitleBox>
 
       <NoticeBox>
