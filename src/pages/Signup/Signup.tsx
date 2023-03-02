@@ -1,14 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { flexBox } from '../../styles/mixin';
+import NaverLogin from '../NaverLogin/Naverlogin';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
 const KAKAO_TOKEN = `https://kauth.kakao.com/oauth/authorize?client_id=${API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
-const handleLogin = () => {
+// const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+// const CALLBACK_URL = process.env.REACT_APP_REDIRECT_URI;
+// const NAVER_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${CLIENT_ID}&state=STATE_STRING&redirect_uri=${CALLBACK_URL}`;
+const handleKakaoLogin = () => {
   window.location.href = KAKAO_TOKEN;
 };
+
+// const handleNaverLogin = () => {
+//   window.location.href = NAVER_URL;
+// };
 
 const Signup = () => {
   return (
@@ -19,7 +27,7 @@ const Signup = () => {
             src="https://cdn.discordapp.com/attachments/1060384508286877719/1060400007280328734/471c10113c173401.png"
             alt="Logo"
           />
-          <KakaoButton onClick={handleLogin}>
+          <KakaoButton onClick={handleKakaoLogin}>
             <img
               src="https://dffoxz5he03rp.cloudfront.net/icons/kakaotalk-logo.svg"
               alt="icon"
@@ -27,6 +35,7 @@ const Signup = () => {
             <KakaoButtonText>카카오로 계속하기</KakaoButtonText>
           </KakaoButton>
 
+          <NaverLogin />
           <AuthButtons>
             {/* TODO: map 돌릴수있을듯 */}
             <AuthButton>
@@ -37,13 +46,13 @@ const Signup = () => {
               <AuthText>페이스북</AuthText>
             </AuthButton>
 
-            <AuthButton>
+            {/* <AuthButton>
               <NaverImg
                 src="https://cdn.discordapp.com/attachments/1060384508286877719/1060384683151605871/naverIcon.png"
                 alt="NaverIcon"
               />
               <AuthText>네이버</AuthText>
-            </AuthButton>
+            </AuthButton> */}
 
             <AuthButton>
               <GoogleImg
@@ -93,7 +102,7 @@ const Title = styled.img`
 
 const KakaoButton = styled.a`
   ${flexBox('center', 'center', '')}
-  margin-top: 20px;
+  margin: 20px 0;
   padding: 15px 0;
   border: none;
   border-radius: 5px;
@@ -124,10 +133,6 @@ const AuthButton = styled.button`
 
 const FacebookImg = styled.img`
   width: 27px;
-`;
-
-const NaverImg = styled.img`
-  width: 25px;
 `;
 
 const GoogleImg = styled.img`

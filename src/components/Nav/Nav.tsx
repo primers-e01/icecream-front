@@ -28,10 +28,14 @@ const NAV_MAIN = [
 const Nav = () => {
   const navigate = useNavigate();
 
-  const token = localStorage.getItem('accessToken') ?? '';
+  const token =
+    (localStorage.getItem('accessToken') ||
+      localStorage.getItem('access_token')) ??
+    '';
 
   const logOutClick = () => {
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('access_token');
     navigate('/');
   };
 
