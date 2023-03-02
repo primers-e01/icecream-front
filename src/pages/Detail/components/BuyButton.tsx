@@ -5,7 +5,7 @@ import { flexBox } from '../../../styles/mixin';
 
 interface Props {
   size: number;
-  productData: {
+  productData?: {
     thumbnailImageUrl: string;
     modelNumber: string;
     enName: string;
@@ -13,9 +13,10 @@ interface Props {
     sellNow: string;
     buyNow: string;
   };
+  width: string;
 }
 
-const BuyButton = ({ size, productData }: Props) => {
+const BuyButton = ({ size, productData, width }: Props) => {
   const navigate = useNavigate();
 
   const buyNow = Math.floor(Number(productData?.buyNow)).toLocaleString();
@@ -25,7 +26,7 @@ const BuyButton = ({ size, productData }: Props) => {
   };
 
   return (
-    <BuyBtn onClick={onBuyClick}>
+    <BuyBtn width={width} onClick={onBuyClick}>
       <BtnTitle size={size}>구매</BtnTitle>
       <BtnText>
         <BtnPrice>{buyNow}원</BtnPrice>
@@ -37,10 +38,10 @@ const BuyButton = ({ size, productData }: Props) => {
 
 export default BuyButton;
 
-const BuyBtn = styled.a`
+const BuyBtn = styled.a<{ width: string }>`
   ${flexBox('flex-start')}
   position: relative;
-  width: 50%;
+  width: ${props => props.width};
   border-radius: 10px;
   color: #fff;
   background-color: ${({ theme }) => theme.buttonBuy};

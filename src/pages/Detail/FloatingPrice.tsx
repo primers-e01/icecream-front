@@ -26,7 +26,7 @@ const FloatingPrice = ({ productData }: Props) => {
         </ItemDescription>
       </ItemBox>
       <BtnBox>
-        <BuyButton size={15} productData={productData} />
+        <BuyButton size={15} productData={productData} width="50%" />
         <SellButton size={15} productData={productData} />
       </BtnBox>
     </Wrapper>

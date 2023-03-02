@@ -11,6 +11,7 @@ import {
 import {
   faCircleCheck,
   faSquareCaretDown,
+  faBookmark,
 } from '@fortawesome/free-regular-svg-icons';
 import Carousel from './Carousel';
 import AlertModal from './AlertModal';
@@ -123,10 +124,14 @@ const Detail = () => {
           </ItemFigureBox>
 
           <DealBtnBox ref={dealBtnRef}>
-            <BuyButton size={18} productData={productData} />
+            <BuyButton size={18} productData={productData} width="50%" />
             <SellButton size={18} productData={productData} />
           </DealBtnBox>
         </TitleSection>
+        <WishButton>
+          <FontAwesomeIcon icon={faBookmark} />
+          <WishItem>관심 상품 등록</WishItem>
+        </WishButton>
 
         <InfoSection>
           <InfoTitle>상품 정보</InfoTitle>
@@ -454,6 +459,25 @@ const NoticeSection = styled.section`
   border-top: ${({ theme }) => theme.globalBorderStyle};
   padding-top: 40px;
   margin-top: 20px;
+`;
+
+const WishButton = styled.button`
+  width: 100%;
+  font-size: 16px;
+  letter-spacing: -0.16px;
+  font-weight: 700;
+  height: 52px;
+  border-radius: 12px;
+  border-top: 10px;
+  position: relative;
+  top: 20px;
+  background-color: white;
+  border: 1px solid #d3d3d3;
+
+  cursor: pointer;
+`;
+const WishItem = styled.span`
+  padding-left: 10px;
 `;
 
 const GUIDE_LIST = [

@@ -13,7 +13,7 @@ interface NavMainType {
 
 const NAV_TOP = [
   { id: 1, list: '고객센터', link: '/notice' },
-  { id: 2, list: '마이페이지', link: '/mypage' },
+  // { id: 2, list: '마이페이지', link: '/mypage' },
 ];
 
 const NAV_MAIN = [
@@ -52,7 +52,12 @@ const Nav = () => {
           })}
           <NavTopItem>
             {token ? (
-              <LogOutBtn onClick={logOutClick}>로그아웃</LogOutBtn>
+              <NavFlex>
+                <NavMainItem>
+                  <Link to="/mypage">마이페이지</Link>
+                </NavMainItem>
+                <LogOutBtn onClick={logOutClick}>로그아웃</LogOutBtn>
+              </NavFlex>
             ) : (
               <Link to="/signup">로그인 / 회원가입</Link>
             )}
@@ -133,11 +138,15 @@ const NavMainList = styled.ul`
 `;
 
 const NavMainItem = styled.li`
-  font-size: 15px;
+  font-size: 12px;
   letter-spacing: 1px;
-  margin-right: 40px;
+  margin-right: 20px;
 
   &:last-child {
     margin-right: 0;
   }
+`;
+
+const NavFlex = styled.div`
+  display: flex;
 `;
