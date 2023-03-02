@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 import { API } from '../../../config/config';
 
 interface mainProductList {
@@ -18,19 +19,15 @@ const MainProduct = () => {
   const obsTarget = useRef(null);
 
   useEffect(() => {
-    fetch(`${API.products}`)
-      .then(res => res.json())
-      .then(data => {
-        setMainProductList(data.data);
-      });
+    axios.get(`${API.products}`).then(result => {
+      setMainProductList(result.data.data);
+    });
   }, []);
 
   useEffect(() => {
-    fetch(`${API.products}`)
-      .then(res => res.json())
-      .then(result => {
-        setMainProductList(prev => [...prev, ...result.data]);
-      });
+    axios.get(`${API.products}`).then(result => {
+      setMainProductList(prev => [...prev, ...result.data.data]);
+    });
   }, []);
 
   // TODO: 무한스크롤 API 추가후 수정

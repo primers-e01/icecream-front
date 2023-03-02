@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faSort, faX } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 import { API } from '../../config/config';
 import { flexBox, positionCenter } from '../../styles/mixin';
 import { useParams } from 'react-router-dom';
@@ -41,12 +42,10 @@ const MoreModal = ({ setIsMoreClicked }: Props) => {
   };
 
   useEffect(() => {
-    fetch(`${API.products}/${productId}`)
-      .then(response => response.json())
-      .then(result => {
-        setTableData(result.data.tradeAll[0]);
-        setLoadData(result.data.tradeAll[0].tradeDataAll);
-      });
+    axios.get(`${API.products}/${productId}`).then(result => {
+      setTableData(result.data.data.tradeAll[0]);
+      setLoadData(result.data.data.tradeAll[0].tradeDataAll);
+    });
   }, []);
 
   // TODO: 무한스크롤 API 완성되면 수정

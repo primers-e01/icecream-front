@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 import { API } from '../../../config/config';
 import { ShopData } from '../types';
 
@@ -50,11 +51,9 @@ const ShopProduct = () => {
   // }, []);
 
   useEffect(() => {
-    fetch(`${API.products}` + search)
-      .then(res => res.json())
-      .then(data => {
-        setShopProductList(data.data);
-      });
+    axios.get(`${API.products}` + search).then(result => {
+      setShopProductList(result.data.data);
+    });
   }, [search]);
 
   return (
