@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import axios from 'axios';
 import { API } from 'src/config/config';
 
 const KakaoLogin = () => {
@@ -11,13 +12,12 @@ const KakaoLogin = () => {
   setSearchParams(code || '');
 
   useEffect(() => {
-    fetch(`${API.kakaoLogin}?${String(searchParams)}`, {
-      method: 'POST',
-      headers: { Accept: 'application / json' },
-    })
-      .then(response => response.json())
+    axios
+      .post(`${API.kakaoLogin}?${String(searchParams)}`, {
+        headers: { Accept: 'application / json' },
+      })
       .then(response => {
-        localStorage.setItem('accessToken', response.accessToken);
+        localStorage.setItem('accessToken', response.data.accessToken);
         navigate('/');
       });
   }, []);
