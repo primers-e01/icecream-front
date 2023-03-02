@@ -1,14 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { API } from 'src/config/config';
 
-const NaverLogin = ({ setUserInfo }: any) => {
+const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
+const NAVER_CALLBACK_URL = process.env.REACT_APP_NAVER_CALLBACK_URL;
+
+const NaverLogin = () => {
   const naverRef: any = useRef();
   const { naver }: any = window;
   const navigate = useNavigate();
-
-  const NAVER_CLIENT_ID = 'RBJKVVvyEfHCwpkGh8eo';
-  const NAVER_CALLBACK_URL = 'http://localhost:3000/naverlogin';
 
   const initializeNaverLogin = () => {
     const naverLogin = new naver.LoginWithNaverId({
@@ -19,25 +20,28 @@ const NaverLogin = ({ setUserInfo }: any) => {
       callbackHandle: true,
     });
     naverLogin.init();
-    naverLogin.getLoginStatus(async function (status: any) {
-      if (status) {
-        // 아래처럼 선택하여 추출이 가능하고,
-        const userid = naverLogin.user.getEmail();
-        const username = naverLogin.user.getName();
-        // 정보 전체를 아래처럼 state 에 저장하여 추출하여 사용가능하다.
-        // setUserInfo(naverLogin.user)
-      }
-    });
-    // 요기!
   };
 
   const userAccessToken = () => {
     window.location.href.includes('access_token') && getToken();
   };
 
-  const getToken = () => {
+  const getToken = async () => {
     const token = window.location.href.split('=')[1].split('&')[0];
-    localStorage.setItem('access_token', token);
+
+    const res = await fetch(`${API.login}`, {
+      method: 'POST',
+      headers: {
+        authorization: token,
+      },
+    });
+
+    const { accessToken } = await res.json();
+
+    if (!accessToken) alert('로그인 실패');
+
+    localStorage.setItem('access_token', accessToken);
+
     navigate('/');
   };
 

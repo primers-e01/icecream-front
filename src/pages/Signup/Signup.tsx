@@ -7,16 +7,9 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
 const KAKAO_TOKEN = `https://kauth.kakao.com/oauth/authorize?client_id=${API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
-// const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-// const CALLBACK_URL = process.env.REACT_APP_REDIRECT_URI;
-// const NAVER_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${CLIENT_ID}&state=STATE_STRING&redirect_uri=${CALLBACK_URL}`;
 const handleKakaoLogin = () => {
   window.location.href = KAKAO_TOKEN;
 };
-
-// const handleNaverLogin = () => {
-//   window.location.href = NAVER_URL;
-// };
 
 const Signup = () => {
   return (
