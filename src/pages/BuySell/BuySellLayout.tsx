@@ -142,10 +142,11 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
             <BuyNowPrice>
               <Text>즉시 구매가</Text>
               <Price>
-                {getQuerySize &&
-                  Math.floor(
-                    Number(groupedSellBidData?.[getQuerySize])
-                  ).toLocaleString()}
+                {getQuerySize && groupedSellBidData?.[getQuerySize]
+                  ? Math.floor(
+                      Number(groupedSellBidData?.[getQuerySize])
+                    ).toLocaleString()
+                  : '-'}
                 원
               </Price>
             </BuyNowPrice>
@@ -213,10 +214,11 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
                   ? `${Math.floor(
                       Number(ProductSlice.productData?.sellNow)
                     ).toLocaleString()}원`
-                  : getQuerySize &&
-                    `${Math.floor(
+                  : getQuerySize && groupedSellBidData?.[getQuerySize]
+                  ? `${Math.floor(
                       Number(groupedSellBidData?.[getQuerySize])
-                    ).toLocaleString()}원`}
+                    ).toLocaleString()}원`
+                  : '-'}
               </PriceText>
             </DealNowSection>
           ) : (
@@ -229,7 +231,14 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
             {/* TODO: tradeType 들어가는지 체크 */}
             <BtnBox>
               {selectType === 'buyNow' || selectType === 'sellNow' ? (
-                <Btn onClick={onDealBtnClick}>
+                <Btn
+                  onClick={onDealBtnClick}
+                  disabled={
+                    getQuerySize && groupedSellBidData?.[getQuerySize]
+                      ? false
+                      : true
+                  }
+                >
                   <BtnText>
                     {tradeType === 'sell' ? '즉시 판매 계속' : '즉시 구매 계속'}
                   </BtnText>
