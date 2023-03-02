@@ -15,6 +15,7 @@ import BuySelect from './pages/BuySell/BuySelect';
 import Sell from './pages/BuySell/Sell';
 import Buy from './pages/BuySell/Buy';
 import StyleDetail from './pages/StyleDetail/StyleDetail';
+import NaverLogin from './pages/NaverLogin/Naverlogin';
 
 const Router = () => {
   return (
@@ -34,6 +35,7 @@ const Router = () => {
         <Route path="/sell" element={<Sell />} />
         <Route path="/buy" element={<Buy />} />
         <Route path="/posts/details" element={<StyleDetail />} />
+        <Route path="/naverlogin" element={<NaverLogin />} />
       </Routes>
       <Footer />
     </BrowserRouter>
