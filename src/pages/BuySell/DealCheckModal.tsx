@@ -14,7 +14,7 @@ interface Props {
   tradeType: string;
   size: string | null;
   selectType: string;
-  buyNow: string;
+  buyNow: string | null;
   sellNow: string;
 }
 
@@ -98,7 +98,9 @@ const DealCheckModal = ({
     //   }),
     // });
     // alert('입찰완료');
-    onClickPayment(Number(uncomma(finalPrice)));
+    tradeType === 'buy'
+      ? finalPrice && onClickPayment(Number(uncomma(finalPrice)))
+      : alert('판매입찰 로직 추가 예정'); // TODO: 판매입찰 로직
   };
 
   return (

@@ -17,6 +17,10 @@ const BTN_SELL_ITEM = [
   { item: 'sellNow', text: '즉시 판매하기(삭제 예정)' },
 ];
 
+interface GroupedSellBidData {
+  [size: string]: number;
+}
+
 interface Props {
   tradeType: string;
   item: string;
@@ -36,6 +40,19 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
 
   const getQuerySize = searchParams.get('size');
 
+  // TODO: 중복로직제거
+  const sellBidDataAll = ProductSlice.tradeAll[0]?.sellBidDataAll;
+
+  const groupedSellBidData = sellBidDataAll?.reduce<GroupedSellBidData>(
+    (acc, { size, price }) => {
+      const numberPrice = Number(price);
+      if (acc[size] === undefined || acc[size] > numberPrice) {
+        acc[size] = numberPrice;
+      }
+      return acc;
+    },
+    {}
+  );
   const onDealBtnClick = () => setIsBidClicked(true);
 
   const onClickTab = (item: string) => {
@@ -78,9 +95,12 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
             tradeType={tradeType}
             size={getQuerySize}
             selectType={selectType}
-            buyNow={Math.floor(
-              Number(ProductSlice.productData?.buyNow)
-            ).toLocaleString()}
+            buyNow={
+              getQuerySize &&
+              Math.floor(
+                Number(groupedSellBidData?.[getQuerySize])
+              ).toLocaleString()
+            }
             sellNow={Math.floor(
               Number(ProductSlice.productData?.sellNow)
             ).toLocaleString()}
@@ -118,19 +138,19 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
             </ItemInfo>
           </ItemInfoBox>
 
-          {/* TODO: 선택한 사이즈의 가격으로 수정 */}
           <PriceBox>
             <BuyNowPrice>
               <Text>즉시 구매가</Text>
               <Price>
-                {Math.floor(
-                  Number(ProductSlice.productData?.buyNow)
-                ).toLocaleString()}
+                {getQuerySize &&
+                  Math.floor(
+                    Number(groupedSellBidData?.[getQuerySize])
+                  ).toLocaleString()}
                 원
               </Price>
             </BuyNowPrice>
             <SellNowPrice>
-              <Text>즉시 판매가</Text>
+              <Text>즉시 판매가 (삭제 예정)</Text>
               <Price>
                 {Math.floor(
                   Number(ProductSlice.productData?.sellNow)
@@ -193,8 +213,9 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
                   ? `${Math.floor(
                       Number(ProductSlice.productData?.sellNow)
                     ).toLocaleString()}원`
-                  : `${Math.floor(
-                      Number(ProductSlice.productData?.buyNow)
+                  : getQuerySize &&
+                    `${Math.floor(
+                      Number(groupedSellBidData?.[getQuerySize])
                     ).toLocaleString()}원`}
               </PriceText>
             </DealNowSection>
