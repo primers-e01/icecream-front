@@ -12,6 +12,7 @@ import {
   faCircleCheck,
   faSquareCaretDown,
 } from '@fortawesome/free-regular-svg-icons';
+import axios from 'axios';
 import Carousel from './Carousel';
 import AlertModal from './AlertModal';
 import FloatingPrice from './FloatingPrice';
@@ -43,17 +44,15 @@ const Detail = () => {
 
   useOutSideClick(ref, () => setIsClicked(false));
 
-  const fetchProductData = () => {
-    fetch(`${API.products}/${productId}`)
-      .then(response => response.json())
-      .then(result => {
-        setPageData(result.data);
-        dispatch(saveProductData(result.data));
-      });
+  const getProductData = () => {
+    axios.get(`${API.products}/${productId}`).then(result => {
+      setPageData(result.data.data);
+      dispatch(saveProductData(result.data.data));
+    });
   };
 
   useEffect(() => {
-    fetchProductData();
+    getProductData();
   }, []);
 
   useEffect(() => {
