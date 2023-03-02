@@ -9,12 +9,12 @@ import { useAppSelector } from '../Detail/store/Store';
 import DealBidModal from './DealCheckModal';
 
 const BTN_BUY_ITEM = [
-  { item: 'buyBid', text: '구매 입찰하기' },
+  { item: 'buyBid', text: '구매 입찰하기(삭제 예정)' },
   { item: 'buyNow', text: '즉시 구매하기' },
 ];
 const BTN_SELL_ITEM = [
   { item: 'sellBid', text: '판매 입찰하기' },
-  { item: 'sellNow', text: '즉시 판매하기' },
+  { item: 'sellNow', text: '즉시 판매하기(삭제 예정)' },
 ];
 
 interface Props {
@@ -38,7 +38,10 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
 
   const onDealBtnClick = () => setIsBidClicked(true);
 
-  const onClickTab = (item: string) => setSelectType(item);
+  const onClickTab = (item: string) => {
+    if (selectType === 'sellBid' || selectType === 'buyNow') return;
+    setSelectType(item);
+  };
 
   const onInputChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const value = target.value;
@@ -51,7 +54,7 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
 
   useEffect(() => {
     if (!ProductSlice.productData) {
-      navigate('/products');
+      navigate('/shop');
     }
   }, []);
 

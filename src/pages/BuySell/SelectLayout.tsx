@@ -98,7 +98,7 @@ const SelectLayout = ({ tradeType }: Props) => {
 
   useEffect(() => {
     if (!ProductSlice.productData) {
-      navigate('/products');
+      navigate('/shop');
     }
   }, []);
 

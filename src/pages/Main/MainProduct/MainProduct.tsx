@@ -71,7 +71,7 @@ const MainProduct = () => {
                 <img
                   src={thumbnailImageUrl}
                   alt={enName}
-                  onClick={() => navigate('/products')}
+                  onClick={() => navigate('/shop')}
                 />
               </MainProductThumb>
               <MainProductBrandTitle>{brandName}</MainProductBrandTitle>
