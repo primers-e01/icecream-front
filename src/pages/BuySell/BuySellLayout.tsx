@@ -342,7 +342,7 @@ const TabBtn = styled.button`
   text-align: center;
   font-size: 14px;
   color: ${({ theme }) => theme.mainBrandGray05};
-  background-color: 'tranparent';
+  background: none;
   padding: 14px 0;
   margin: 3px;
   border-radius: 80px;
