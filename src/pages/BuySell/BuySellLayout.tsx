@@ -50,6 +50,15 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
     setInputValue(comma(uncomma(value)));
   };
 
+  const onBlur = () => {
+    const sellNow = ProductSlice.productData?.sellNow;
+    const inputValueNum = Number(uncomma(inputValue));
+
+    if (sellNow && inputValueNum < Math.floor(Number(sellNow))) {
+      setInputValue(Math.floor(Number(sellNow)).toLocaleString());
+    }
+  };
+
   useOutSideClick(ref, () => setIsBidClicked(false));
 
   useEffect(() => {
@@ -160,6 +169,7 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
                   type="text"
                   placeholder="희망가 입력"
                   onChange={onInputChange}
+                  onBlur={onBlur}
                   value={inputValue}
                   required
                   maxLength={11}
