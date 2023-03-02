@@ -16,7 +16,7 @@ const MainReuse = () => {
                 <MainBannerSubTitle>{subTitle}</MainBannerSubTitle>
                 <img src={img} alt={title} />
                 <button>
-                  <Link to="/products">지금 거래하기 &#12297;</Link>
+                  <Link to="/shop">지금 거래하기 &#12297;</Link>
                 </button>
               </MainBanner>
               <MainProductAlignBox>

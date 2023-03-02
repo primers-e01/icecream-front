@@ -18,7 +18,7 @@ const NAV_TOP = [
 
 const NAV_MAIN = [
   // { id: 1, list: 'STYLE', link: '/style?filterBy=trending' },
-  { id: 1, list: 'SHOP', link: '/products' },
+  { id: 1, list: 'SHOP', link: '/shop' },
   { id: 2, list: 'ABOUT', link: '/about' },
   {
     id: 3,

@@ -17,9 +17,7 @@ const Shop = () => {
   const navigate = useNavigate();
   const onClickQuery = (categoryKey: string, query: number | string) => {
     setQueries({ ...queries, [categoryKey]: query });
-    navigate(
-      `/products${getQueryString({ ...queries, [categoryKey]: query })}`
-    );
+    navigate(`/shop${getQueryString({ ...queries, [categoryKey]: query })}`);
   };
 
   return (
