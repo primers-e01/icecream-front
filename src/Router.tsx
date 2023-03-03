@@ -14,6 +14,7 @@ import BuySelect from './pages/BuySell/BuySelect';
 import Sell from './pages/BuySell/Sell';
 import Buy from './pages/BuySell/Buy';
 import NaverLogin from './pages/NaverLogin/Naverlogin';
+import NotFound from './pages/404/NotFound';
 
 const Router = () => {
   return (
@@ -32,6 +33,7 @@ const Router = () => {
         <Route path="/sell" element={<Sell />} />
         <Route path="/buy" element={<Buy />} />
         <Route path="/naverlogin" element={<NaverLogin />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
       <Footer />
     </BrowserRouter>
