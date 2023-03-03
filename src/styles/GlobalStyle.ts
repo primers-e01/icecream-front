@@ -23,6 +23,7 @@ declare module 'styled-components' {
     alertModal: number;
     buySellTitle: number;
     mainBanner: number;
+    modal: number;
   }
 }
 

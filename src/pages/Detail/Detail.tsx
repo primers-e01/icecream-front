@@ -21,6 +21,8 @@ import Dropdown from './Dropdown';
 import BuyButton from './components/BuyButton';
 import SellButton from './components/SellButton';
 import useOutSideClick from '../../hooks/useOutSideClick';
+import WishModal from '../Modal/WishModal';
+import ModalPortal from '../Modal/ModalPortal';
 import { API } from '../../config/config';
 import { flexBox } from '../../styles/mixin';
 import { ProductDataRoot } from './types';
@@ -31,6 +33,7 @@ const Detail = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [isFloat, setIsFloat] = useState(false);
   const [pageData, setPageData] = useState<ProductDataRoot>();
+  const [wishModal, setWishModal] = useState(false);
 
   const productData = pageData && pageData.productData;
   const tableData = pageData?.tradeLimit[0];
@@ -41,6 +44,10 @@ const Detail = () => {
   const dealBtnRef = useRef<HTMLDivElement>(null);
 
   const onAlertClick = () => setIsClicked(true);
+
+  const wishModalOpen = () => {
+    setWishModal(true);
+  };
 
   useOutSideClick(ref, () => setIsClicked(false));
 
@@ -128,10 +135,19 @@ const Detail = () => {
             <SellButton size={18} productData={productData} />
           </DealBtnBox>
         </TitleSection>
-        <WishButton>
+        <WishButton onClick={wishModalOpen}>
           <FontAwesomeIcon icon={faBookmark} />
           <WishItem>관심 상품 등록</WishItem>
         </WishButton>
+        {wishModal && (
+          <ModalPortal
+            closePortal={() => {
+              setWishModal(false);
+            }}
+          >
+            <WishModal />
+          </ModalPortal>
+        )}
 
         <InfoSection>
           <InfoTitle>상품 정보</InfoTitle>
