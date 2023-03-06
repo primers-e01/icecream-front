@@ -29,7 +29,7 @@ const NaverLogin = () => {
   const getToken = async () => {
     const token = window.location.href.split('=')[1].split('&')[0];
 
-    const res = await fetch(`${API.login}`, {
+    const res = await fetch(`${API.naverLogin}`, {
       method: 'POST',
       headers: {
         authorization: token,
