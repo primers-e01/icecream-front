@@ -6,10 +6,10 @@ const API = {
   buyNow: `${BASE_URL}/orders/buy`,
   sellBid: `${BASE_URL}/orders/addsellbid`,
   sellNow: `${BASE_URL}/orders/sell`,
-  login: `${BASE_URL}/users/login`,
   style: `${BASE_URL}/posts/main`,
   styleDetail: `${BASE_URL}/posts/details`,
-  kakaoLogin: `${BASE_URL}/users/login`,
+  naverLogin: `${BASE_URL}/users/login/naver`,
+  kakaoLogin: `${BASE_URL}/users/login/kakao`,
 };
 
 export { API };
