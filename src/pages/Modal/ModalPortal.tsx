@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
+import useOutSideClick from 'src/hooks/useOutSideClick';
 
 interface props {
   children: JSX.Element;
@@ -8,7 +9,8 @@ interface props {
 }
 
 const ModalPortal = ({ children, closePortal }: props) => {
-  const ref = useRef<Element | null>();
+  // const ref = useRef<Element | null>();
+  const ref = useRef<HTMLDivElement | null>(null);
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -23,12 +25,13 @@ const ModalPortal = ({ children, closePortal }: props) => {
       window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
     };
   }, []); // 스크롤 고정 코드
-
   useEffect(() => {
     setMounted(true);
     if (document) {
       const dom = document.getElementById('modal');
-      ref.current = dom; // ref에 dom 값 전달
+      if (dom instanceof HTMLDivElement) {
+        ref.current = dom; // HTMLDivElement 타입인 경우에만 ref.current에 할당
+      }
     }
   }, []);
   if (ref.current && mounted) {
@@ -51,7 +54,7 @@ export default ModalPortal;
 const ModalBackGround = styled.div`
   width: 100%;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
@@ -62,7 +65,7 @@ const ModalContainer = styled.div`
   width: 500px;
   height: 500px;
   background-color: white;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

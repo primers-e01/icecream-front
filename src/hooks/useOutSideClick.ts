@@ -1,7 +1,7 @@
 import { useEffect, RefObject } from 'react';
 
 const useOutSideClick = (
-  ref: RefObject<HTMLElement | undefined>,
+  ref: RefObject<HTMLElement | null>,
   handler: (event: MouseEvent) => void
 ) => {
   useEffect(() => {

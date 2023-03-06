@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import axios from 'axios';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useAppSelector } from '../Detail/store/Store';
 import { faBookmark } from '@fortawesome/free-regular-svg-icons';
 import { faBookmark as fasBookmark } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 interface SizeType {
   id: number;
@@ -12,14 +15,44 @@ interface SizeType {
 interface SizeDataType {
   size: number | null;
 }
+interface Props {
+  closePortal: () => void;
+}
 
-const WishModal = () => {
+const WishModal = ({ closePortal }: Props) => {
   const [activeIndex, setActiveIndex] = useState<Number>();
   const [sizeData, setSizeData] = useState<SizeDataType>({ size: null });
 
   const product = useAppSelector(state => state.ProductSlice);
-  console.log(sizeData);
-  console.log(product);
+
+  const navigate = useNavigate();
+
+  const submit = async () => {
+    try {
+      if (sizeData.size === null) {
+        return closePortal();
+      }
+      if (!localStorage.accessToken) {
+        alert('로그인 후 이용해 주세요.');
+        navigate('/signup');
+      }
+      await axios
+        .post(
+          '',
+          {
+            image: product.productData?.images[0].url,
+            krname: product.productData?.krName,
+            enname: product.productData?.enName,
+            size: sizeData,
+          },
+          { headers: { Authorization: localStorage.accessToken } }
+        )
+        .then(closePortal);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <WishModalContainer>
       <WishModalTitle>관심 상품 추가</WishModalTitle>
@@ -50,7 +83,7 @@ const WishModal = () => {
         })}
       </WishModalSize>
       <WishButtonArea>
-        <WishModalButton>확인</WishModalButton>
+        <WishModalButton onClick={submit}>확인</WishModalButton>
       </WishButtonArea>
     </WishModalContainer>
   );

@@ -145,7 +145,11 @@ const Detail = () => {
               setWishModal(false);
             }}
           >
-            <WishModal />
+            <WishModal
+              closePortal={() => {
+                setWishModal(false);
+              }}
+            />
           </ModalPortal>
         )}
 
