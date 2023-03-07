@@ -1,39 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import MainCarousel from './MainCarousel/MainCarousel';
-import ShortCutItem from './ShortCutItem/ShortCutItem';
-import MainReuse from './MainReuse/MainReuse';
+import ShortCutItem from './BannerItem/BannerItem';
 import styled from 'styled-components';
 
 const Main = () => {
-  const [isScroll, setIsScroll] = useState(false);
-
-  const onClickGoToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      const isTop = window.scrollY < 800;
-      setIsScroll(!isTop);
-    });
-  }, []);
-
   return (
     <Wrapper>
       <MainCarousel />
       <MainBox>
-        <ShortCutList>
-          {MAIN_SHORTCUT.map(({ id, img, categoryName }) => (
-            <ShortCutItem key={id} img={img} title={categoryName} />
+        <BannerList>
+          {MAIN_SHORTCUT.map(({ id, img, title, link }) => (
+            <ShortCutItem key={id} img={img} title={title} link={link} />
           ))}
-        </ShortCutList>
-        <MainReuse />
+        </BannerList>
       </MainBox>
-      {/* TODO: GoToTop 컴포넌트화 가능할듯 */}
-      {isScroll && <GoToTop onClick={onClickGoToTop}>&#8593;</GoToTop>}
     </Wrapper>
   );
 };
@@ -45,88 +25,79 @@ const Wrapper = styled.div`
 `;
 
 const MainBox = styled.div`
-  margin-top: 35px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
+  max-width: 1280px;
 `;
 
-const ShortCutList = styled.div`
-  width: 75%;
-  margin: 0 auto;
+const BannerList = styled.ul`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-`;
-
-const GoToTop = styled.div`
-  position: fixed;
-  z-index: ${({ theme }) => theme.goToTop};
-  width: 45px;
-  height: 45px;
-  right: 80px;
-  bottom: 50px;
-  font-size: 20px;
-  text-align: center;
-  line-height: 40px;
-  box-shadow: ${({ theme }) => theme.globalBoxShadow};
-  border: ${({ theme }) => theme.globalBorderStyle};
-  border-radius: 50%;
-  background-color: #fff;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.mainBrandBlack};
-    color: #fff;
-  }
+  gap: 10px;
+  width: 100%;
+  margin: 0 auto;
 `;
 
 const MAIN_SHORTCUT = [
   {
     id: 1,
     img: 'https://images.unsplash.com/photo-1600003014755-ba31aa59c4b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
-    categoryName: '한정판',
+    link: '/shop/?categoryId=3',
+    title: '패션잡화',
   },
   {
     id: 2,
     img: 'https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80',
-    categoryName: '남성추천',
+    link: '/shop/?categoryId=2',
+    title: '의류',
   },
   {
     id: 3,
     img: 'https://images.unsplash.com/photo-1620739482082-17c6c0a2fe2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=948&q=80',
-    categoryName: '여성추천',
+    link: '/shop/?categoryId=1',
+    title: '신발',
   },
   {
     id: 4,
     img: 'https://images.unsplash.com/photo-1620739531203-7fdb5407ce32?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=818&q=80',
-    categoryName: '셀럽픽',
+    link: '/shop',
+    title: '최고 인기제품',
   },
   {
     id: 5,
     img: 'https://images.unsplash.com/photo-1591892150204-2f872745bc4b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
-    categoryName: '이번주 브랜드관',
+    link: '/shop',
+    title: '이번주 브랜드관',
   },
   {
     id: 6,
     img: 'https://images.unsplash.com/photo-1611403570720-162d8829689a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80 ',
-    categoryName: '정가 아래',
+    link: '/shop',
+    title: '정가 아래',
   },
   {
     id: 7,
     img: 'https://images.unsplash.com/photo-1589363460779-cd717d2ed8fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80',
-    categoryName: '인기 럭셔리',
+    link: '/shop',
+    title: '인기 럭셔리',
   },
   {
     id: 8,
     img: 'https://images.unsplash.com/photo-1467810563316-b5476525c0f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80',
-    categoryName: '연말 선물',
+    link: '/shop',
+    title: '연말 선물',
   },
   {
     id: 9,
     img: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
-    categoryName: '겨울 코디',
+    link: '/shop',
+    title: '겨울 코디',
   },
   {
     id: 10,
     img: 'https://images.unsplash.com/photo-1611403570720-162d8829689a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
-    categoryName: '수수료 할인',
+    link: '/shop',
+    title: '수수료 할인',
   },
 ];
