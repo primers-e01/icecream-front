@@ -12,8 +12,8 @@ interface NavMainType {
 }
 
 const NAV_TOP = [
-  { id: 1, list: '고객센터', link: '/notice' },
-  { id: 2, list: '마이페이지', link: '/mypage' },
+  // { id: 1, list: '고객센터', link: '/notice' },
+  { id: 1, list: '마이페이지', link: '/mypage' },
 ];
 
 const NAV_MAIN = [
