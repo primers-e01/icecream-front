@@ -17,11 +17,11 @@ const NAV_TOP = [
 ];
 
 const NAV_MAIN = [
-  // { id: 1, list: 'STYLE', link: '/style?filterBy=trending' },
-  { id: 1, list: 'SHOP', link: '/shop' },
-  { id: 2, list: 'ABOUT', link: '/about' },
+  { id: 1, list: 'HOME', link: '/' },
+  { id: 2, list: 'SHOP', link: '/shop' },
+  { id: 3, list: 'ABOUT', link: '/about' },
   {
-    id: 3,
+    id: 4,
     list: <FontAwesomeIcon icon={faMagnifyingGlass} size="2x" />,
   },
 ];
