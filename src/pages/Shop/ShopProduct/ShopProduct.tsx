@@ -91,7 +91,7 @@ const ShopProduct = () => {
           }
         )}
       </ShopProductList>
-      {isScroll && <AtTheTop onClick={onClickGoToTop}>&#8593;</AtTheTop>}
+      {isScroll && <GoToTop onClick={onClickGoToTop}>&#8593;</GoToTop>}
       <ProductObserverTarget ref={obsTarget} />
     </Wrapper>
   );
@@ -193,18 +193,20 @@ const CurrentPrice = styled.p`
   color: ${({ theme }) => theme.mainBrandGray05};
 `;
 
-const AtTheTop = styled.div`
+const GoToTop = styled.div`
   position: fixed;
   width: 45px;
   height: 45px;
-  right: 80px;
+  right: 50px;
   bottom: 50px;
   font-size: 20px;
   text-align: center;
   line-height: 40px;
+  background-color: #fff;
   box-shadow: ${({ theme }) => theme.globalBoxShadow};
   border: ${({ theme }) => theme.globalBorderStyle};
   border-radius: 50%;
+  cursor: pointer;
 
   &:hover {
     background-color: ${({ theme }) => theme.mainBrandBlack};

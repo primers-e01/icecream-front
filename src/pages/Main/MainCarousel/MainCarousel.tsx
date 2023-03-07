@@ -27,12 +27,12 @@ const MainCarousel = () => {
         &#12297;
       </CarouselNextBtn>
       <CarouselSliderList currentIndex={currentIndex}>
-        {SLIDE.map(({ id, title, subTitle, url }) => (
+        {SLIDE.map(({ id, title, subTitle, url, link }) => (
           <CarouselSlideItem key={id}>
             <CarouselTitle>{title}</CarouselTitle>
             <CarouselSubTitle>{subTitle}</CarouselSubTitle>
             <button>
-              <Link to="/shop">자세히 알아보기 &#12297;</Link>
+              <Link to={link}>자세히 알아보기 &#12297;</Link>
             </button>
             <img src={url} alt={title} />
           </CarouselSlideItem>
@@ -145,18 +145,21 @@ const SLIDE = [
     id: 1,
     title: 'Artist x COLABO 협업 굿즈',
     subTitle: '선착순 구매 기회',
+    link: '/shop/?categoryId=1',
     url: 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=705&q=80',
   },
   {
     id: 2,
     title: '12일간 매일 다른 선물',
     subTitle: '12/23(금) ~ 1/6(금) / 매일 오전 10시 - 자정 12시',
+    link: '/shop/?categoryId=2',
     url: 'https://images.unsplash.com/photo-1602067120389-6af881963470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
   },
   {
     id: 3,
     title: '판매 시 선착순 3만 포인트',
     subTitle: '1/6(금) 00:00~ 예약 소진 시 자동 종료 ',
+    link: '/shop/?categoryId=3',
     url: 'https://images.unsplash.com/photo-1594035795389-9363dd86b113?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
   },
 ];
