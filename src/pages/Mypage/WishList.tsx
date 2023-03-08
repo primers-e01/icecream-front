@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BuyButton from '../Detail/components/BuyButton';
+import { useAppSelector } from '../Detail/store/Store';
+import axios from 'axios';
 
 interface ItemType {
   img: string;
@@ -21,9 +23,20 @@ const WishList = () => {
       price: 2000000,
     },
   ]);
-
+  const product = useAppSelector(state => state.ProductSlice);
+  console.log(product.productData);
   const deleteItem = (i: number) => {
     setItem(item.filter((_, index) => index !== i));
+  };
+
+  const deleteWish = async () => {
+    try {
+      await axios.delete('', {
+        headers: { Authorization: localStorage.accessToken },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (item.length === 0)
@@ -49,7 +62,11 @@ const WishList = () => {
                 <ItemSize>{size}</ItemSize>
               </ItemFlex>
               <BtnWrapper>
-                <BuyButton size={16} width="200px" />
+                <BuyButton
+                  size={16}
+                  width="200px"
+                  productData={product.productData}
+                />
                 <WishItemDelete
                   onClick={() => {
                     deleteItem(idx);
