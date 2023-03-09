@@ -11,10 +11,7 @@ interface NavMainType {
   link?: string;
 }
 
-const NAV_TOP = [
-  // { id: 1, list: '고객센터', link: '/notice' },
-  { id: 1, list: '마이페이지', link: '/mypage' },
-];
+const NAV_TOP = [{ id: 1, list: '고객센터', link: '/notice' }];
 
 const NAV_MAIN = [
   { id: 1, list: 'HOME', link: '/' },
