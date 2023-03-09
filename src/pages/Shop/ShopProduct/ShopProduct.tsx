@@ -58,10 +58,6 @@ const ShopProduct = () => {
 
   return (
     <Wrapper>
-      <SortSelectBox>
-        <SortSelectBtn>프리미엄순</SortSelectBtn>
-        <SortSelectBtn>발매일순</SortSelectBtn>
-      </SortSelectBox>
       <ShopProductList>
         {shopProductList.map(
           ({ id, thumbnailImageUrl, enName, krName, brandName, price }) => {
@@ -100,27 +96,6 @@ const ShopProduct = () => {
 export default ShopProduct;
 
 const Wrapper = styled.div``;
-
-const SortSelectBox = styled.div`
-  display: flex;
-  gap: 6px;
-`;
-
-const SortSelectBtn = styled.button`
-  all: unset;
-  padding: 10px 12px;
-  font-size: 14px;
-  text-align: center;
-  background-color: transparent;
-  border: ${({ theme }) => theme.globalBorderStyle};
-  border-radius: 30px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.buttonActive};
-    color: #fff;
-  }
-`;
 
 const ShopProductList = styled.div`
   display: flex;
