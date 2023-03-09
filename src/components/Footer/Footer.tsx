@@ -110,6 +110,10 @@ export default Footer;
 const FooterWrapper = styled.footer`
   border-top: ${({ theme }) => theme.globalBorderStyle};
   padding: 50px 40px;
+
+  @media screen and (max-width: 780px) {
+    display: none;
+  }
 `;
 
 const ServiceSection = styled.section`

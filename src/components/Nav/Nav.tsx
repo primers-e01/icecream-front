@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { flexBox } from '../../styles/mixin';
 
 interface NavMainType {
@@ -20,10 +18,6 @@ const NAV_MAIN = [
   { id: 1, list: 'HOME', link: '/' },
   { id: 2, list: 'SHOP', link: '/shop' },
   { id: 3, list: 'ABOUT', link: '/about' },
-  {
-    id: 4,
-    list: <FontAwesomeIcon icon={faMagnifyingGlass} size="2x" />,
-  },
 ];
 const Nav = () => {
   const navigate = useNavigate();

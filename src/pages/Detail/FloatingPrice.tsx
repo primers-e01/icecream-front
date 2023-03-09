@@ -43,6 +43,14 @@ const Wrapper = styled.div`
   background-color: #fff;
   z-index: ${({ theme }) => theme.floatingPrice};
   box-shadow: 0 4px 4px 0px rgb(0 0 0 / 10%);
+
+  @media screen and (max-width: 780px) {
+    width: 100%;
+    top: auto;
+    bottom: 0;
+    padding-top: 15px;
+    border-top: ${({ theme }) => theme.globalBorderStyle};
+  }
 `;
 
 const ItemBox = styled.div`
