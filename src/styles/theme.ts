@@ -22,6 +22,7 @@ const levels = {
   alertModal: 110,
   buySellTitle: 101,
   mainBanner: 999,
+  modal: 101,
 };
 
 const theme = { ...colors, ...levels, ...styles };
