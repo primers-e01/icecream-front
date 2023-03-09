@@ -8,7 +8,7 @@ export const api = createApi({
   }),
   endpoints: buid => ({
     getProduct: buid.query({
-      query: productId => ({ url: `/products/${productId}` }),
+      query: productId => ({ url: `/shop/${productId}` }),
     }),
   }),
 });

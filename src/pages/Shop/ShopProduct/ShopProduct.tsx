@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 import { API } from '../../../config/config';
 import { ShopData } from '../types';
 
@@ -50,19 +51,13 @@ const ShopProduct = () => {
   // }, []);
 
   useEffect(() => {
-    fetch(`${API.products}` + search)
-      .then(res => res.json())
-      .then(data => {
-        setShopProductList(data.data);
-      });
+    axios.get(`${API.products}` + search).then(result => {
+      setShopProductList(result.data.data);
+    });
   }, [search]);
 
   return (
     <Wrapper>
-      <SortSelectBox>
-        <SortSelectBtn>프리미엄순</SortSelectBtn>
-        <SortSelectBtn>발매일순</SortSelectBtn>
-      </SortSelectBox>
       <ShopProductList>
         {shopProductList.map(
           ({ id, thumbnailImageUrl, enName, krName, brandName, price }) => {
@@ -92,7 +87,7 @@ const ShopProduct = () => {
           }
         )}
       </ShopProductList>
-      {isScroll && <AtTheTop onClick={onClickGoToTop}>&#8593;</AtTheTop>}
+      {isScroll && <GoToTop onClick={onClickGoToTop}>&#8593;</GoToTop>}
       <ProductObserverTarget ref={obsTarget} />
     </Wrapper>
   );
@@ -101,27 +96,6 @@ const ShopProduct = () => {
 export default ShopProduct;
 
 const Wrapper = styled.div``;
-
-const SortSelectBox = styled.div`
-  display: flex;
-  gap: 6px;
-`;
-
-const SortSelectBtn = styled.button`
-  all: unset;
-  padding: 10px 12px;
-  font-size: 14px;
-  text-align: center;
-  background-color: transparent;
-  border: ${({ theme }) => theme.globalBorderStyle};
-  border-radius: 30px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.buttonActive};
-    color: #fff;
-  }
-`;
 
 const ShopProductList = styled.div`
   display: flex;
@@ -194,18 +168,20 @@ const CurrentPrice = styled.p`
   color: ${({ theme }) => theme.mainBrandGray05};
 `;
 
-const AtTheTop = styled.div`
+const GoToTop = styled.div`
   position: fixed;
   width: 45px;
   height: 45px;
-  right: 80px;
+  right: 50px;
   bottom: 50px;
   font-size: 20px;
   text-align: center;
   line-height: 40px;
+  background-color: #fff;
   box-shadow: ${({ theme }) => theme.globalBoxShadow};
   border: ${({ theme }) => theme.globalBorderStyle};
   border-radius: 50%;
+  cursor: pointer;
 
   &:hover {
     background-color: ${({ theme }) => theme.mainBrandBlack};

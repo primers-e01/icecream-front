@@ -31,17 +31,17 @@ const callback = async (response: RequestPayResponse) => {
 
   if (success) {
     // axios로 HTTP 요청
-    axios({
-      url: '{서버의 결제 정보를 받는 endpoint}',
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      data: {
-        imp_uid: imp_uid,
-        merchant_uid: merchant_uid,
-      },
-    }).then(data => {
-      // 서버 결제 API 성공시 로직
-    });
+    axios
+      .post('{서버의 결제 정보를 받는 endpoint}', {
+        headers: { 'Content-Type': 'application/json' },
+        data: {
+          imp_uid: imp_uid,
+          merchant_uid: merchant_uid,
+        },
+      })
+      .then(data => {
+        // 서버 결제 API 성공시 로직
+      });
 
     alert('결제 성공');
   } else {

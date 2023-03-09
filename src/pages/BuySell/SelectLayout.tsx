@@ -16,6 +16,7 @@ const SelectLayout = ({ tradeType }: Props) => {
   const [selectedPrice, setSelectedPrice] = useState<number | undefined>();
   const ProductSlice = useAppSelector(state => state.ProductSlice);
 
+  // ProductData에서 사이즈별 최고가, 최저가 정렬하는 로직
   const sellBidDataAll = ProductSlice.tradeAll[0]?.sellBidDataAll;
   const buyBidDataAll = ProductSlice.tradeAll[0]?.buyBidDataAll;
 
@@ -86,9 +87,6 @@ const SelectLayout = ({ tradeType }: Props) => {
     },
   ];
 
-  console.log('sell : ', groupedSellBidData);
-  console.log('buy : ', groupedBuyBidData);
-
   const navigate = useNavigate();
 
   const onSizeClick = (size: number, price: number) => {
@@ -98,7 +96,7 @@ const SelectLayout = ({ tradeType }: Props) => {
 
   useEffect(() => {
     if (!ProductSlice.productData) {
-      navigate('/products');
+      navigate('/shop');
     }
   }, []);
 

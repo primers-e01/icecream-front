@@ -12,13 +12,13 @@ interface NavMainType {
 }
 
 const NAV_TOP = [
-  { id: 1, list: '고객센터', link: '/notice' },
-  // { id: 2, list: '마이페이지', link: '/mypage' },
+  // { id: 1, list: '고객센터', link: '/notice' },
+  { id: 1, list: '마이페이지', link: '/mypage' },
 ];
 
 const NAV_MAIN = [
-  { id: 1, list: 'STYLE', link: '/style?filterBy=trending' },
-  { id: 2, list: 'SHOP', link: '/products' },
+  { id: 1, list: 'HOME', link: '/' },
+  { id: 2, list: 'SHOP', link: '/shop' },
   { id: 3, list: 'ABOUT', link: '/about' },
   {
     id: 4,

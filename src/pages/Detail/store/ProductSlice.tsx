@@ -14,8 +14,8 @@ const ProductSlice = createSlice({
   initialState,
   reducers: {
     saveProductData: (state, action: PayloadAction<ProductDataRoot>) => {
-      Object.assign(state, action.payload);
-      // return action.payload;
+      // Object.assign(state, action.payload);
+      return action.payload;
     },
   },
 });
