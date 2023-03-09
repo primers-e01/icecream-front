@@ -231,11 +231,20 @@ const DetailWrapper = styled.div`
   margin: 100px auto 0;
   padding: 30px 40px 120px;
   max-width: 1280px;
+
+  @media screen and (max-width: 780px) {
+    flex-direction: column;
+  }
 `;
 
 const ImageColumn = styled.div`
   width: 50%;
   padding-right: 3%;
+
+  @media screen and (max-width: 780px) {
+    width: 100%;
+    padding: 0;
+  }
 `;
 
 const ItemImgBox = styled.div`
@@ -302,6 +311,16 @@ const DescriptionColumn = styled.div`
     left: 0;
     bottom: 0;
     border-left: 1px solid #ebebeb;
+
+    @media screen and (max-width: 780px) {
+      border: none;
+    }
+  }
+
+  @media screen and (max-width: 780px) {
+    width: 100%;
+    padding: 0;
+    padding-top: 20px;
   }
 `;
 
@@ -376,6 +395,10 @@ const DealBtnBox = styled.div`
   height: 60px;
   width: 100%;
   border-radius: 10px;
+
+  @media screen and (max-width: 780px) {
+    display: none;
+  }
 `;
 
 const InfoSection = styled.section``;
