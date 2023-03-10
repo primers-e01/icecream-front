@@ -58,8 +58,8 @@ const WishModal = ({ closePortal }: Props) => {
       <WishModalDetail>
         <WishImage src={product.productData?.images[0].url} alt="사진" />
         <WishLayout>
-          <WishTitle>{product.productData?.krName}</WishTitle>
-          <WishSubTitle>{product.productData?.enName}</WishSubTitle>
+          <WishTitle>{product.productData?.enName}</WishTitle>
+          <WishSubTitle>{product.productData?.krName}</WishSubTitle>
         </WishLayout>
       </WishModalDetail>
       <WishModalSize>
@@ -103,7 +103,7 @@ const WishModalTitle = styled.div`
 
 const WishModalDetail = styled.div`
   display: flex;
-  border-bottom: 1px solid #d3d3d3;
+  border-bottom: ${({ theme }) => theme.globalBorderStyle};
 `;
 
 const WishImage = styled.img`
@@ -116,34 +116,36 @@ const WishImage = styled.img`
 const WishLayout = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   margin-left: 20px;
 `;
 
 const WishTitle = styled.div`
-  font-weight: bold;
-  padding-bottom: 10px;
+  font-weight: 600;
 `;
 
 const WishSubTitle = styled.div`
-  font-weight: lighter;
-  font-size: 13px;
+  font-size: 12px;
+  margin-top: 6px;
+  color: #666;
+  line-height: 14px;
 `;
 
 const WishModalSize = styled.div`
   padding-top: 30px;
   overflow: auto;
-  height: 250px;
   display: grid;
-  grid-template-columns: 250px 250px;
+  grid-template-columns: calc(50% - 5px) calc(50% - 5px);
+  gap: 10px;
 `;
 
 const WishModalButton = styled.button`
-  width: 150px;
+  width: 100%;
   height: 50px;
-  border: 1px solid #d3d3d3;
+  border: ${({ theme }) => theme.globalBorderStyle};
   border-radius: 8px;
   text-align: center;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,9 +156,9 @@ const WishModalButton = styled.button`
 `;
 
 const Size = styled.div`
-  width: 200px;
+  width: 100%;
   height: 50px;
-  border: 1px solid #d3d3d3;
+  border: ${({ theme }) => theme.globalBorderStyle};
   border-radius: 8px;
   text-align: center;
   display: flex;
@@ -167,7 +169,7 @@ const Size = styled.div`
   cursor: pointer;
 
   &.active {
-    border: 2px solid black;
+    border-color: #000;
   }
 `;
 
@@ -175,7 +177,6 @@ const WishButtonArea = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
 `;
 
 const SIZE: SizeType[] = [

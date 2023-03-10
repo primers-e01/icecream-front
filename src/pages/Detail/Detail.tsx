@@ -504,17 +504,14 @@ const NoticeSection = styled.section`
 `;
 
 const WishButton = styled.button`
+  margin-top: 10px;
   width: 100%;
-  font-size: 16px;
+  height: 60px;
+  font-size: 15px;
   letter-spacing: -0.16px;
-  font-weight: 700;
-  height: 52px;
-  border-radius: 12px;
-  border-top: 10px;
-  position: relative;
-  top: 20px;
-  background-color: white;
-  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+  background-color: #fff;
+  border: ${({ theme }) => theme.globalBorderStyle};
 
   cursor: pointer;
 `;
