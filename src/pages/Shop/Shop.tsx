@@ -48,12 +48,13 @@ export default Shop;
 const Wrapper = styled.div`
   display: flex;
   margin: 100px auto 0;
-  padding: 30px 40px 120px;
+  padding: 50px 40px 120px;
+  max-width: 1280px;
 `;
 
 const ShopAsideBox = styled.div`
   min-width: 200px;
-  margin: 30px 60px 0px 0px;
+  margin-right: 20px;
 `;
 
 const SHOP_CATEGORY = {
