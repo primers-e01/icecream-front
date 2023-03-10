@@ -19,7 +19,12 @@ const KakaoLogin = () => {
       .then(response => {
         localStorage.setItem('accessToken', response.data.accessToken);
         navigate('/');
-      });
+      })
+      .catch(
+        error =>
+          error.message === 'Network Error' &&
+          alert('백엔드 서버가 꺼져있습니다')
+      );
   }, []);
 
   return <div>로그인중입니다.</div>;
