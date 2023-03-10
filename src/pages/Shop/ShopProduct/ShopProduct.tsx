@@ -30,30 +30,17 @@ const ShopProduct = () => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(([{ isIntersecting }]) => {
-  //     if (isIntersecting) {
-  //       fetch(`${API.products}`)
-  //         .then(res => res.json())
-  //         .then(result => {
-  //           setShopProductList(prev => [...prev, ...result.data]);
-  //         });
-  //     }
-  //   });
-
-  //   if (obsTarget.current) {
-  //     observer.observe(obsTarget.current);
-  //   }
-
-  //   return () => {
-  //     observer.disconnect();
-  //   };
-  // }, []);
-
   useEffect(() => {
-    axios.get(`${API.products}` + search).then(result => {
-      setShopProductList(result.data.data);
-    });
+    axios
+      .get(`${API.products}` + search)
+      .then(result => {
+        setShopProductList(result.data.data);
+      })
+      .catch(
+        error =>
+          error.message === 'Network Error' &&
+          alert('백엔드 서버가 꺼져있습니다')
+      );
   }, [search]);
 
   return (
