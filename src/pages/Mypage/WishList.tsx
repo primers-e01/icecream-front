@@ -18,7 +18,7 @@ const WishList = () => {
     {
       img: '/images/naverIcon.png',
       title: '하이',
-      subtitle: '하이2',
+      subtitle: '하이2dsaffsafds',
       size: 204,
       price: 2000000,
     },
@@ -55,11 +55,13 @@ const WishList = () => {
           const { img, title, subtitle, size } = item;
           return (
             <WishItem key={idx}>
-              <ItemImg alt="img" src={img} />
               <ItemFlex>
-                <ItemTitle>{title}</ItemTitle>
-                <ItemSubTitle>{subtitle}</ItemSubTitle>
-                <ItemSize>{size}</ItemSize>
+                <ItemImg alt="img" src={img} />
+                <TitleFlex>
+                  <ItemTitle>{title}</ItemTitle>
+                  <ItemSubTitle>{subtitle}</ItemSubTitle>
+                  <ItemSize>{size}</ItemSize>
+                </TitleFlex>
               </ItemFlex>
               <BtnWrapper>
                 <BuyButton
@@ -67,14 +69,14 @@ const WishList = () => {
                   width="200px"
                   productData={product.productData}
                 />
-                <WishItemDelete
-                  onClick={() => {
-                    deleteItem(idx);
-                  }}
-                >
-                  삭제
-                </WishItemDelete>
               </BtnWrapper>
+              <WishItemDelete
+                onClick={() => {
+                  deleteItem(idx);
+                }}
+              >
+                삭제
+              </WishItemDelete>
             </WishItem>
           );
         })}
@@ -91,6 +93,7 @@ const WishListContainer = styled.div`
   padding: 70px;
   overflow: hidden;
   min-height: 380px;
+  width: 100%;
 `;
 
 const Title = styled.div`
@@ -99,7 +102,7 @@ const Title = styled.div`
   font-size: 24px;
   letter-spacing: -0.36px;
   padding-bottom: 16px;
-  padding-right: 900px;
+  width: 100%;
   border-bottom: 3px solid #222;
 `;
 
@@ -114,10 +117,12 @@ const WishItemList = styled.ul`
 
 const WishItem = styled.li`
   display: flex;
+  position: relative;
   list-style-type: none;
   padding: 20px 0 19px;
   align-items: center;
   border-bottom: 1px solid #ebebeb;
+  justify-content: space-between;
 `;
 
 const ItemImg = styled.img`
@@ -129,7 +134,7 @@ const ItemImg = styled.img`
 const ItemFlex = styled.div`
   text-align: left;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   padding-left: 20px;
 `;
 
@@ -152,12 +157,12 @@ const ItemTitle = styled.div`
 `;
 
 const ItemSubTitle = styled.div`
-  margin-top: 2px;
+  /* margin-top: 2px;
   overflow: hidden;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: vertical; */
   max-height: 36px;
   font-size: 13px;
   line-height: 18px;
@@ -172,18 +177,19 @@ const ItemSize = styled.div`
 `;
 const BtnWrapper = styled.div`
   display: flex;
-  position: relative;
-  left: 630px;
   height: 60px;
 `;
 
 const WishItemDelete = styled.div`
   margin-top: 6px;
   padding: 0 3px;
-  display: inline-flex;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  /* display: inline-flex;
   position: relative;
   top: 60px;
-  right: 40px;
+  right: 40px; */
   font-size: 12px;
   letter-spacing: -0.06px;
   color: rgba(34, 34, 34, 0.8);
@@ -196,4 +202,10 @@ const NoItem = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 150px;
+`;
+
+const TitleFlex = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
 `;
