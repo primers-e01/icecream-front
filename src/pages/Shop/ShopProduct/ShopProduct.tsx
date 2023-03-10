@@ -85,21 +85,26 @@ export default ShopProduct;
 const Wrapper = styled.div``;
 
 const ShopProductList = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 20px;
+
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (max-width: 780px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const ShopProductBox = styled.div`
-  width: 250px;
+  width: 100%;
   margin-bottom: 20px;
 `;
 
 const ThumbnailImg = styled.div`
-  width: 250px;
-  height: 250px;
+  aspect-ratio: 1 / 1;
   border-radius: 10px;
   overflow: hidden;
 
