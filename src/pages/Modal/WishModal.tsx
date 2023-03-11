@@ -116,7 +116,6 @@ const WishImage = styled.img`
 const WishLayout = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   margin-left: 20px;
 `;
 
