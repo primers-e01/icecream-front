@@ -8,13 +8,14 @@ import { flexBox } from '../../styles/mixin';
 import { useAppSelector } from '../Detail/store/Store';
 import DealBidModal from './DealCheckModal';
 
+// TODO: 추후 구매입찰, 즉시판매 기능 구현해보기
 const BTN_BUY_ITEM = [
-  { item: 'buyBid', text: '구매 입찰하기(삭제 예정)' },
+  // { item: 'buyBid', text: '구매 입찰하기(삭제 예정)' },
   { item: 'buyNow', text: '즉시 구매하기' },
 ];
 const BTN_SELL_ITEM = [
   { item: 'sellBid', text: '판매 입찰하기' },
-  { item: 'sellNow', text: '즉시 판매하기(삭제 예정)' },
+  // { item: 'sellNow', text: '즉시 판매하기(삭제 예정)' },
 ];
 
 interface GroupedSellBidData {
@@ -150,6 +151,7 @@ const BuySellLayout = ({ tradeType, item }: Props) => {
                 원
               </Price>
             </BuyNowPrice>
+            {/* TODO: 추후 구매입찰, 즉시판매 기능 구현해보기  */}
             <SellNowPrice>
               <Text>즉시 판매가 (삭제 예정)</Text>
               <Price>
