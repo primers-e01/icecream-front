@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mobile, DeskTop, Tablet } from 'src/responsive/Responsive';
+import { Mobile, DeskTop } from 'src/responsive/Responsive';
 import DesktopNav from './DeskTop';
 import MobileNav from './Mobile';
 import TabletNav from './Tablet';
@@ -9,7 +9,7 @@ const NavBar = () => {
     <>
       <DeskTop children={<DesktopNav />} />
       <Mobile children={<MobileNav />} />
-      <Tablet children={<TabletNav />} />
+      {/* <Tablet children={<TabletNav />} /> */}
     </>
   );
 };

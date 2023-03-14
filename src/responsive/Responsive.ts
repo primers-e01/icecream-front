@@ -10,11 +10,11 @@ export const Mobile = ({ children }: Props): JSX.Element | null => {
 };
 
 export const DeskTop = ({ children }: Props): JSX.Element | null => {
-  const isDeskTop = useMediaQuery({ minWidth: 1024 });
+  const isDeskTop = useMediaQuery({ minWidth: 768 });
   return isDeskTop ? children : null;
 };
 
-export const Tablet = ({ children }: Props): JSX.Element | null => {
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
-  return isTablet ? children : null;
-};
+// export const Tablet = ({ children }: Props): JSX.Element | null => {
+//   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
+//   return isTablet ? children : null;
+// };
