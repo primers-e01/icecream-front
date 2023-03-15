@@ -16,7 +16,7 @@
 | 김태윤 | TS 마이그레이션, CI/CD, 결제기능, SSE, 반응형 레이아웃  | <a href="https://github.com/Taeyooooon"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/></a> |
 | --- | --- | --- |
 | 김나희 | TS 마이그레이션, CI/CD, 네이버 로그인 | <a href="https://github.com/imfineimgood"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/></a> |
-| 김민기 | TS 마이그레이션, CI/CD, 마이페이지 |  <a href="https://github.com/minki3"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/></a> |
+| 김민기 | TS 마이그레이션, CI/CD, 마이페이지, 반응형 레이아웃(navgationBar) |  <a href="https://github.com/minki3"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/></a> |
 
 </br>
 </br>
