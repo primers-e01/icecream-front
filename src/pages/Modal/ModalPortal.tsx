@@ -5,9 +5,22 @@ import styled from 'styled-components';
 interface props {
   children: JSX.Element;
   closePortal: () => void;
+  width: string;
+  height: string;
+  position: string;
+  top: string;
+  left: string;
 }
 
-const ModalPortal = ({ children, closePortal }: props) => {
+const ModalPortal = ({
+  children,
+  closePortal,
+  width,
+  height,
+  position,
+  top,
+  left,
+}: props) => {
   // const ref = useRef<Element | null>();
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -33,11 +46,23 @@ const ModalPortal = ({ children, closePortal }: props) => {
       }
     }
   }, []);
+  const handleClickOutside = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (ref.current && e.target === ref.current) {
+      closePortal();
+    }
+  };
+
   if (ref.current && mounted) {
     // mounted 됬고 dom이 존재하는 경우 모달 랜더링 진행
     return createPortal(
-      <ModalBackGround>
-        <ModalContainer>
+      <ModalBackGround onClick={handleClickOutside}>
+        <ModalContainer
+          width={width}
+          height={height}
+          position={position}
+          top={top}
+          left={left}
+        >
           <CloseModal onClick={closePortal}>x</CloseModal>
           {children}
         </ModalContainer>
@@ -60,13 +85,19 @@ const ModalBackGround = styled.div`
   background: rgba(0, 0, 0, 0.5);
 `;
 
-const ModalContainer = styled.div`
-  width: 500px;
-  height: 500px;
+const ModalContainer = styled.div<{
+  width: string;
+  height: string;
+  position: string;
+  top: string;
+  left: string;
+}>`
+  width: ${props => props.width};
+  height: ${props => props.height};
   background-color: white;
-  position: fixed;
-  top: 50%;
-  left: 50%;
+  position: ${props => props.position};
+  top: ${props => props.top};
+  left: ${props => props.left};
   transform: translate(-50%, -50%);
   border-radius: 10px;
   border: 1px solid #d3d3d3;

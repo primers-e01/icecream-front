@@ -143,6 +143,11 @@ const Detail = () => {
             closePortal={() => {
               setWishModal(false);
             }}
+            width="500px"
+            height="500px"
+            position="fixed"
+            top="50%"
+            left="50%"
           >
             <WishModal
               closePortal={() => {

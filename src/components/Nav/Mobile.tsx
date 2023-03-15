@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import { flexBox } from '../../styles/mixin';
-
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ModalPortal from 'src/pages/Modal/ModalPortal';
+import MobileNavModal from 'src/pages/Modal/MobileNavModal';
 const Mobile = () => {
+  const [isOpen, setIsOpen] = useState<Boolean>(false);
+
   return (
     <MobileNav>
       <NavMainBox>
@@ -15,6 +20,27 @@ const Mobile = () => {
             />
           </Link>
         </NavLogoBox>
+        <FontAwesomeIcon
+          icon={faBars}
+          style={{ cursor: 'pointer' }}
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        />
+        {isOpen && (
+          <ModalPortal
+            closePortal={() => {
+              setIsOpen(false);
+            }}
+            width="50%"
+            height="100%"
+            position="fixed"
+            top="50%"
+            left="75%"
+          >
+            <MobileNavModal />
+          </ModalPortal>
+        )}
       </NavMainBox>
     </MobileNav>
   );
