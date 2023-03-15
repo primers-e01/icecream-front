@@ -38,7 +38,11 @@ const Mobile = () => {
             top="50%"
             left="75%"
           >
-            <MobileNavModal />
+            <MobileNavModal
+              closePortal={() => {
+                setIsOpen(false);
+              }}
+            />
           </ModalPortal>
         )}
       </NavMainBox>
