@@ -24,7 +24,7 @@ const MobileNavModal = ({ closePortal }: Props) => {
   return (
     <NavModalContainer>
       {MOBILE_NAV.map(items => {
-        const { id, category, link, active } = items;
+        const { id, category, link } = items;
         return (
           <NavModalCategory
             key={id}
@@ -32,14 +32,21 @@ const MobileNavModal = ({ closePortal }: Props) => {
               navigate(link);
               closePortal();
             }}
-            className={active ? 'active' : ''}
           >
             {category}
           </NavModalCategory>
         );
       })}
-      {localStorage.token && (
+      {localStorage.token ? (
         <NavModalCategory onClick={logOutClick}>로그아웃</NavModalCategory>
+      ) : (
+        <NavModalCategory
+          onClick={() => {
+            navigate('signup');
+          }}
+        >
+          로그인
+        </NavModalCategory>
       )}
     </NavModalContainer>
   );
@@ -62,20 +69,10 @@ const NavModalCategory = styled.div`
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
-
-  &.active {
-    display: none;
-  }
 `;
 
 const MOBILE_NAV: MobileNavType[] = [
   { id: 1, category: 'HOME', link: '/' },
   { id: 2, category: 'SHOP', link: 'shop' },
   { id: 3, category: 'MY', link: localStorage.token ? 'mypage' : 'signup' },
-  {
-    id: 4,
-    category: '로그인',
-    link: 'signup',
-    active: !!localStorage.token,
-  },
 ];
