@@ -54,9 +54,10 @@
 
 | 네이버로그인 | 추가예정 |
 | :--: | :--: |
-| 결제기능 | 추가예정 |
+| 결제기능 | <img width="50%" src="https://user-images.githubusercontent.com/83495141/225834321-a87e29e6-8a6a-4736-8890-89e11e83bc33.gif"> |
 | SSE | 추가예정 |
-| 반응형 레이아웃 | 추가예정 |
+| 반응형 레이아웃 (메인) | <img width="50%" src="https://user-images.githubusercontent.com/83495141/225834328-173fa9a1-cede-499d-953a-8bacb375e922.gif"> |
+| 반응형 레이아웃 (상세) | <img width="50%" src="https://user-images.githubusercontent.com/83495141/225834313-379671ca-b0fd-4918-949c-776d117a6906.gif"> |
 | 마이페이지 | 추가예정 |
 
 
