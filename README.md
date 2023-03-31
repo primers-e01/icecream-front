@@ -43,10 +43,9 @@
 
 </br>
 
-# 데모 영상
+# 배포 링크
 
-추가예정 
-<a href="/">🔗 ICECREAM 데모영상 </a>
+<a href="https://dtmp4yl9vbw4o.cloudfront.net/">🔗 배포 링크 </a>
 
 </br>
 
